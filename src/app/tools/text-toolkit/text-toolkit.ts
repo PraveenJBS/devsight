@@ -17,18 +17,17 @@ interface DiffLine {
   template: `
     <div class="space-y-6 font-sans text-left">
       <!-- Main Workspace Section (Two or Three Columns split based on diff/editor mode) -->
-      <div class="grid grid-cols-1 lg:grid-cols-1 gap-8 items-start">
+      <div class="grid grid-cols-1 lg:grid-cols-1 gap-4 items-start">
         <!-- Workbench Controls Panel Left column -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-start">
           <!-- Tool Configuration Drawer -->
-          <div class="bg-white dark:bg-zinc-900/60 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800/80 shadow-sm text-left relative overflow-hidden block">
+          <div class="md:col-span-3 bg-white dark:bg-zinc-900/60 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800/80 shadow-sm text-left relative overflow-hidden block">
             <span class="text-[10px] uppercase font-mono tracking-widest text-[#10b981] font-extrabold block mb-4">WIDGET PARAMETERS</span>
-            
             <!-- Tool 1: Text Formatter -->
             @if (toolId() === 'text-formatter') {
               <div class="space-y-4">
                 <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Formatting Options</span>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-mono">
                   <button (click)="formatNormalizeWhitespace()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:border-zinc-300 dark:hover:border-emerald-600 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer hover:bg-zinc-100 transition truncate-none">
                     Normalize Spaces
                   </button>
@@ -50,7 +49,7 @@ interface DiffLine {
                 </div>
 
                 <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block pt-2 border-b border-zinc-150 dark:border-zinc-850 pb-2">Line Manipulation</span>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
+                <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-xs font-mono">
                   <button (click)="lineSortAsc()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:border-zinc-300 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
                     Sort Lines Asc
                   </button>
@@ -86,12 +85,9 @@ interface DiffLine {
             @if (toolId() === 'text-diff-checker') {
               <div class="space-y-4">
                 <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Diff Configuration</span>
-                
                 <div class="space-y-3">
                   <label class="flex items-center gap-2.5 text-xs text-zinc-600 dark:text-zinc-300 cursor-pointer select-none font-semibold">
-                    <input 
-                      type="checkbox" 
-                      [checked]="diffIgnoreWhitespace()" 
+                    <input type="checkbox" [checked]="diffIgnoreWhitespace()"
                       (change)="diffIgnoreWhitespace.set($any($event.target).checked); computeDiff()" 
                       class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
                     />
@@ -101,7 +97,7 @@ interface DiffLine {
                   <div class="space-y-1.5">
                     <span class="block text-xs font-semibold text-zinc-500 dark:text-zinc-400 select-none">View Arrangement</span>
                     <div class="grid grid-cols-2 gap-1 bg-zinc-50 dark:bg-zinc-950 p-1 rounded-xl border border-zinc-150 dark:border-zinc-850">
-                      <button 
+                      <button
                         (click)="diffViewMode.set('split')"
                         [class.bg-white]="diffViewMode() === 'split'"
                         [class.dark:bg-zinc-900]="diffViewMode() === 'split'"
@@ -112,7 +108,7 @@ interface DiffLine {
                       >
                         Split View
                       </button>
-                      <button 
+                      <button
                         (click)="diffViewMode.set('inline')"
                         [class.bg-white]="diffViewMode() === 'inline'"
                         [class.dark:bg-zinc-900]="diffViewMode() === 'inline'"
@@ -137,7 +133,7 @@ interface DiffLine {
             @if (toolId() === 'case-converter') {
               <div class="space-y-4">
                 <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Standard Casings</span>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs font-mono">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-2 text-xs font-mono">
                   <button (click)="convertCase('camel')" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
                     camelCase
                   </button>
@@ -184,13 +180,10 @@ interface DiffLine {
             @if (toolId() === 'slug-generator') {
               <div class="space-y-4">
                 <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Slug Modifiers</span>
-                
                 <div class="space-y-3">
                   <div class="space-y-1.5">
                     <span class="block text-xs text-zinc-500 dark:text-zinc-400 font-semibold select-none">Separator Character</span>
-                    <select 
-                      [ngModel]="slugSeparator()" 
-                      (ngModelChange)="slugSeparator.set($event); triggerSlugGeneration()"
+                    <select [ngModel]="slugSeparator()" (ngModelChange)="slugSeparator.set($event); triggerSlugGeneration()"
                       class="w-full p-2.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-850 rounded-xl text-xs font-mono outline-none focus:ring-1 focus:ring-emerald-500 text-zinc-700 dark:text-zinc-300"
                     >
                       <option value="-">Hyphen (-)</option>
@@ -237,11 +230,10 @@ interface DiffLine {
             @if (toolId() === 'markdown-preview' || toolId() === 'markdown-tools') {
               <div class="space-y-4">
                 <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Markdown Utilities</span>
-                
                 @if (toolId() === 'markdown-tools') {
                   <div class="space-y-4 text-xs">
                     <span class="text-xs font-bold text-zinc-550 dark:text-zinc-400 uppercase tracking-wide block">Insert elements</span>
-                    <div class="grid grid-cols-2 gap-1.5 font-mono text-[10px]">
+                    <div class="grid grid-cols-3 gap-1.5 font-mono text-[10px]">
                       <button (click)="markdownInsert('bold')" class="py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 rounded-lg hover:border-zinc-300 font-bold text-zinc-650 dark:text-zinc-300 cursor-pointer">
                         Bold (**)
                       </button>
@@ -274,10 +266,13 @@ interface DiffLine {
                           <span class="block text-[9px] text-zinc-500 font-semibold mb-0.5">COLUMNS</span>
                           <input type="number" [(ngModel)]="mdTableCols" class="w-full text-center p-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-850 rounded-lg text-zinc-700 dark:text-zinc-300 outline-none" min="1" max="15"/>
                         </div>
+                        <div class="flex-1">
+                          <span class="block text-[9px] text-zinc-500 font-semibold mb-0.5">INSERT</span>
+                          <button (click)="markdownInsertTable()" class="w-full py-1.5 bg-emerald-500/10 hover:bg-emerald-500/15 border border-emerald-500/20 font-bold rounded-lg text-emerald-600 dark:text-emerald-400 font-mono text-[10px] cursor-pointer text-center block">
+                            INSERT TABLE SYNTX
+                          </button>
+                        </div>
                       </div>
-                      <button (click)="markdownInsertTable()" class="w-full py-1.5 bg-emerald-500/10 hover:bg-emerald-500/15 border border-emerald-500/20 font-bold rounded-lg text-emerald-600 dark:text-emerald-400 font-mono text-[10px] cursor-pointer text-center block">
-                        INSERT TABLE SYNTX
-                      </button>
                     </div>
                   </div>
                 }
@@ -285,7 +280,7 @@ interface DiffLine {
                 <div class="space-y-2 pt-2 border-t border-zinc-150 dark:border-zinc-850 font-semibold">
                   <span class="block text-xs text-zinc-500">Live Preview Output View</span>
                   <div class="grid grid-cols-2 gap-1 bg-zinc-50 dark:bg-zinc-950 p-1 rounded-xl border border-zinc-150 dark:border-zinc-850 text-xs">
-                    <button 
+                    <button
                       (click)="mdPreviewMode.set('rendered')"
                       [class.bg-white]="mdPreviewMode() === 'rendered'"
                       [class.dark:bg-zinc-900]="mdPreviewMode() === 'rendered'"
@@ -296,7 +291,7 @@ interface DiffLine {
                     >
                       RENDERED HTML
                     </button>
-                    <button 
+                    <button
                       (click)="mdPreviewMode.set('raw')"
                       [class.bg-white]="mdPreviewMode() === 'raw'"
                       [class.dark:bg-zinc-900]="mdPreviewMode() === 'raw'"
@@ -316,7 +311,6 @@ interface DiffLine {
             @if (toolId() === 'character-counter') {
               <div class="space-y-4 select-all text-xs font-mono">
                 <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Readability Metrics</span>
-                
                 <div class="space-y-2 text-zinc-600 dark:text-zinc-400">
                   <div class="flex justify-between py-1 border-b border-zinc-100 dark:border-zinc-850/50">
                     <span class="font-bold">Reading Speed:</span>
@@ -360,12 +354,9 @@ interface DiffLine {
             @if (toolId() === 'remove-duplicate-lines') {
               <div class="space-y-4">
                 <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Deduplication Rules</span>
-                
                 <div class="space-y-3">
                   <label class="flex items-center gap-2.5 text-xs text-zinc-650 dark:text-zinc-300 cursor-pointer select-none font-semibold">
-                    <input 
-                      type="checkbox" 
-                      [checked]="dupCaseInsensitive()" 
+                    <input type="checkbox" [checked]="dupCaseInsensitive()"
                       (change)="dupCaseInsensitive.set($any($event.target).checked); dedupLines()" 
                       class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
                     />
@@ -373,10 +364,7 @@ interface DiffLine {
                   </label>
 
                   <label class="flex items-center gap-2.5 text-xs text-zinc-650 dark:text-zinc-300 cursor-pointer select-none font-semibold">
-                    <input 
-                      type="checkbox" 
-                      [checked]="dupStripWhitespace()" 
-                      (change)="dupStripWhitespace.set($any($event.target).checked); dedupLines()" 
+                    <input type="checkbox" [checked]="dupStripWhitespace()" (change)="dupStripWhitespace.set($any($event.target).checked); dedupLines()" 
                       class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
                     />
                     Strip spacing before checks
@@ -384,9 +372,7 @@ interface DiffLine {
 
                   <div class="space-y-1.5">
                     <span class="block text-xs text-zinc-500 dark:text-zinc-400 font-semibold select-none">Preservation Strategy</span>
-                    <select 
-                      [ngModel]="dupPreserveMode()" 
-                      (ngModelChange)="dupPreserveMode.set($event); dedupLines()"
+                    <select [ngModel]="dupPreserveMode()" (ngModelChange)="dupPreserveMode.set($event); dedupLines()"
                       class="w-full p-2.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-850 rounded-xl text-xs font-mono outline-none focus:ring-1 focus:ring-emerald-500 text-zinc-700 dark:text-zinc-300"
                     >
                       <option value="first">Preserve FIRST instance</option>
@@ -409,13 +395,9 @@ interface DiffLine {
             @if (toolId() === 'text-cleaner') {
               <div class="space-y-4">
                 <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Cleaning Sub-functions</span>
-                
                 <div class="space-y-3 font-semibold text-xs text-zinc-650 dark:text-zinc-300">
                   <label class="flex items-center gap-2.5 cursor-pointer select-none">
-                    <input 
-                      type="checkbox" 
-                      [(ngModel)]="cleanHTML"
-                      (change)="executeCleaning()"
+                    <input type="checkbox" [(ngModel)]="cleanHTML" (change)="executeCleaning()"
                       class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
                     />
                     Strip HTML & XML Tags
@@ -432,29 +414,21 @@ interface DiffLine {
                   </label>
 
                   <label class="flex items-center gap-2.5 cursor-pointer select-none">
-                    <input 
-                      type="checkbox" 
-                      [(ngModel)]="cleanEmojis"
-                      (change)="executeCleaning()"
+                    <input type="checkbox" [(ngModel)]="cleanEmojis" (change)="executeCleaning()"
                       class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
                     />
                     Strip Graphic Emojis
                   </label>
 
                   <label class="flex items-center gap-2.5 cursor-pointer select-none">
-                    <input 
-                      type="checkbox" 
-                      [(ngModel)]="cleanUnicode"
-                      (change)="executeCleaning()"
+                    <input type="checkbox" [(ngModel)]="cleanUnicode" (change)="executeCleaning()"
                       class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
                     />
                     Strip Non-ASCII Unicode Symbols
                   </label>
 
                   <label class="flex items-center gap-2.5 cursor-pointer select-none">
-                    <input 
-                      type="checkbox" 
-                      [(ngModel)]="cleanSpaces"
+                    <input type="checkbox" [(ngModel)]="cleanSpaces"
                       (change)="executeCleaning()"
                       class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
                     />
@@ -462,9 +436,7 @@ interface DiffLine {
                   </label>
 
                   <label class="flex items-center gap-2.5 cursor-pointer select-none">
-                    <input 
-                      type="checkbox" 
-                      [(ngModel)]="cleanSpacesAll"
+                    <input type="checkbox" [(ngModel)]="cleanSpacesAll"
                       (change)="executeCleaning()"
                       class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
                     />
@@ -497,16 +469,17 @@ interface DiffLine {
                     </button>
                   </div>
 
-                  <button (click)="escapeJS()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
-                    JavaScript String Escaper
-                  </button>
-                  <button (click)="escapeSql()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
-                    SQL String Sanitize Escape
-                  </button>
-                  <button (click)="escapeRegex()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
-                    RegExp Safe Escaper
-                  </button>
-
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-2 text-xs font-mono">
+                    <button (click)="escapeJS()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
+                      JavaScript String Escaper
+                    </button>
+                    <button (click)="escapeSql()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
+                      SQL String Sanitize Escape
+                    </button>
+                    <button (click)="escapeRegex()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
+                      RegExp Safe Escaper
+                    </button>
+                  </div>
                   <div class="flex items-center gap-1 border-t border-zinc-150 dark:border-zinc-850 pt-3 flex-wrap">
                     <button (click)="convertBinary('to')" class="flex-1 px-2.5 py-1.5 bg-emerald-500/10 hover:bg-emerald-500/15 border border-emerald-500/20 rounded-lg text-emerald-600 dark:text-emerald-400 cursor-pointer font-bold transition">
                       ASCII &rarr; BIN
@@ -530,7 +503,7 @@ interface DiffLine {
           </div>
 
           <!-- Live Input Inline Counters Widgets -->
-          <div class="bg-zinc-950 p-5 rounded-2xl block space-y-3 text-left border border-zinc-850 shadow-md">
+          <div class="md:col-span-2 bg-zinc-950 p-5 rounded-2xl block space-y-3 text-left border border-zinc-850 shadow-md">
             <span class="text-[9px] uppercase font-mono tracking-widest text-[#10b981] font-bold block select-none">METRIC INDEX STATS</span>
             <div class="grid grid-cols-2 gap-3 text-center">
               <div class="p-3 bg-zinc-900 border border-zinc-850 rounded-xl space-y-0.5">
@@ -551,7 +524,7 @@ interface DiffLine {
               </div>
               <div class="p-3 bg-zinc-900 border border-zinc-850 rounded-xl space-y-0.5 col-span-2">
               <span class="text-xs font-mono font-bold text-zinc-500 uppercase tracking-widest block select-none">Quick Generators</span>
-              <div class="grid grid-cols-1 gap-1.5 text-[10px] font-mono">
+              <div class="grid grid-cols-3 gap-1.5 text-[10px] font-mono">
                 <button (click)="generateLorem()" class="px-2.5 py-1.5 text-left bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 rounded-lg text-zinc-650 dark:text-zinc-400 font-bold transition cursor-pointer flex items-center justify-between border border-zinc-150 dark:border-zinc-850">
                   <span>Lorem Ipsum Standard</span>
                   <mat-icon class="text-xs scale-75 text-zinc-400">text_snippet</mat-icon>
@@ -571,7 +544,7 @@ interface DiffLine {
         </div>
 
         <!-- Toolbar controls for history and active tool summaries -->
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-zinc-50 dark:bg-zinc-950 p-2 rounded-2xl border border-zinc-200 dark:border-zinc-850/80 mb-3">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-zinc-50 dark:bg-zinc-950 p-2 rounded-2xl border border-zinc-200 dark:border-zinc-850/80 mb-1">
           <div class="flex items-center gap-2 flex-wrap">
             <span class="text-xs font-mono font-bold text-zinc-500 uppercase tracking-wider">UTILITY ENVIRONMENT:</span>
             <span class="text-xs font-mono px-2 py-0.5 bg-emerald-500/10 dark:bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold border border-emerald-150 dark:border-emerald-500/30 rounded-lg">
@@ -584,17 +557,13 @@ interface DiffLine {
 
           <div class="flex items-center gap-2 self-end md:self-auto select-none">
             <!-- Undo Redo Controllers -->
-            <button 
-              (click)="undo()" 
-              [disabled]="!canUndo()"
+            <button (click)="undo()" [disabled]="!canUndo()"
               class="p-2 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white rounded-xl transition disabled:opacity-35 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center scale-95" 
               title="Undo Changes (Ctrl+Z)"
             >
               <mat-icon class="text-sm">undo</mat-icon>
             </button>
-            <button 
-              (click)="redo()" 
-              [disabled]="!canRedo()"
+            <button (click)="redo()" [disabled]="!canRedo()"
               class="p-2 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white rounded-xl transition disabled:opacity-35 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center scale-95" 
               title="Redo Changes (Ctrl+Y)"
             >
@@ -605,21 +574,17 @@ interface DiffLine {
             <span class="w-px h-6 bg-zinc-200 dark:bg-zinc-800 mx-1"></span>
 
             <!-- Clear Button -->
-            <button 
-              (click)="clearAll()"
+            <button (click)="clearAll()"
               class="px-3 py-1.5 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-rose-50 dark:hover:bg-rose-950/20 text-zinc-600 dark:text-zinc-400 hover:text-rose-600 dark:hover:text-rose-400 text-xs font-bold rounded-xl transition cursor-pointer flex items-center gap-1"
             >
               <mat-icon class="text-xs scale-75">delete_sweep</mat-icon> CLEAR ALL
             </button>
           </div>
         </div>
-        
         <!-- Workbench Code Editors Section Right columns -->
         <div class="lg:col-span-1 space-y-1">
-          
           <!-- Master Grid for Inputs and Outputs -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            
             <!-- Panel Left (A: Raw Source Input) -->
             <div 
               (dragover)="onDragOver($event)"
@@ -637,9 +602,7 @@ interface DiffLine {
 
                 <div class="flex items-center gap-2">
                   <!-- File Import button -->
-                  <button 
-                    (click)="fileInputA.click()" 
-                    class="p-1 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded transition flex items-center justify-center cursor-pointer border-none bg-transparent" 
+                  <button (click)="fileInputA.click()" class="p-1 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded transition flex items-center justify-center cursor-pointer border-none bg-transparent" 
                     title="Load Local Text File"
                   >
                     <mat-icon class="text-sm">upload_file</mat-icon>
@@ -647,9 +610,7 @@ interface DiffLine {
                   <input #fileInputA type="file" (change)="onFileSelectedA($event)" class="hidden" accept=".txt,.json,.md,.html,.xml,.csv,.js,.ts"/>
 
                   <!-- Paste of Clipboard shortcut -->
-                  <button 
-                    (click)="pasteTextA()" 
-                    class="p-1 hover:bg-zinc-800 text-zinc-405 hover:text-white rounded transition flex items-center justify-center cursor-pointer border-none bg-transparent" 
+                  <button (click)="pasteTextA()" class="p-1 hover:bg-zinc-800 text-zinc-405 hover:text-white rounded transition flex items-center justify-center cursor-pointer border-none bg-transparent" 
                     title="Paste from System Clipboard"
                   >
                     <mat-icon class="text-sm">content_paste</mat-icon>
@@ -660,18 +621,12 @@ interface DiffLine {
               <!-- Search/Replace Overlay embedded into Header -->
               <div class="bg-zinc-950/80 px-3 py-1.5 border-b border-zinc-850/60 flex items-center gap-2 text-xs font-mono select-none">
                 <div class="flex items-center bg-zinc-900 border border-zinc-800 rounded px-1.5 py-0.5 flex-grow">
-                  <input 
-                    type="text" 
-                    [(ngModel)]="searchVal"
-                    placeholder="Find term..." 
+                  <input type="text" [(ngModel)]="searchVal" placeholder="Find term..." 
                     class="bg-transparent border-none outline-none text-[11px] text-zinc-200 placeholder-zinc-650 w-full focus:ring-0 p-0"
                   />
                 </div>
                 <div class="flex items-center bg-zinc-900 border border-zinc-800 rounded px-1.5 py-0.5 flex-grow">
-                  <input 
-                    type="text" 
-                    [(ngModel)]="replaceVal"
-                    placeholder="Replace..." 
+                  <input type="text" [(ngModel)]="replaceVal" placeholder="Replace..." 
                     class="bg-transparent border-none outline-none text-[11px] text-zinc-200 placeholder-zinc-650 w-full focus:ring-0 p-0"
                   />
                 </div>
@@ -707,7 +662,6 @@ interface DiffLine {
 
             <!-- Panel Right (B: Diff modified Target OR Procured Output preview) -->
             <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden block flex flex-col h-[520px] transition-all relative">
-              
               <!-- Content Header switches on Diff tool -->
               @if (toolId() === 'text-diff-checker') {
                 <div class="p-3 bg-zinc-950 border-b border-zinc-850/80 flex items-center justify-between gap-2 text-xs font-mono shrink-0 select-none">
@@ -716,8 +670,7 @@ interface DiffLine {
                   </span>
 
                   <div class="flex items-center gap-2">
-                    <button 
-                      (click)="fileInputB.click()" 
+                    <button (click)="fileInputB.click()" 
                       class="p-1 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded transition flex items-center justify-center cursor-pointer border-none bg-transparent" 
                       title="Load Local Text File B"
                     >
@@ -725,8 +678,7 @@ interface DiffLine {
                     </button>
                     <input #fileInputB type="file" (change)="onFileSelectedB($event)" class="hidden" accept=".txt,.json,.md,.html,.xml,.csv,.js,.ts"/>
 
-                    <button 
-                      (click)="pasteTextB()" 
+                    <button (click)="pasteTextB()" 
                       class="p-1 hover:bg-zinc-800 text-zinc-405 hover:text-white rounded transition flex items-center justify-center cursor-pointer border-none bg-transparent" 
                       title="Paste Clipboard B"
                     >
@@ -759,8 +711,7 @@ interface DiffLine {
 
                   <div class="flex items-center gap-1.5">
                     <!-- Copy success prompt -->
-                    <button 
-                      (click)="copyOutput()"
+                    <button (click)="copyOutput()"
                       [disabled]="!processedOutput()"
                       class="px-2.5 py-1 bg-emerald-950/20 hover:bg-emerald-950/40 border border-emerald-950 text-emerald-400 font-mono text-[10px] uppercase font-bold rounded flex items-center gap-1 cursor-pointer transition disabled:opacity-35 disabled:cursor-not-allowed border-none hover:text-emerald-300"
                     >
@@ -768,8 +719,7 @@ interface DiffLine {
                       {{ copySuccess() ? 'COPIED!' : 'COPY' }}
                     </button>
 
-                    <button 
-                      (click)="downloadOutput()"
+                    <button (click)="downloadOutput()"
                       [disabled]="!processedOutput()"
                       class="p-1 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded transition flex items-center justify-center cursor-pointer border-none bg-transparent" 
                       title="Download Compiled File Output"

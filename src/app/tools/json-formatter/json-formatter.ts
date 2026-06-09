@@ -9,29 +9,21 @@ import { MatIconModule } from '@angular/material/icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="space-y-4">
-      
       <!-- Quick Helpers Control Bar -->
       <div class="flex flex-wrap items-center justify-between gap-4 p-2 bg-zinc-950/40 border border-zinc-800 rounded-xl">
         <div class="flex flex-wrap items-center gap-3">
           <span class="text-xs text-zinc-500 font-mono">CONTROLS:</span>
-          
           <div class="flex items-center bg-zinc-900 rounded p-0.5 border border-zinc-800">
-            <button 
-              (click)="indentSize.set(2)" 
-              [class.bg-zinc-800]="indentSize() === 2"
-              class="px-2.5 py-1 text-xs text-zinc-400 hover:text-white rounded transition font-mono">
+            <button (click)="indentSize.set(2)" [class.bg-zinc-800]="indentSize() === 2"
+              class="px-2.5 py-1 text-xs text-zinc-400 hover:text-white rounded transition font-mono cursor-pointer">
               2 Spaces
             </button>
-            <button 
-              (click)="indentSize.set(4)" 
-              [class.bg-zinc-800]="indentSize() === 4"
-              class="px-2.5 py-1 text-xs text-zinc-400 hover:text-white rounded transition font-mono">
+            <button (click)="indentSize.set(4)" [class.bg-zinc-800]="indentSize() === 4"
+              class="px-2.5 py-1 text-xs text-zinc-400 hover:text-white rounded transition font-mono cursor-pointer">
               4 Spaces
             </button>
-            <button 
-              (click)="indentSize.set(0)" 
-              [class.bg-zinc-800]="indentSize() === 0"
-              class="px-2.5 py-1 text-xs text-zinc-400 hover:text-white rounded transition font-mono">
+            <button (click)="indentSize.set(0)" [class.bg-zinc-800]="indentSize() === 0"
+              class="px-2.5 py-1 text-xs text-zinc-400 hover:text-white rounded transition font-mono cursor-pointer">
               Minify
             </button>
           </div>
@@ -58,59 +50,48 @@ import { MatIconModule } from '@angular/material/icon';
         >
           <div class="flex items-center justify-between flex-wrap gap-2 px-4 py-3 bg-zinc-955 border-b border-zinc-800">
             <span class="text-xs font-semibold text-zinc-400 font-mono">INPUT RAW JSON</span>
-            
             <div class="flex items-center gap-2 flex-wrap">
               <!-- Formatting & Expansion Controls -->
               <div class="flex flex-wrap items-center bg-zinc-950 px-1.5 py-1 rounded-lg border border-zinc-800 gap-1 select-none">
-                <button 
-                  (click)="expandAll()"
-                  class="px-2 py-0.5 text-[10px] font-mono font-bold text-zinc-400 hover:text-white transition flex items-center gap-0.5 cursor-pointer bg-transparent border-none"
+                <button (click)="expandAll()"
+                  class="px-2 py-0.5 text-[10px] font-mono font-bold text-zinc-400 hover:text-white transition flex items-center gap-0.5 cursor-pointer bg-transparent border-none cursor-pointer"
                   title="Expand All Nodes"
                 >
                   <mat-icon class="text-[14px] w-3.5 h-3.5 flex items-center justify-center">unfold_more</mat-icon> EXPAND
                 </button>
-                <button 
-                  (click)="collapseAll()"
-                  class="px-2 py-0.5 text-[10px] font-mono font-bold text-zinc-400 hover:text-white transition flex items-center gap-0.5 cursor-pointer bg-transparent border-none"
+                <button (click)="collapseAll()"
+                  class="px-2 py-0.5 text-[10px] font-mono font-bold text-zinc-400 hover:text-white transition flex items-center gap-0.5 cursor-pointer bg-transparent border-none cursor-pointer"
                   title="Collapse All Nodes"
                 >
                   <mat-icon class="text-[14px] w-3.5 h-3.5 flex items-center justify-center">unfold_less</mat-icon> COLLAPSE
                 </button>
                 <div class="w-px h-3 bg-zinc-805 mx-0.5"></div>
-                <button 
-                  (click)="inputBeautify()"
-                  [disabled]="!parsedObject()"
-                  class="px-2 py-0.5 text-[10px] font-mono font-bold text-zinc-400 hover:text-emerald-400 hover:disabled:text-zinc-400 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none"
+                <button (click)="inputBeautify()" [disabled]="!parsedObject()"
+                  class="px-2 py-0.5 text-[10px] font-mono font-bold text-zinc-400 hover:text-emerald-400 hover:disabled:text-zinc-400 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none cursor-pointer"
                   title="Format JSON with indent and new lines"
                 >
                   <mat-icon class="text-[14px] w-3.5 h-3.5 flex items-center justify-center">format_align_left</mat-icon> FORMAT
                 </button>
-                <button 
-                  (click)="inputSmartFormat()"
-                  [disabled]="!parsedObject()"
-                  class="px-2 py-0.5 text-[10px] font-mono font-bold text-zinc-400 hover:text-blue-400 hover:disabled:text-zinc-400 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none"
+                <button (click)="inputSmartFormat()" [disabled]="!parsedObject()"
+                  class="px-2 py-0.5 text-[10px] font-mono font-bold text-zinc-400 hover:text-blue-400 hover:disabled:text-zinc-400 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none cursor-pointer"
                   title="Smart Format (compact, inline simple arrays/items)"
                 >
                   <mat-icon class="text-[14px] w-3.5 h-3.5 flex items-center justify-center">auto_awesome</mat-icon> SMART
                 </button>
-                <button 
-                  (click)="inputMinify()"
-                  [disabled]="!parsedObject()"
-                  class="px-2 py-0.5 text-[10px] font-mono font-bold text-zinc-400 hover:text-amber-400 hover:disabled:text-zinc-400 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none"
+                <button (click)="inputMinify()"[disabled]="!parsedObject()"
+                  class="px-2 py-0.5 text-[10px] font-mono font-bold text-zinc-400 hover:text-amber-400 hover:disabled:text-zinc-400 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none cursor-pointer"
                   title="Compact JSON (minify, remove whitespaces)"
                 >
                   <mat-icon class="text-[14px] w-3.5 h-3.5 flex items-center justify-center">compress</mat-icon> COMPACT
                 </button>
               </div>
 
-              <button 
-                (click)="clearInput()"
-                class="px-2 py-1 text-xs text-zinc-400 hover:text-white hover:bg-zinc-805 rounded transition font-mono flex items-center gap-1 cursor-pointer bg-transparent border-none">
+              <button (click)="clearInput()"
+                class="px-2 py-1 text-xs text-zinc-400 hover:text-white hover:bg-zinc-805 rounded transition font-mono flex items-center gap-1 cursor-pointer bg-transparent border-none cursor-pointer">
                 <mat-icon class="text-xs scale-75">clear</mat-icon> CLEAR
               </button>
-              <button 
-                (click)="isInputFullScreen.set(!isInputFullScreen())"
-                class="px-2 py-1 text-xs text-zinc-400 hover:text-white hover:bg-zinc-805 rounded transition font-mono flex items-center gap-1 cursor-pointer bg-transparent border-none"
+              <button (click)="isInputFullScreen.set(!isInputFullScreen())"
+                class="px-2 py-1 text-xs text-zinc-400 hover:text-white hover:bg-zinc-805 rounded transition font-mono flex items-center gap-1 cursor-pointer bg-transparent border-none cursor-pointer"
                 [title]="isInputFullScreen() ? 'Exit Full Screen' : 'Full Screen View'"
               >
                 <mat-icon class="text-xs scale-75">{{ isInputFullScreen() ? 'fullscreen_exit' : 'fullscreen' }}</mat-icon>
@@ -136,11 +117,9 @@ import { MatIconModule } from '@angular/material/icon';
                 <div>{{ num }}</div>
               }
             </div>
-            
             <div class="flex-grow h-full relative overflow-hidden bg-zinc-900 w-full text-left">
               @if (rawInput()) {
-                <pre 
-                  id="inputHighlightEl"
+                <pre id="inputHighlightEl"
                   class="absolute inset-0 p-4 text-xs font-mono text-zinc-105 whitespace-pre overflow-hidden leading-relaxed select-none pointer-events-none text-left" 
                   [innerHTML]="highlightedInputText()"
                 ></pre>
@@ -167,30 +146,26 @@ import { MatIconModule } from '@angular/material/icon';
               <!-- View Modes -->
               <div class="flex bg-zinc-900 p-0.5 rounded border border-zinc-800 animate-fade-in">
                 @for (mode of ['formatted', 'tree', 'yaml', 'csv']; track mode) {
-                  <button 
-                    (click)="viewMode.set(mode)"
+                  <button (click)="viewMode.set(mode)"
                     [class.bg-zinc-800]="viewMode() === mode"
                     [class.text-white]="viewMode() === mode"
                     [class.text-zinc-500]="viewMode() !== mode"
-                    class="px-2 py-0.5 text-[10px] font-mono rounded uppercase transition cursor-pointer"
+                    class="px-2 py-0.5 text-[10px] font-mono rounded uppercase transition cursor-pointer cursor-pointer"
                   >
                     {{ mode }}
                   </button>
                 }
               </div>
             </div>
-            
             <div class="flex items-center gap-2">
               @if (output()) {
-                <button 
-                  (click)="copyOutput()"
+                <button (click)="copyOutput()"
                   class="px-2 py-1 text-xs text-emerald-400 hover:text-emerald-300 hover:bg-emerald-950/30 border border-emerald-900 rounded transition font-mono flex items-center gap-1 cursor-pointer">
                   <mat-icon class="text-xs scale-75">{{ copySuccess() ? 'check' : 'content_copy' }}</mat-icon> 
                   {{ copySuccess() ? 'COPIED!' : 'COPY' }}
                 </button>
               }
-              <button 
-                (click)="isOutputFullScreen.set(!isOutputFullScreen())"
+              <button (click)="isOutputFullScreen.set(!isOutputFullScreen())"
                 class="px-2 py-1 text-xs text-zinc-400 hover:text-white hover:bg-zinc-805 rounded transition font-mono flex items-center gap-1 cursor-pointer"
                 [title]="isOutputFullScreen() ? 'Exit Full Screen' : 'Full Screen View'"
               >
@@ -251,10 +226,10 @@ import { MatIconModule } from '@angular/material/icon';
                     <div class="mb-4 bg-zinc-950 p-2.5 rounded-xl border border-zinc-850 flex items-center justify-between gap-3 shrink-0">
                       <span class="text-[10px] font-extrabold font-mono text-zinc-455">COLLAPSIBLE HIERARCHY TREE</span>
                       <div class="flex items-center gap-2 font-mono">
-                        <button (click)="expandAll()" class="px-2 py-1 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 hover:bg-zinc-800 transition text-[9px] font-bold rounded-lg text-zinc-400 hover:text-white cursor-pointer select-none">
+                        <button (click)="expandAll()" class="px-2 py-1 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 hover:bg-zinc-800 transition text-[9px] font-bold rounded-lg text-zinc-400 hover:text-white cursor-pointer select-none cursor-pointer">
                           EXPAND ALL
                         </button>
-                        <button (click)="collapseAll()" class="px-2 py-1 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 hover:bg-zinc-800 transition text-[9px] font-bold rounded-lg text-zinc-400 hover:text-white cursor-pointer select-none">
+                        <button (click)="collapseAll()" class="px-2 py-1 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 hover:bg-zinc-800 transition text-[9px] font-bold rounded-lg text-zinc-400 hover:text-white cursor-pointer select-none cursor-pointer">
                           COLLAPSE ALL
                         </button>
                       </div>
@@ -278,7 +253,6 @@ export class JsonFormatterComponent {
   public viewMode = signal<string>('formatted');
   public copySuccess = signal<boolean>(false);
   public defaultExpandState = signal<{ state: boolean; version: number }>({ state: true, version: 0 });
-  
   // Custom Signals for FullScreen and Preview Views
   public isInputFullScreen = signal<boolean>(false);
   public isOutputFullScreen = signal<boolean>(false);
@@ -612,9 +586,8 @@ export class JsonFormatterComponent {
       >
         <!-- Collapse Toggle Chevron -->
         @if (isObject || isArray) {
-          <button 
-            (click)="toggleCollapse()" 
-            class="text-zinc-500 hover:text-emerald-400 p-0.5 transition outline-none cursor-pointer flex items-center justify-center bg-transparent border-none"
+          <button (click)="toggleCollapse()" 
+            class="text-zinc-500 hover:text-emerald-400 p-0.5 transition outline-none cursor-pointer flex items-center justify-center bg-transparent border-none cursor-pointer"
           >
             <mat-icon class="text-sm scale-90 align-middle">
               {{ collapsed() ? 'chevron_right' : 'expand_more' }}
@@ -701,10 +674,8 @@ export class JsonFormatterComponent {
 
         <!-- Hover utilities for direct JSON path copying -->
         <div class="hidden group-hover/row:flex items-center gap-1.5 ml-auto opacity-0 group-hover/row:opacity-100 transition-opacity select-none pl-3">
-          <button 
-            (click)="copyPathToClipboard(path)" 
-            title="Copy JSON path index" 
-            class="p-0.5 text-zinc-500 hover:text-emerald-400 hover:bg-zinc-850 rounded transition-all flex items-center justify-center cursor-pointer scale-90 border-none bg-transparent"
+          <button (click)="copyPathToClipboard(path)" title="Copy JSON path index"
+            class="p-0.5 text-zinc-500 hover:text-emerald-400 hover:bg-zinc-850 rounded transition-all flex items-center justify-center cursor-pointer scale-90 border-none bg-transparent cursor-pointer"
           >
             <mat-icon class="text-xs scale-90">{{ copySuccess ? 'check' : 'assignment' }}</mat-icon>
             <span class="text-[9px] font-mono lowercase text-zinc-500 ml-0.5">{{ copySuccess ? 'copied' : 'path' }}</span>

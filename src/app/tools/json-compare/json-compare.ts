@@ -132,10 +132,10 @@ export interface JsonPatchOp {
 
           <!-- Utility features (import preset / file templates) -->
           <div class="flex items-center gap-2">
-            <button (click)="loadDemoData()" class="px-3 py-1.5 border border-zinc-800 hover:border-zinc-700 bg-zinc-900 text-[10.5px] font-mono font-bold text-zinc-400 hover:text-white rounded-lg transition">
+            <button (click)="loadDemoData()" class="px-3 py-1.5 border border-zinc-800 hover:border-zinc-700 bg-zinc-900 text-[10.5px] font-mono font-bold text-zinc-400 hover:text-white rounded-lg transition cursor-pointer">
               LOAD DEMO SCHEMAS
             </button>
-            <button (click)="clearInputs()" class="px-3 py-1.5 border border-rose-950 hover:bg-rose-955/20 text-[10.5px] font-mono font-bold text-rose-400 rounded-lg transition">
+            <button (click)="clearInputs()" class="px-3 py-1.5 border border-rose-950 hover:bg-rose-955/20 text-[10.5px] font-mono font-bold text-rose-400 rounded-lg transition cursor-pointer">
               RESET ALL
             </button>
           </div>
@@ -151,57 +151,48 @@ export interface JsonPatchOp {
             <div class="flex items-center gap-2 flex-wrap">
               <!-- Formatting & Expansion Controls -->
               <div class="flex flex-wrap items-center bg-zinc-950 px-1.5 py-0.5 rounded-lg border border-zinc-800 gap-1 select-none scale-90 origin-right">
-                <button 
-                  (click)="setAllExpandedState(true)"
-                  class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-white transition flex items-center gap-0.5 cursor-pointer bg-transparent border-none outline-none"
+                <button (click)="setAllExpandedState(true)"
+                  class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-white transition flex items-center gap-0.5 cursor-pointer bg-transparent border-none outline-none cursor-pointer"
                   title="Expand All Differences Nodes"
                 >
                   <mat-icon class="text-[13px] w-3 h-3 flex items-center justify-center">unfold_more</mat-icon> EXPAND
                 </button>
-                <button 
-                  (click)="setAllExpandedState(false)"
-                  class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-white transition flex items-center gap-0.5 cursor-pointer bg-transparent border-none outline-none"
+                <button (click)="setAllExpandedState(false)"
+                  class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-white transition flex items-center gap-0.5 cursor-pointer bg-transparent border-none outline-none cursor-pointer"
                   title="Collapse All Differences Nodes"
                 >
                   <mat-icon class="text-[13px] w-3 h-3 flex items-center justify-center">unfold_less</mat-icon> COLLAPSE
                 </button>
                 <div class="w-px h-3 bg-zinc-805 mx-0.5"></div>
-                <button 
-                  (click)="formatLeft()"
-                  [disabled]="!leftParsed()"
-                  class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-emerald-400 hover:disabled:text-zinc-400 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none outline-none"
+                <button (click)="formatLeft()" [disabled]="!leftParsed()"
+                  class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-emerald-400 hover:disabled:text-zinc-400 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none outline-none cursor-pointer"
                   title="Format JSON A with proper indentation and new lines"
                 >
                   <mat-icon class="text-[13px] w-3 h-3 flex items-center justify-center">format_align_left</mat-icon> FORMAT
                 </button>
-                <button 
-                  (click)="smartFormatLeft()"
-                  [disabled]="!leftParsed()"
-                  class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-blue-400 hover:disabled:text-zinc-400 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none outline-none"
+                <button (click)="smartFormatLeft()" [disabled]="!leftParsed()"
+                  class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-blue-400 hover:disabled:text-zinc-400 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none outline-none cursor-pointer"
                   title="Smart Format JSON A (inline simple arrays/objects)"
                 >
                   <mat-icon class="text-[13px] w-3 h-3 flex items-center justify-center">auto_awesome</mat-icon> SMART
                 </button>
-                <button 
-                  (click)="compactLeft()"
-                  [disabled]="!leftParsed()"
-                  class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-amber-400 hover:disabled:text-zinc-400 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none outline-none"
+                <button (click)="compactLeft()" [disabled]="!leftParsed()"
+                  class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-amber-400 hover:disabled:text-zinc-400 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none outline-none cursor-pointer"
                   title="Compact JSON A (minify)"
                 >
                   <mat-icon class="text-[13px] w-3 h-3 flex items-center justify-center">compress</mat-icon> COMPACT
                 </button>
               </div>
 
-              <button (click)="leftFileInput.click()" class="p-1 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-lg transition cursor-pointer bg-transparent border-none outline-none" title="Upload JSON A">
+              <button (click)="leftFileInput.click()" class="p-1 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-lg transition cursor-pointer bg-transparent border-none outline-none cursor-pointer" title="Upload JSON A">
                 <mat-icon class="text-sm">upload_file</mat-icon>
               </button>
               <input #leftFileInput type="file" (change)="onLeftFileSelected($event)" accept=".json" class="hidden" />
-              <button (click)="copyText(leftText())" class="p-1 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-lg transition cursor-pointer bg-transparent border-none outline-none" title="Copy Text">
+              <button (click)="copyText(leftText())" class="p-1 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-lg transition cursor-pointer bg-transparent border-none outline-none cursor-pointer" title="Copy Text">
                 <mat-icon class="text-sm">content_copy</mat-icon>
               </button>
             </div>
           </div>
-          
           <div 
             (dragover)="onDragOver($event)"
             (dragleave)="onDragLeave($event)"
@@ -240,52 +231,45 @@ export interface JsonPatchOp {
             <div class="flex items-center gap-2 flex-wrap">
               <!-- Formatting & Expansion Controls -->
               <div class="flex flex-wrap items-center bg-zinc-950 px-1.5 py-0.5 rounded-lg border border-zinc-800 gap-1 select-none scale-90 origin-right">
-                <button 
-                  (click)="setAllExpandedState(true)"
-                  class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-white transition flex items-center gap-0.5 cursor-pointer bg-transparent border-none outline-none"
+                <button (click)="setAllExpandedState(true)"
+                  class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-white transition flex items-center gap-0.5 cursor-pointer bg-transparent border-none outline-none cursor-pointer"
                   title="Expand All Differences Nodes"
                 >
                   <mat-icon class="text-[13px] w-3 h-3 flex items-center justify-center">unfold_more</mat-icon> EXPAND
                 </button>
-                <button 
-                  (click)="setAllExpandedState(false)"
-                  class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-white transition flex items-center gap-0.5 cursor-pointer bg-transparent border-none outline-none"
+                <button (click)="setAllExpandedState(false)"
+                  class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-white transition flex items-center gap-0.5 cursor-pointer bg-transparent border-none outline-none cursor-pointer"
                   title="Collapse All Differences Nodes"
                 >
                   <mat-icon class="text-[13px] w-3 h-3 flex items-center justify-center">unfold_less</mat-icon> COLLAPSE
                 </button>
                 <div class="w-px h-3 bg-zinc-805 mx-0.5"></div>
-                <button 
-                  (click)="formatRight()"
+                <button (click)="formatRight()"
                   [disabled]="!rightParsed()"
-                  class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-emerald-400 hover:disabled:text-zinc-400 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none outline-none"
+                  class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-emerald-400 hover:disabled:text-zinc-400 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none outline-none cursor-pointer"
                   title="Format JSON B with proper indentation and new lines"
                 >
                   <mat-icon class="text-[13px] w-3 h-3 flex items-center justify-center">format_align_left</mat-icon> FORMAT
                 </button>
-                <button 
-                  (click)="smartFormatRight()"
-                  [disabled]="!rightParsed()"
-                  class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-blue-400 hover:disabled:text-zinc-400 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none outline-none"
+                <button (click)="smartFormatRight()" [disabled]="!rightParsed()"
+                  class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-blue-400 hover:disabled:text-zinc-400 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none outline-none cursor-pointer"
                   title="Smart Format JSON B (inline simple arrays/objects)"
                 >
                   <mat-icon class="text-[13px] w-3 h-3 flex items-center justify-center">auto_awesome</mat-icon> SMART
                 </button>
-                <button 
-                  (click)="compactRight()"
-                  [disabled]="!rightParsed()"
-                  class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-amber-400 hover:disabled:text-zinc-400 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none outline-none"
+                <button (click)="compactRight()" [disabled]="!rightParsed()"
+                  class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-amber-400 hover:disabled:text-zinc-400 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none outline-none cursor-pointer"
                   title="Compact JSON B (minify)"
                 >
                   <mat-icon class="text-[13px] w-3 h-3 flex items-center justify-center">compress</mat-icon> COMPACT
                 </button>
               </div>
 
-              <button (click)="rightFileInput.click()" class="p-1 hover:bg-zinc-800 text-zinc-450 hover:text-white rounded-lg transition cursor-pointer bg-transparent border-none outline-none" title="Upload JSON B">
+              <button (click)="rightFileInput.click()" class="p-1 hover:bg-zinc-800 text-zinc-450 hover:text-white rounded-lg transition cursor-pointer bg-transparent border-none outline-none cursor-pointer" title="Upload JSON B">
                 <mat-icon class="text-sm">upload_file</mat-icon>
               </button>
               <input #rightFileInput type="file" (change)="onRightFileSelected($event)" accept=".json" class="hidden" />
-              <button (click)="copyText(rightText())" class="p-1 hover:bg-zinc-800 text-zinc-455 hover:text-white rounded-lg transition cursor-pointer bg-transparent border-none outline-none" title="Copy Text">
+              <button (click)="copyText(rightText())" class="p-1 hover:bg-zinc-800 text-zinc-455 hover:text-white rounded-lg transition cursor-pointer bg-transparent border-none outline-none cursor-pointer" title="Copy Text">
                 <mat-icon class="text-sm">content_copy</mat-icon>
               </button>
             </div>
@@ -363,13 +347,13 @@ export interface JsonPatchOp {
             <div class="flex items-center gap-2 bg-zinc-900 px-3 py-1 rounded-xl border border-zinc-850">
               <span class="text-[10px] text-zinc-500 font-bold font-mono">CHANGE RESOLVER:</span>
               <div class="flex items-center gap-1">
-                <button (click)="prevDiff()" class="p-1 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded transition" title="Prev Difference">
+                <button (click)="prevDiff()" class="p-1 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded transition cursor-pointer" title="Prev Difference">
                   <mat-icon class="text-sm">arrow_upward</mat-icon>
                 </button>
                 <span class="text-[10.5px] font-mono text-white font-bold select-none min-w-[50px] text-center">
                   {{ activeDiffIndex() + 1 }} / {{ changedPaths().length }}
                 </span>
-                <button (click)="nextDiff()" class="p-1 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded transition" title="Next Difference">
+                <button (click)="nextDiff()" class="p-1 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded transition cursor-pointer" title="Next Difference">
                   <mat-icon class="text-sm">arrow_downward</mat-icon>
                 </button>
               </div>
@@ -478,7 +462,6 @@ export interface JsonPatchOp {
                 >
                   <span class="w-10 text-right text-[10px] text-rose-500 select-none pr-1.5 border-r border-zinc-850 shrink-0 font-semibold">{{ line.leftLineNum || '' }}</span>
                   <span class="w-10 text-right text-[10px] text-emerald-500 select-none pr-2 shrink-0 font-semibold">{{ line.rightLineNum || '' }}</span>
-                  
                   <span class="mr-2 font-black select-none opacity-60 text-[10px]">
                     {{ line.type === 'added' ? '+' : line.type === 'removed' ? '-' : line.type === 'modified' ? '~' : ' ' }}
                   </span>
@@ -496,7 +479,6 @@ export interface JsonPatchOp {
               <span>INTERACTIVE HIERARCHICAL DIFF GRAPH</span>
               <span class="text-[9px] text-amber-450 italic font-bold uppercase">Apply changes inline to merge schemas</span>
             </div>
-            
             <div 
               [class.max-h-[500px]]="!isCompareFullScreen()"
               [class.h-[60vh]]="isCompareFullScreen()"
@@ -532,7 +514,6 @@ export interface JsonPatchOp {
               <span>GIT-LIKE COMPREHENSIVE DIFF CODE</span>
               <span class="text-[9px] text-emerald-450 font-bold uppercase">Clean HTML Highlight lines</span>
             </div>
-            
             <div 
               [class.max-h-[500px]]="!isCompareFullScreen()"
               [class.h-[60vh]]="isCompareFullScreen()"
@@ -584,13 +565,12 @@ export interface JsonPatchOp {
                 LIVE MERGE CONSOLE RESULTS
               </div>
               <div class="flex items-center gap-1">
-                <button (click)="autoMergeCompatible()" class="px-2.5 py-1 bg-zinc-800 hover:bg-zinc-700 transition text-[9px] font-mono font-bold rounded-lg text-amber-400">
+                <button (click)="autoMergeCompatible()" class="px-2.5 py-1 bg-zinc-800 hover:bg-zinc-700 transition text-[9px] font-mono font-bold rounded-lg text-amber-400 cursor-pointer">
                   AUTO-MERGE CLEAN MATCHES
                 </button>
                 <span class="text-[9px] text-zinc-500 font-mono">CHOICES DEFINED: {{ getChoicesCount() }}</span>
               </div>
             </div>
-            
             <div 
               [class.h-48]="!isCompareFullScreen()"
               [class.h-80]="isCompareFullScreen()"
@@ -608,17 +588,13 @@ export interface JsonPatchOp {
           </div>
 
           <div class="flex gap-2 mt-4 flex-wrap">
-            <button 
-              [disabled]="!mergedOutcome()"
-              (click)="saveMergedToFile()" 
-              class="px-3.5 py-1.5 disabled:opacity-40 bg-emerald-900 hover:bg-emerald-800 transition text-xs font-mono font-bold rounded-xl text-emerald-100 flex items-center gap-1.5"
+            <button [disabled]="!mergedOutcome()" (click)="saveMergedToFile()" 
+              class="px-3.5 py-1.5 disabled:opacity-40 bg-emerald-900 hover:bg-emerald-800 transition text-xs font-mono font-bold rounded-xl text-emerald-100 flex items-center gap-1.5 cursor-pointer"
             >
               <mat-icon class="text-xs scale-75">download</mat-icon> DOWNLOAD MERGED JSON
             </button>
-            <button 
-              [disabled]="!mergedOutcome()"
-              (click)="copyText(mergedOutcome() || '')" 
-              class="px-3.5 py-1.5 disabled:opacity-40 border border-zinc-800 hover:border-zinc-700 bg-zinc-950 text-xs font-mono font-bold rounded-xl text-zinc-300 hover:text-white transition flex items-center gap-1.5"
+            <button [disabled]="!mergedOutcome()" (click)="copyText(mergedOutcome() || '')"
+              class="px-3.5 py-1.5 disabled:opacity-40 border border-zinc-800 hover:border-zinc-700 bg-zinc-950 text-xs font-mono font-bold rounded-xl text-zinc-300 hover:text-white transition flex items-center gap-1.5 cursor-pointer"
             >
               <mat-icon class="text-xs scale-75">content_copy</mat-icon> COPY MERGED RESULT
             </button>
@@ -650,7 +626,7 @@ export interface JsonPatchOp {
           </div>
 
           @if (jsonPatches().length > 0) {
-            <button (click)="copyText(JSONPatchString())" class="w-full py-1.5 bg-zinc-800 hover:bg-zinc-700 transition text-[10px] font-mono font-bold text-zinc-300 hover:text-white rounded-lg flex items-center justify-center gap-1">
+            <button (click)="copyText(JSONPatchString())" class="w-full py-1.5 bg-zinc-800 hover:bg-zinc-700 transition text-[10px] font-mono font-bold text-zinc-300 hover:text-white rounded-lg flex items-center justify-center gap-1 cursor-pointer">
               <mat-icon class="text-xs scale-75">content_copy</mat-icon> COPY PATCH CODE
             </button>
           }
@@ -678,8 +654,7 @@ export interface JsonPatchOp {
             <!-- Key descriptor and toggle indicators -->
             <div class="flex items-center gap-1.5 min-w-[200px]">
               @if (node.children && node.children.length > 0) {
-                <button 
-                  (click)="toggleExpanded(node)" 
+                <button (click)="toggleExpanded(node)" 
                   class="p-0.5 hover:bg-zinc-800/40 rounded transition text-zinc-505 select-none bg-transparent border-none cursor-pointer"
                 >
                   <mat-icon class="text-xs align-middle transition-transform duration-200" [style.transform]="node.isExpanded ? 'rotate(90deg)' : 'none'">
@@ -692,8 +667,7 @@ export interface JsonPatchOp {
 
               <!-- Element Key (click to collapse if children present) -->
               @if (node.children && node.children.length > 0) {
-                <span 
-                  (click)="toggleExpanded(node)"
+                <span (click)="toggleExpanded(node)"
                   (keydown.enter)="toggleExpanded(node)"
                   tabindex="0"
                   role="button"
@@ -710,7 +684,6 @@ export interface JsonPatchOp {
                   {{ node.key || 'root' }}
                 </span>
               }
-              
               <!-- Value indicators -->
               @if (!node.children || node.children.length === 0) {
                 <span class="text-zinc-505 select-none">:</span>
@@ -720,7 +693,6 @@ export interface JsonPatchOp {
                     {{ stringifyValue(node.leftValue) }}
                   </span>
                 }
-                
                 <!-- Direction arrows spacer -->
                 @if (node.status === 'modified' || node.status === 'type-mismatch') {
                   <span class="text-zinc-550 select-none text-[10px] font-extrabold">&rarr;</span>
@@ -748,9 +720,7 @@ export interface JsonPatchOp {
 
             <!-- Path copy button visible on hover alignment -->
             <div class="hidden group-hover:flex items-center gap-1.5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity select-none md:mr-3">
-              <button 
-                (click)="copyText(node.path)" 
-                title="Copy JSON Path Index" 
+              <button (click)="copyText(node.path)" title="Copy JSON Path Index"
                 class="p-0.5 text-zinc-500 hover:text-emerald-400 hover:bg-zinc-805 rounded transition-all flex items-center justify-center scale-90 border-none bg-transparent cursor-pointer"
               >
                 <mat-icon class="text-xs scale-90">assignment</mat-icon>
@@ -763,7 +733,7 @@ export interface JsonPatchOp {
               <div class="flex items-center gap-1">
                 <!-- Apply Choice A (Original) -->
                 @if (node.status === 'modified' || node.status === 'removed' || node.status === 'type-mismatch') {
-                  <button 
+                  <button
                     (click)="chooseMergeSource(node.path, 'left')" 
                     [class.bg-rose-950]="mergeChoices[node.path] === 'left'"
                     [class.border-rose-800]="mergeChoices[node.path] === 'left'"
@@ -771,7 +741,7 @@ export interface JsonPatchOp {
                     [class.bg-zinc-950]="mergeChoices[node.path] !== 'left'"
                     [class.border-zinc-800]="mergeChoices[node.path] !== 'left'"
                     [class.text-zinc-500]="mergeChoices[node.path] !== 'left'"
-                    class="px-2 py-0.5 border text-[9px] font-mono leading-none rounded-md font-bold transition flex items-center gap-0.5 hover:text-white"
+                    class="px-2 py-0.5 border text-[9px] font-mono leading-none rounded-md font-bold transition flex items-center gap-0.5 hover:text-white cursor-pointer"
                     title="Accept Left value"
                   >
                     <span>USE A (LEFT)</span>
@@ -780,7 +750,7 @@ export interface JsonPatchOp {
 
                 <!-- Apply Choice B (Target) -->
                 @if (node.status === 'added' || node.status === 'modified' || node.status === 'type-mismatch') {
-                  <button 
+                  <button
                     (click)="chooseMergeSource(node.path, 'right')" 
                     [class.bg-emerald-950]="mergeChoices[node.path] === 'right'"
                     [class.border-emerald-800]="mergeChoices[node.path] === 'right'"
@@ -788,7 +758,7 @@ export interface JsonPatchOp {
                     [class.bg-zinc-950]="mergeChoices[node.path] !== 'right'"
                     [class.border-zinc-800]="mergeChoices[node.path] !== 'right'"
                     [class.text-zinc-500]="mergeChoices[node.path] !== 'right'"
-                    class="px-2 py-0.5 border text-[9px] font-mono leading-none rounded-md font-bold transition flex items-center gap-0.5 hover:text-white"
+                    class="px-2 py-0.5 border text-[9px] font-mono leading-none rounded-md font-bold transition flex items-center gap-0.5 hover:text-white cursor-pointer"
                     title="Accept Right value"
                   >
                     <span>USE B (RIGHT)</span>
@@ -1307,35 +1277,35 @@ export class JsonCompareComponent {
   // Pre-load mock elements schemas
   public loadDemoData(): void {
     this.leftRawText.set(JSON.stringify({
-      id: "usr_99218",
-      name: "Marcus Aurelius",
-      email: "marcus@rome.org",
+      id: 'usr_99218',
+      name: 'Marcus Aurelius',
+      email: 'marcus@rome.org',
       metadata: {
-        role: "Emperor",
-        permissions: ["write_logs", "read_reports"],
+        role: 'Emperor',
+        permissions: ['write_logs', 'read_reports'],
         activePortals: {
           adminGateway: true,
           supportAccess: false
         }
       },
-      tags: ["philosophical", "stoicism"],
+      tags: ['philosophical', 'stoicism'],
       sessionTimeoutSecs: 3600
     }, null, 2));
 
     this.rightRawText.set(JSON.stringify({
-      id: "usr_99218",
-      name: "Marcus Aurelius Antoninus",
-      email: "marcus.aurelius@rome.org",
+      id: 'usr_99218',
+      name: 'Marcus Aurelius Antoninus',
+      email: 'marcus.aurelius@rome.org',
       metadata: {
-        role: "Philosopher King",
-        permissions: ["write_logs", "read_reports", "revoke_tokens"],
+        role: 'Philosopher King',
+        permissions: ['write_logs', 'read_reports', 'revoke_tokens'],
         activePortals: {
           adminGateway: true,
           supportAccess: true
         }
       },
-      tags: ["stoicism", "contemplation", "emperor"],
-      status: "active",
+      tags: ['stoicism', 'contemplation', 'emperor'],
+      status: 'active',
       sessionTimeoutSecs: 7200
     }, null, 2));
 
@@ -1454,10 +1424,10 @@ export class JsonCompareComponent {
   }
 
   public saveMergedToFile(): void {
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(this.mergedOutcome() || '{}');
+    const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(this.mergedOutcome() || '{}');
     const dlAnchorElem = document.createElement('a');
-    dlAnchorElem.setAttribute("href", dataStr);
-    dlAnchorElem.setAttribute("download", "devsight_merged.json");
+    dlAnchorElem.setAttribute('href', dataStr);
+    dlAnchorElem.setAttribute('download', 'devsight_merged.json');
     dlAnchorElem.click();
   }
 

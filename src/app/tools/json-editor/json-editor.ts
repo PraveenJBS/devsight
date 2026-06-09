@@ -82,40 +82,39 @@ const SCHEMA_PRESETS: Record<string, Record<string, unknown>> = {
           </button>
 
           <!-- File Save -->
-          <button (click)="saveToFile()" class="px-3.5 py-1.5 border border-zinc-800 hover:border-zinc-705 bg-zinc-900 text-xs font-mono font-bold rounded-xl text-zinc-300 hover:text-white transition flex items-center gap-1.5">
+          <button (click)="saveToFile()" class="px-3.5 py-1.5 border border-zinc-800 hover:border-zinc-705 bg-zinc-900 text-xs font-mono font-bold rounded-xl text-zinc-300 hover:text-white transition flex items-center gap-1.5 cursor-pointer">
             <mat-icon class="text-xs scale-75">download</mat-icon> SAVE FILE
           </button>
 
           <div class="h-4 w-px bg-zinc-800 mx-1"></div>
 
           <!-- Undo / Redo Actions -->
-          <button (click)="undo()" [disabled]="!canUndo()" class="px-3 py-1.5 border border-zinc-800 hover:border-zinc-705 disabled:opacity-30 disabled:cursor-not-allowed bg-zinc-900 text-xs font-mono font-bold rounded-xl text-zinc-300 hover:text-white transition" title="Undo">
+          <button (click)="undo()" [disabled]="!canUndo()" class="px-3 py-1.5 border border-zinc-800 hover:border-zinc-705 disabled:opacity-30 disabled:cursor-not-allowed bg-zinc-900 text-xs font-mono font-bold rounded-xl text-zinc-300 hover:text-white transition cursor-pointer" title="Undo">
             <mat-icon class="text-xs scale-75">undo</mat-icon>
           </button>
-          <button (click)="redo()" [disabled]="!canRedo()" class="px-3 py-1.5 border border-zinc-800 hover:border-zinc-705 disabled:opacity-30 disabled:cursor-not-allowed bg-zinc-900 text-xs font-mono font-bold rounded-xl text-zinc-300 hover:text-white transition" title="Redo">
+          <button (click)="redo()" [disabled]="!canRedo()" class="px-3 py-1.5 border border-zinc-800 hover:border-zinc-705 disabled:opacity-30 disabled:cursor-not-allowed bg-zinc-900 text-xs font-mono font-bold rounded-xl text-zinc-300 hover:text-white transition cursor-pointer" title="Redo">
             <mat-icon class="text-xs scale-75">redo</mat-icon>
           </button>
         </div>
 
         <div class="flex flex-wrap items-center gap-2">
           <!-- Quick Format Utilities -->
-          <button (click)="beautify()" class="px-3 py-1.5 border border-zinc-800 hover:border-zinc-705 bg-zinc-900 text-xs font-mono font-bold rounded-xl text-emerald-400 hover:text-emerald-350 transition flex items-center gap-1">
+          <button (click)="beautify()" class="px-3 py-1.5 border border-zinc-800 hover:border-zinc-705 bg-zinc-900 text-xs font-mono font-bold rounded-xl text-emerald-400 hover:text-emerald-350 transition flex items-center gap-1 cursor-pointer">
             <mat-icon class="text-xs scale-75">format_align_left</mat-icon> BEAUTIFY
           </button>
-          <button (click)="minify()" class="px-3 py-1.5 border border-zinc-800 hover:border-zinc-705 bg-zinc-900 text-xs font-mono font-bold rounded-xl text-amber-400 hover:text-amber-350 transition flex items-center gap-1">
+          <button (click)="minify()" class="px-3 py-1.5 border border-zinc-800 hover:border-zinc-705 bg-zinc-900 text-xs font-mono font-bold rounded-xl text-amber-400 hover:text-amber-350 transition flex items-center gap-1 cursor-pointer">
             <mat-icon class="text-xs scale-75">compress</mat-icon> MINIFY
           </button>
-          
           <div class="flex bg-zinc-900 p-0.5 rounded-xl border border-zinc-800">
-            <button (click)="sortTreeKeys(true)" title="Sort Keys Ascending" class="p-1.5 text-zinc-400 hover:text-white rounded-lg transition">
+            <button (click)="sortTreeKeys(true)" title="Sort Keys Ascending" class="p-1.5 text-zinc-400 hover:text-white rounded-lg transition cursor-pointer">
               <mat-icon class="text-xs scale-75">sort_by_alpha</mat-icon>
             </button>
-            <button (click)="sortTreeKeys(false)" title="Sort Keys Descending" class="p-1.5 text-zinc-400 hover:text-white rounded-lg transition">
+            <button (click)="sortTreeKeys(false)" title="Sort Keys Descending" class="p-1.5 text-zinc-400 hover:text-white rounded-lg transition cursor-pointer">
               <mat-icon class="text-xs scale-75" style="transform: scaleY(-1)">sort_by_alpha</mat-icon>
             </button>
           </div>
 
-          <button (click)="copyToClipboard()" class="px-3 py-1.5 border border-emerald-950 hover:bg-emerald-950/20 bg-zinc-900 text-xs font-mono font-bold rounded-xl text-emerald-400 transition flex items-center gap-1.5">
+          <button (click)="copyToClipboard()" class="px-3 py-1.5 border border-emerald-950 hover:bg-emerald-950/20 bg-zinc-900 text-xs font-mono font-bold rounded-xl text-emerald-400 transition flex items-center gap-1.5 cursor-pointer">
             <mat-icon class="text-xs scale-75">{{ justCopied() ? 'check' : 'content_copy' }}</mat-icon>
             {{ justCopied() ? 'COPIED!' : 'COPY' }}
           </button>
@@ -126,13 +125,12 @@ const SCHEMA_PRESETS: Record<string, Record<string, unknown>> = {
       <div class="border-b border-zinc-800 flex flex-wrap items-center justify-between gap-4">
         <div class="flex flex-wrap gap-1">
           @for (tab of ['editor', 'diff', 'transformations', 'schema']; track tab) {
-            <button 
-              (click)="activeTab.set(tab)"
+            <button (click)="activeTab.set(tab)"
               [class.border-emerald-500]="activeTab() === tab"
               [class.text-emerald-400]="activeTab() === tab"
               [class.border-transparent]="activeTab() !== tab"
               [class.text-zinc-450]="activeTab() !== tab"
-              class="px-4 py-2 border-b-2 font-mono text-xs font-bold uppercase transition hover:text-white"
+              class="px-4 py-2 border-b-2 font-mono text-xs font-bold uppercase transition hover:text-white cursor-pointer"
             >
               {{ tab === 'diff' ? 'Diff Comparison' : tab }}
             </button>
@@ -153,12 +151,11 @@ const SCHEMA_PRESETS: Record<string, Record<string, unknown>> = {
           <div class="flex items-center justify-between flex-wrap gap-2">
             <div class="flex bg-zinc-900 p-1 rounded-xl border border-zinc-800">
               @for (vMode of ['text', 'tree', 'table', 'split']; track vMode) {
-                <button
-                  (click)="editorSubView.set(vMode)"
+                <button (click)="editorSubView.set(vMode)"
                   [class.bg-zinc-800]="editorSubView() === vMode"
                   [class.text-white]="editorSubView() === vMode"
                   [class.text-zinc-500]="editorSubView() !== vMode"
-                  class="px-3 py-1.5 text-xs font-mono font-bold uppercase rounded-lg transition"
+                  class="px-3 py-1.5 text-xs font-mono font-bold uppercase rounded-lg transition cursor-pointer"
                 >
                   {{ vMode }} View
                 </button>
@@ -168,50 +165,41 @@ const SCHEMA_PRESETS: Record<string, Record<string, unknown>> = {
             <div class="flex items-center gap-2 flex-wrap">
               <!-- Formatting & Expansion Controls -->
               <div class="flex flex-wrap items-center bg-zinc-950 px-1.5 py-1 rounded-lg border border-zinc-800 gap-1 select-none">
-                <button 
-                  (click)="expandAll()"
-                  class="px-2 py-0.5 text-[10px] font-mono font-bold text-zinc-400 hover:text-white transition flex items-center gap-0.5 cursor-pointer bg-transparent border-none text-zinc-400 font-mono font-bold"
+                <button (click)="expandAll()"
+                  class="px-2 py-0.5 text-[10px] font-mono font-bold text-zinc-400 hover:text-white transition flex items-center gap-0.5 cursor-pointer bg-transparent border-none text-zinc-400 font-mono font-bold cursor-pointer"
                   title="Expand All Nodes"
                 >
                   <mat-icon class="text-[14px] w-3.5 h-3.5 flex items-center justify-center">unfold_more</mat-icon> EXPAND
                 </button>
-                <button 
-                  (click)="collapseAll()"
-                  class="px-2 py-0.5 text-[10px] font-mono font-bold text-zinc-400 hover:text-white transition flex items-center gap-0.5 cursor-pointer bg-transparent border-none text-zinc-400 font-mono font-bold"
+                <button (click)="collapseAll()"
+                  class="px-2 py-0.5 text-[10px] font-mono font-bold text-zinc-400 hover:text-white transition flex items-center gap-0.5 cursor-pointer bg-transparent border-none text-zinc-400 font-mono font-bold cursor-pointer"
                   title="Collapse All Nodes"
                 >
                   <mat-icon class="text-[14px] w-3.5 h-3.5 flex items-center justify-center">unfold_less</mat-icon> COLLAPSE
                 </button>
                 <div class="w-px h-3 bg-zinc-805 mx-0.5"></div>
-                <button 
-                  (click)="beautify()"
-                  [disabled]="!parsedData()"
-                  class="px-2 py-0.5 text-[10px] font-mono font-bold text-zinc-400 hover:text-emerald-400 hover:disabled:text-zinc-450 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none font-mono font-bold"
+                <button (click)="beautify()" [disabled]="!parsedData()"
+                  class="px-2 py-0.5 text-[10px] font-mono font-bold text-zinc-400 hover:text-emerald-400 hover:disabled:text-zinc-450 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none font-mono font-bold cursor-pointer"
                   title="Format JSON with indent and new lines"
                 >
                   <mat-icon class="text-[14px] w-3.5 h-3.5 flex items-center justify-center">format_align_left</mat-icon> FORMAT
                 </button>
-                <button 
-                  (click)="beautifySmart()"
-                  [disabled]="!parsedData()"
-                  class="px-2 py-0.5 text-[10px] font-mono font-bold text-zinc-400 hover:text-blue-400 hover:disabled:text-zinc-450 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none font-mono font-bold"
+                <button (click)="beautifySmart()"
+                  [disabled]="!parsedData()" class="px-2 py-0.5 text-[10px] font-mono font-bold text-zinc-400 hover:text-blue-400 hover:disabled:text-zinc-450 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none font-mono font-bold cursor-pointer"
                   title="Smart Format (compact, inline simple arrays/items)"
                 >
                   <mat-icon class="text-[14px] w-3.5 h-3.5 flex items-center justify-center">auto_awesome</mat-icon> SMART
                 </button>
-                <button 
-                  (click)="minify()"
-                  [disabled]="!parsedData()"
-                  class="px-2 py-0.5 text-[10px] font-mono font-bold text-zinc-400 hover:text-amber-450 hover:disabled:text-zinc-450 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none font-mono font-bold"
+                <button (click)="minify()" [disabled]="!parsedData()"
+                  class="px-2 py-0.5 text-[10px] font-mono font-bold text-zinc-400 hover:text-amber-450 hover:disabled:text-zinc-450 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none font-mono font-bold cursor-pointer"
                   title="Compact JSON (minify, remove whitespaces)"
                 >
                   <mat-icon class="text-[14px] w-3.5 h-3.5 flex items-center justify-center">compress</mat-icon> COMPACT
                 </button>
               </div>
 
-              <button 
-                (click)="isEditorFullScreen.set(!isEditorFullScreen())"
-                class="px-2.5 py-1 border border-zinc-800 bg-zinc-950 text-[10px] font-mono font-bold rounded-lg text-zinc-400 hover:text-white hover:border-zinc-70 transition flex items-center gap-1 cursor-pointer bg-transparent"
+              <button (click)="isEditorFullScreen.set(!isEditorFullScreen())"
+                class="px-2.5 py-1 border border-zinc-800 bg-zinc-950 text-[10px] font-mono font-bold rounded-lg text-zinc-400 hover:text-white hover:border-zinc-70 transition flex items-center gap-1 cursor-pointer bg-transparent cursor-pointer"
                 [title]="isEditorFullScreen() ? 'Exit Full Screen' : 'Full Screen View'"
               >
                 <mat-icon class="scale-75">{{ isEditorFullScreen() ? 'fullscreen_exit' : 'fullscreen' }}</mat-icon>
@@ -222,11 +210,7 @@ const SCHEMA_PRESETS: Record<string, Record<string, unknown>> = {
           </div>
 
           <!-- Drag drop area container -->
-          <div 
-            (dragover)="onDragOver($event)"
-            (dragleave)="onDragLeave($event)"
-            (drop)="onFileDropped($event)"
-            [class.border-emerald-500]="isDraggingOver()"
+          <div (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" (drop)="onFileDropped($event)" [class.border-emerald-500]="isDraggingOver()"
             [class]="isEditorFullScreen() ? 'fixed inset-0 z-[9999] bg-zinc-900 p-4 md:p-6 w-full h-full shadow-2xl flex flex-col animate-fade-in' : 'relative min-h-[400px] border border-zinc-800 bg-zinc-900/10 rounded-2xl overflow-hidden flex flex-col' "
           >
             @if (isDraggingOver()) {
@@ -251,41 +235,33 @@ const SCHEMA_PRESETS: Record<string, Record<string, unknown>> = {
                 <div class="flex items-center gap-2 flex-wrap text-zinc-400 font-mono font-bold">
                   <!-- Formatting & Expansion Controls (Full Screen) -->
                   <div class="flex items-center bg-zinc-950 px-1.5 py-0.5 rounded-lg border border-zinc-805 gap-1 select-none scale-90 origin-right">
-                    <button 
-                      (click)="expandAll()"
-                      class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-white transition flex items-center gap-0.5 cursor-pointer bg-transparent border-none outline-none"
+                    <button (click)="expandAll()"
+                      class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-white transition flex items-center gap-0.5 cursor-pointer bg-transparent border-none outline-none cursor-pointer"
                       title="Expand All Nodes"
                     >
                       <mat-icon class="text-[13px] w-3 h-3 flex items-center justify-center">unfold_more</mat-icon> EXPAND
                     </button>
-                    <button 
-                      (click)="collapseAll()"
-                      class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-white transition flex items-center gap-0.5 cursor-pointer bg-transparent border-none outline-none"
+                    <button (click)="collapseAll()"
+                      class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-white transition flex items-center gap-0.5 cursor-pointer bg-transparent border-none outline-none cursor-pointer"
                       title="Collapse All Nodes"
                     >
                       <mat-icon class="text-[13px] w-3 h-3 flex items-center justify-center">unfold_less</mat-icon> COLLAPSE
                     </button>
                     <div class="w-px h-3 bg-zinc-805 mx-0.5"></div>
-                    <button 
-                      (click)="beautify()"
-                      [disabled]="!parsedData()"
-                      class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-404 hover:text-emerald-400 hover:disabled:text-zinc-450 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none outline-none"
+                    <button (click)="beautify()" [disabled]="!parsedData()"
+                      class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-404 hover:text-emerald-400 hover:disabled:text-zinc-450 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none outline-none cursor-pointer"
                       title="Format JSON with indent and new lines"
                     >
                       <mat-icon class="text-[13px] w-3 h-3 flex items-center justify-center">format_align_left</mat-icon> FORMAT
                     </button>
-                    <button 
-                      (click)="beautifySmart()"
-                      [disabled]="!parsedData()"
-                      class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-404 hover:text-blue-400 hover:disabled:text-zinc-450 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none outline-none"
+                    <button (click)="beautifySmart()" [disabled]="!parsedData()"
+                      class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-404 hover:text-blue-400 hover:disabled:text-zinc-450 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none outline-none cursor-pointer"
                       title="Smart Format (compact, inline simple arrays/items)"
                     >
                       <mat-icon class="text-[13px] w-3 h-3 flex items-center justify-center">auto_awesome</mat-icon> SMART
                     </button>
-                    <button 
-                      (click)="minify()"
-                      [disabled]="!parsedData()"
-                      class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-404 hover:text-amber-450 hover:disabled:text-zinc-450 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none outline-none"
+                    <button (click)="minify()" [disabled]="!parsedData()"
+                      class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-404 hover:text-amber-450 hover:disabled:text-zinc-450 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none outline-none cursor-pointer"
                       title="Compact JSON (minify)"
                     >
                       <mat-icon class="text-[13px] w-3 h-3 flex items-center justify-center">compress</mat-icon> COMPACT
@@ -295,21 +271,19 @@ const SCHEMA_PRESETS: Record<string, Record<string, unknown>> = {
                   <!-- View switcher inside full screen -->
                   <div class="flex bg-zinc-900 p-0.5 rounded-lg border border-zinc-800 mr-2">
                     @for (vMode of ['text', 'tree', 'table', 'split']; track vMode) {
-                      <button
-                        (click)="editorSubView.set(vMode)"
+                      <button (click)="editorSubView.set(vMode)"
                         [class.bg-zinc-800]="editorSubView() === vMode"
                         [class.text-white]="editorSubView() === vMode"
                         [class.text-zinc-550]="editorSubView() !== vMode"
-                        class="px-2.5 py-1 text-[10px] font-mono font-bold uppercase rounded-md transition cursor-pointer bg-transparent border-none"
+                        class="px-2.5 py-1 text-[10px] font-mono font-bold uppercase rounded-md transition cursor-pointer bg-transparent border-none cursor-pointer"
                       >
                         {{ vMode }}
                       </button>
                     }
                   </div>
 
-                  <button 
-                    (click)="isEditorFullScreen.set(false)"
-                    class="px-3 py-1 bg-red-950 hover:bg-red-900 border border-red-900/40 text-red-300 text-[10px] font-mono font-bold uppercase rounded-lg transition flex items-center gap-1 cursor-pointer bg-transparent"
+                  <button (click)="isEditorFullScreen.set(false)"
+                    class="px-3 py-1 bg-red-950 hover:bg-red-900 border border-red-900/40 text-red-300 text-[10px] font-mono font-bold uppercase rounded-lg transition flex items-center gap-1 cursor-pointer bg-transparent cursor-pointer"
                     title="Exit Full Screen"
                   >
                     <mat-icon class="text-xs scale-75">fullscreen_exit</mat-icon>
@@ -331,7 +305,7 @@ const SCHEMA_PRESETS: Record<string, Record<string, unknown>> = {
                     {{ parsingError() }}
                   </p>
                 </div>
-                <button (click)="attemptAutoRepair()" class="px-3 py-1.5 bg-rose-900 text-rose-100 hover:bg-rose-800 transition text-[11px] font-mono font-bold rounded-lg flex items-center gap-1 self-start sm:self-center shrink-0">
+                <button (click)="attemptAutoRepair()" class="px-3 py-1.5 bg-rose-900 text-rose-100 hover:bg-rose-800 transition text-[11px] font-mono font-bold rounded-lg flex items-center gap-1 self-start sm:self-center shrink-0 cursor-pointer">
                   <mat-icon class="text-xs scale-75">auto_fix_high</mat-icon> AUTO-REPAIR JSON
                 </button>
               </div>
@@ -370,11 +344,8 @@ const SCHEMA_PRESETS: Record<string, Record<string, unknown>> = {
             @if (editorSubView() === 'tree') {
               <div [class]="isEditorFullScreen() ? 'p-6 overflow-auto flex-1' : 'p-6 overflow-auto max-h-[500px]'">
                 @if (!parsingError() && parsedData()) {
-                  <app-json-editor-tree-node 
-                    [value]="parsedData()" 
-                    [key]="'Root'" 
-                    [isRoot]="true"
-                    [path]="'$'"
+                  <app-json-editor-tree-node
+                    [value]="parsedData()" [key]="'Root'" [isRoot]="true" [path]="'$'"
                     [defaultExpandState]="defaultExpandState()"
                     (valueChanged)="updateTreeValue($event)"
                   />
@@ -394,7 +365,7 @@ const SCHEMA_PRESETS: Record<string, Record<string, unknown>> = {
                 @if (isTableCompatible()) {
                   <div class="mb-4 bg-zinc-950 p-3 rounded-xl border border-zinc-850 flex items-center justify-between gap-3">
                     <span class="text-xs font-bold font-mono text-zinc-400">TABLE OBJECT ARRAY ({{ tableRows().length }} rows)</span>
-                    <button (click)="addRowToTable()" class="px-2.5 py-1.5 bg-emerald-950 text-emerald-400 bg-emerald-900 text-emerald-100 hover:bg-emerald-800 transition text-[10px] font-mono font-bold rounded-lg flex items-center gap-1">
+                    <button (click)="addRowToTable()" class="px-2.5 py-1.5 bg-emerald-950 text-emerald-400 bg-emerald-900 text-emerald-100 hover:bg-emerald-800 transition text-[10px] font-mono font-bold rounded-lg flex items-center gap-1 cursor-pointer">
                       <mat-icon class="text-xs scale-75">add</mat-icon> ADD ROW
                     </button>
                   </div>
@@ -407,7 +378,7 @@ const SCHEMA_PRESETS: Record<string, Record<string, unknown>> = {
                           @for (col of tableColumns(); track col) {
                             <th class="p-3 text-left border-r border-zinc-850 relative group">
                               <span>{{ col }}</span>
-                              <button (click)="deleteTableColumn(col)" class="absolute right-1 top-2.5 opacity-0 group-hover:opacity-100 text-zinc-500 hover:text-rose-455 transition p-0.5">
+                              <button (click)="deleteTableColumn(col)" class="absolute right-1 top-2.5 opacity-0 group-hover:opacity-100 text-zinc-500 hover:text-rose-455 transition p-0.5 cursor-pointer">
                                 <mat-icon class="text-xs">delete</mat-icon>
                               </button>
                             </th>
@@ -430,7 +401,7 @@ const SCHEMA_PRESETS: Record<string, Record<string, unknown>> = {
                               </td>
                             }
                             <td class="p-2 text-center">
-                              <button (click)="deleteTableRow($index)" class="text-zinc-500 hover:text-rose-400 transition" title="Delete Row">
+                              <button (click)="deleteTableRow($index)" class="text-zinc-500 hover:text-rose-400 transition cursor-pointer" title="Delete Row">
                                 <mat-icon class="text-sm">delete</mat-icon>
                               </button>
                             </td>
@@ -486,11 +457,7 @@ const SCHEMA_PRESETS: Record<string, Record<string, unknown>> = {
                   </div>
                   <div [class]="isEditorFullScreen() ? 'p-4 overflow-auto flex-grow flex-1' : 'p-4 overflow-auto max-h-[500px]'">
                     @if (!parsingError() && parsedData()) {
-                      <app-json-editor-tree-node 
-                        [value]="parsedData()" 
-                        [key]="'Root'" 
-                        [isRoot]="true"
-                        [defaultExpandState]="defaultExpandState()"
+                      <app-json-editor-tree-node [value]="parsedData()" [key]="'Root'" [isRoot]="true" [defaultExpandState]="defaultExpandState()"
                         (valueChanged)="updateTreeValue($event)"
                       />
                     } @else {
@@ -541,7 +508,7 @@ const SCHEMA_PRESETS: Record<string, Record<string, unknown>> = {
                   </div>
                 </div>
 
-                <button (click)="compareText.set(rawText())" class="px-3 py-1.5 hover:bg-zinc-800 bg-zinc-900 border border-zinc-800 text-[10px] font-mono font-bold text-zinc-400 hover:text-white rounded-lg transition self-start select-none">
+                <button (click)="compareText.set(rawText())" class="px-3 py-1.5 hover:bg-zinc-800 bg-zinc-900 border border-zinc-800 text-[10px] font-mono font-bold text-zinc-400 hover:text-white rounded-lg transition self-start select-none cursor-pointer">
                   COPY CURRENT ACTIVE SOURCE
                 </button>
               </div>
@@ -623,7 +590,7 @@ const SCHEMA_PRESETS: Record<string, Record<string, unknown>> = {
                     placeholder="e.g. metadata.name or items[0]" 
                     class="flex-1 bg-zinc-950 border border-zinc-850 p-2.5 text-xs font-mono rounded-xl outline-none text-zinc-200 focus:border-zinc-700" 
                   />
-                  <button (click)="runProjectionQuery(projectionInput.value)" class="px-4 py-2 bg-emerald-900 hover:bg-emerald-800 transition text-[11px] font-mono font-bold rounded-xl text-emerald-100">
+                  <button (click)="runProjectionQuery(projectionInput.value)" class="px-4 py-2 bg-emerald-900 hover:bg-emerald-800 transition text-[11px] font-mono font-bold rounded-xl text-emerald-100 cursor-pointer">
                     FIND
                   </button>
                 </div>
@@ -635,10 +602,10 @@ const SCHEMA_PRESETS: Record<string, Record<string, unknown>> = {
               <div class="space-y-2">
                 <span class="text-[10px] font-bold text-zinc-505 font-mono block">CONVERSION TRANSFORMERS</span>
                 <div class="grid grid-cols-2 gap-2">
-                  <button (click)="flattenPayload()" class="p-2.5 border border-zinc-850 hover:bg-zinc-950/40 bg-zinc-950/20 text-[11px] font-mono rounded-xl text-zinc-200 hover:text-white flex items-center gap-1.5 transition">
+                  <button (click)="flattenPayload()" class="p-2.5 border border-zinc-850 hover:bg-zinc-950/40 bg-zinc-950/20 text-[11px] font-mono rounded-xl text-zinc-200 hover:text-white flex items-center gap-1.5 transition cursor-pointer">
                     <mat-icon class="text-sm">splitscreen</mat-icon> FLATTEN
                   </button>
-                  <button (click)="unflattenPayload()" class="p-2.5 border border-zinc-850 hover:bg-zinc-950/40 bg-zinc-950/20 text-[11px] font-mono rounded-xl text-zinc-200 hover:text-white flex items-center gap-1.5 transition">
+                  <button (click)="unflattenPayload()" class="p-2.5 border border-zinc-850 hover:bg-zinc-950/40 bg-zinc-950/20 text-[11px] font-mono rounded-xl text-zinc-200 hover:text-white flex items-center gap-1.5 transition cursor-pointer">
                     <mat-icon class="text-sm">layers</mat-icon> UNFLATTEN
                   </button>
                 </div>
@@ -664,7 +631,7 @@ const SCHEMA_PRESETS: Record<string, Record<string, unknown>> = {
             </div>
 
             @if (transformationPreview()) {
-              <button (click)="overwriteActiveWithTransformation()" class="px-3.5 py-1.5 bg-emerald-900 hover:bg-emerald-800 transition font-mono font-bold rounded-xl text-emerald-100 text-xs mt-3 select-none">
+              <button (click)="overwriteActiveWithTransformation()" class="px-3.5 py-1.5 bg-emerald-900 hover:bg-emerald-800 transition font-mono font-bold rounded-xl text-emerald-100 text-xs mt-3 select-none cursor-pointer">
                 OVERWRITE CURRENT WITH THIS RESULT
               </button>
             }
@@ -709,10 +676,7 @@ const SCHEMA_PRESETS: Record<string, Record<string, unknown>> = {
           <div class="p-5 border border-zinc-800 bg-zinc-900 rounded-2xl flex flex-col justify-between">
             <div class="space-y-2 flex-1 flex flex-col justify-start">
               <span class="text-[10px] font-bold text-zinc-500 font-mono block">SCHEMA REPORTS</span>
-              
-              <div 
-                [class.max-h-56]="!isEditorFullScreen()"
-                [class.h-80]="isEditorFullScreen()"
+              <div [class.max-h-56]="!isEditorFullScreen()" [class.h-80]="isEditorFullScreen()"
                 class="flex-1 overflow-auto p-3 bg-zinc-950 rounded-xl border border-zinc-850 space-y-2"
               >
                 @if (schemaSyntaxParseError()) {
@@ -764,7 +728,7 @@ export class JsonEditorComponent {
   public activeTab = signal<string>('editor');
   public editorSubView = signal<string>('text');
   public defaultExpandState = signal<{ state: boolean; version: number }>({ state: true, version: 0 });
-  
+
   // FullScreen and Input Preview support signals
   public isEditorFullScreen = signal<boolean>(false);
   public isInputPreview = signal<boolean>(false);
@@ -779,11 +743,7 @@ export class JsonEditorComponent {
 
   public highlightJson(json: string): string {
     if (!json) return '';
-    const escaped = json
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
-
+    const escaped = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     return escaped.replace(
       /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?)/g,
       (match) => {
@@ -799,7 +759,6 @@ export class JsonEditorComponent {
         } else if (/null/.test(match)) {
           cls = 'text-rose-450 font-bold';
         }
-        
         if (/:$/.test(match)) {
           const key = match.substring(0, match.length - 1);
           return `<span class="${cls}">${key}</span>:`;
@@ -830,7 +789,7 @@ export class JsonEditorComponent {
       }
     }
   }
-  
+
   // Custom Signals for History Storage Undo / Redo
   private changeHistory: string[] = [];
   private historyPointer = -1;
@@ -1088,9 +1047,7 @@ export class JsonEditorComponent {
     if (obj === undefined) return 'null';
     if (typeof obj === 'string') return JSON.stringify(obj);
     if (typeof obj === 'number' || typeof obj === 'boolean') return String(obj);
-    
     const nextIndent = currentIndent + ' '.repeat(indent);
-    
     if (Array.isArray(obj)) {
       if (obj.length === 0) return '[]';
       const isSimple = obj.every(x => typeof x !== 'object' || x === null);
@@ -1106,21 +1063,18 @@ export class JsonEditorComponent {
       const casted = obj as Record<string, unknown>;
       const keys = Object.keys(casted);
       if (keys.length === 0) return '{}';
-      
       const isSimple = keys.every(k => typeof casted[k] !== 'object' || casted[k] === null);
       const inlineParts = keys.map(k => `"${k}": ${this.smartStringify(casted[k], indent, '')}`);
       const inline = '{ ' + inlineParts.join(', ') + ' }';
       if (isSimple && inline.length < 80) {
         return inline;
       }
-      
       const entries = keys.map(k => {
         const formattedVal = this.smartStringify(casted[k], indent, nextIndent);
         return `${nextIndent}"${k}": ${formattedVal}`;
       });
       return '{\n' + entries.join(',\n') + '\n' + currentIndent + '}';
     }
-    
     return JSON.stringify(obj);
   }
 
@@ -1182,7 +1136,6 @@ export class JsonEditorComponent {
   public attemptAutoRepair(): void {
     let text = this.rawText().trim();
     if (!text) return;
-    
     // Recovery routine: Convert single quotes inside keys/values boundary
     // Strip trailing commas inside lists/records
     text = text.replace(/,\s*([\]}])/g, '$1');
@@ -1190,7 +1143,6 @@ export class JsonEditorComponent {
     text = text.replace(/([{,]\s*)([a-zA-Z0-9_$]+)\s*:/g, '$1"$2":');
     // Replace single quotes with standard double quotes
     text = text.replace(/'([^']*)'/g, '"$1"');
-
     // Balance closures
     let braceCount = 0;
     let bracketCount = 0;
@@ -1556,7 +1508,7 @@ export class JsonEditorComponent {
       <!-- Node Header -->
       <div class="flex items-center gap-1.5 flex-wrap py-0.5 group relative">
         @if (isObject || isArray) {
-          <button (click)="toggleCollapse()" class="text-zinc-500 hover:text-emerald-400 p-0.5 transition outline-none cursor-pointer bg-transparent border-none">
+          <button (click)="toggleCollapse()" class="text-zinc-500 hover:text-emerald-400 p-0.5 transition outline-none cursor-pointer bg-transparent border-none cursor-pointer">
             <mat-icon class="text-sm scale-90 align-middle">
               {{ collapsed() ? 'chevron_right' : 'expand_more' }}
             </mat-icon>
@@ -1567,8 +1519,7 @@ export class JsonEditorComponent {
 
         <!-- Index marker for object keys -->
         @if (keyIndex !== null && !parentIsArray) {
-          <span 
-            (click)="toggleCollapseByClick()"
+          <span (click)="toggleCollapseByClick()"
             (keydown.enter)="toggleCollapseByClick()"
             [attr.tabindex]="isObject || isArray ? '0' : null"
             [class.cursor-pointer]="isObject || isArray"
@@ -1583,10 +1534,7 @@ export class JsonEditorComponent {
         } @else if (parentIsArray) {
           <span (click)="toggleCollapseByClick()" (keydown.enter)="toggleCollapseByClick()" [attr.tabindex]="isObject || isArray ? '0' : null" (dblclick)="toggleCollapse()" [class.cursor-pointer]="isObject || isArray" title="Click to toggle collapse" class="text-[10px] text-zinc-505 font-bold select-none pr-1 hover:text-emerald-450 transition outline-none">[{{ key }}]</span>
         } @else {
-          <input 
-            type="text" 
-            [value]="key" 
-            (dblclick)="toggleCollapse()"
+          <input type="text" [value]="key" (dblclick)="toggleCollapse()"
             title="Double click to toggle collapse, single click to rename key"
             (change)="onKeyChange($any($event.target).value)"
             class="bg-transparent hover:bg-zinc-800 focus:bg-zinc-950 p-0.5 rounded outline-none text-purple-400 hover:text-purple-300 focus:text-white transition font-bold max-w-[124px] select-all border-none focus:ring-1 focus:ring-emerald-500" 
@@ -1611,24 +1559,15 @@ export class JsonEditorComponent {
         <!-- Dynamic value fields based on type -->
         @if (!isObject && !isArray && valueType !== 'null') {
           @if (valueType === 'boolean') {
-            <input 
-              type="checkbox" 
-              [checked]="valueAsBoolean()" 
-              (change)="onValueChange($any($event.target).checked)"
+            <input type="checkbox" [checked]="valueAsBoolean()" (change)="onValueChange($any($event.target).checked)"
               class="rounded border-zinc-800 text-emerald-555 bg-zinc-950 cursor-pointer ml-1"
             />
           } @else if (valueType === 'number') {
-            <input 
-              type="number" 
-              [value]="value" 
-              (change)="onValueChange(+$any($event.target).value)"
+            <input type="number" [value]="value" (change)="onValueChange(+$any($event.target).value)"
               class="bg-zinc-950 hover:bg-zinc-850 p-0.5 px-1.5 rounded outline-none text-amber-400 text-xs w-20 border border-zinc-850 focus:ring-1 focus:ring-emerald-500 text-left font-semibold"
             />
           } @else {
-            <input 
-              type="text" 
-              [value]="value" 
-              (change)="onValueChange($any($event.target).value)"
+            <input type="text" [value]="value" (change)="onValueChange($any($event.target).value)"
               class="bg-transparent hover:bg-zinc-850 p-0.5 px-1 rounded outline-none text-emerald-400 focus:bg-zinc-950 transition flex-grow min-w-[100px] select-all border-none focus:ring-1 focus:ring-emerald-500"
             />
           }
@@ -1646,30 +1585,26 @@ export class JsonEditorComponent {
         <!-- Manipulations toolbar -->
         <div class="flex items-center gap-1.5 ml-auto opacity-0 group-hover:opacity-100 hover:opacity-100 focus-within:opacity-100 transition-opacity select-none bg-zinc-900 px-1 py-0.5 rounded border border-zinc-800/40">
           <!-- Copy Path Hover -->
-          <button 
-            (click)="copyPathToClipboard(path)" 
-            title="Copy JSON Path Index" 
-            class="p-0.5 text-zinc-500 hover:text-emerald-450 rounded hover:bg-zinc-800 transition flex items-center justify-center cursor-pointer scale-90 border-none bg-transparent"
+          <button (click)="copyPathToClipboard(path)" title="Copy JSON Path Index" class="p-0.5 text-zinc-500 hover:text-emerald-450 rounded hover:bg-zinc-800 transition flex items-center justify-center cursor-pointer scale-90 border-none bg-transparent cursor-pointer"
           >
             <mat-icon class="text-xs scale-90">{{ copySuccess ? 'check' : 'assignment' }}</mat-icon>
           </button>
-          
           @if (isObject || isArray) {
-            <button (click)="addChildProperty()" title="Add Child Parameter" class="p-0.5 hover:text-emerald-450 text-zinc-500 transition cursor-pointer bg-transparent border-none">
+            <button (click)="addChildProperty()" title="Add Child Parameter" class="p-0.5 hover:text-emerald-450 text-zinc-500 transition cursor-pointer bg-transparent border-none cursor-pointer">
               <mat-icon class="text-sm">add</mat-icon>
             </button>
           }
           @if (!isRoot) {
-            <button (click)="duplicateNode()" title="Duplicate Node" class="p-0.5 hover:text-blue-400 text-zinc-500 transition cursor-pointer bg-transparent border-none">
+            <button (click)="duplicateNode()" title="Duplicate Node" class="p-0.5 hover:text-blue-400 text-zinc-500 transition cursor-pointer bg-transparent border-none cursor-pointer">
               <mat-icon class="text-sm scale-90">content_copy</mat-icon>
             </button>
-            <button (click)="moveNodeUp()" title="Move Up" class="p-0.5 hover:text-zinc-200 text-zinc-500 transition cursor-pointer bg-transparent border-none">
+            <button (click)="moveNodeUp()" title="Move Up" class="p-0.5 hover:text-zinc-200 text-zinc-500 transition cursor-pointer bg-transparent border-none cursor-pointer">
               <mat-icon class="text-sm">arrow_upward</mat-icon>
             </button>
-            <button (click)="moveNodeDown()" title="Move Down" class="p-0.5 hover:text-zinc-200 text-zinc-500 transition cursor-pointer bg-transparent border-none">
+            <button (click)="moveNodeDown()" title="Move Down" class="p-0.5 hover:text-zinc-200 text-zinc-500 transition cursor-pointer bg-transparent border-none cursor-pointer">
               <mat-icon class="text-sm">arrow_downward</mat-icon>
             </button>
-            <button (click)="deleteNode()" title="Delete Node" class="p-0.5 hover:text-rose-455 text-zinc-500 transition cursor-pointer bg-transparent border-none">
+            <button (click)="deleteNode()" title="Delete Node" class="p-0.5 hover:text-rose-455 text-zinc-500 transition cursor-pointer bg-transparent border-none cursor-pointer">
               <mat-icon class="text-sm">delete</mat-icon>
             </button>
           }
@@ -1682,8 +1617,8 @@ export class JsonEditorComponent {
           @if (isObject) {
             @for (cKey of objectKeys; track cKey) {
               <div class="group">
-                <app-json-editor-tree-node 
-                  [value]="getAsRecord(value)[cKey]" 
+                <app-json-editor-tree-node
+                  [value]="getAsRecord(value)[cKey]"
                   [key]="cKey"
                   [keyIndex]="$index"
                   [path]="getChildPath(cKey, false)"
@@ -1700,8 +1635,8 @@ export class JsonEditorComponent {
           } @else if (isArray) {
             @for (arrElem of arrayItems; track $index) {
               <div class="group">
-                <app-json-editor-tree-node 
-                  [value]="arrElem" 
+                <app-json-editor-tree-node
+                  [value]="arrElem"
                   [key]="String($index)"
                   [keyIndex]="$index"
                   [path]="getChildPath($index, true)"
