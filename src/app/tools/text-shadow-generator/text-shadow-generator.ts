@@ -19,15 +19,12 @@ export interface TextShadowLayer {
     <div class="space-y-6 max-w-5xl mx-auto text-left">
       <!-- Outer Grid Structure -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
         <!-- Controls Sidebar Sheet -->
         <div class="p-6 bg-zinc-90 border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 rounded-2xl space-y-4">
           <div class="flex justify-between items-center border-b dark:border-zinc-800 pb-2">
             <span class="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400">TEXT LAYERS SYSTEM</span>
-            <button 
-              (click)="addNewLayer()"
-              class="px-2 py-1 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-500 font-bold font-mono text-[10px] rounded transition cursor-pointer"
-            >
+            <button (click)="addNewLayer()"
+              class="px-2 py-1 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-500 font-bold font-mono text-[10px] rounded transition cursor-pointer">
               + ADD LAYER
             </button>
           </div>
@@ -35,12 +32,8 @@ export interface TextShadowLayer {
           <!-- Sandbox Content String Input -->
           <div class="space-y-1.5 font-mono text-xs">
             <label class="text-zinc-[450] font-bold">CUSTOM DISPLAY TEXT</label>
-            <input 
-              type="text" 
-              [value]="displayText()" 
-              (input)="onTextContentInput($event)"
-              class="w-full bg-zinc-50 dark:bg-zinc-950 px-3 py-2 rounded-xl border border-zinc-200 dark:border-zinc-850 font-bold text-zinc-800 dark:text-zinc-200 focus:outline-none"
-            />
+            <input type="text" [value]="displayText()" (input)="onTextContentInput($event)"
+              class="w-full bg-zinc-50 dark:bg-zinc-950 px-3 py-2 rounded-xl border border-zinc-200 dark:border-zinc-850 font-bold text-zinc-800 dark:text-zinc-200 focus:outline-none"/>
           </div>
 
           <!-- Dynamic list of layers -->
@@ -105,15 +98,10 @@ export interface TextShadowLayer {
 
         <!-- Render Target & Exporter -->
         <div class="space-y-6">
-          
           <!-- Large Live Sandbox preview -->
-          <div 
-            class="h-64 rounded-2xl flex items-center justify-center border border-zinc-200 dark:border-zinc-800 bg-zinc-950 relative overflow-hidden"
-          >
-            <h1 
-              class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white select-text text-center px-4"
-              [style.text-shadow]="compiledCssShadow()"
-            >
+          <div class="h-64 rounded-2xl flex items-center justify-center border border-zinc-200 dark:border-zinc-800 bg-zinc-950 relative overflow-hidden">
+            <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white select-text text-center px-4"
+              [style.text-shadow]="compiledCssShadow()">
               {{ displayText() }}
             </h1>
           </div>

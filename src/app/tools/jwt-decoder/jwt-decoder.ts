@@ -14,9 +14,8 @@ import { MatIconModule } from '@angular/material/icon';
         <div class="flex items-center justify-between px-4 py-3 bg-zinc-950 border-b border-zinc-800">
           <span class="text-xs font-semibold text-zinc-400 font-mono">PASTE TOKEN HERE (JWT)</span>
           @if (tokenInput()) {
-            <button 
-              (click)="tokenInput.set('')"
-              class="px-2 py-0.5 text-xs text-zinc-500 hover:text-white rounded transition font-mono flex items-center gap-1">
+            <button (click)="tokenInput.set('')"
+              class="px-2 py-0.5 text-xs text-zinc-500 hover:text-white rounded transition font-mono flex items-center gap-1 cursor-pointer">
               <mat-icon class="scale-50">delete</mat-icon> CLEAR
             </button>
           }

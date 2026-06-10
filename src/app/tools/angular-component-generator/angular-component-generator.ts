@@ -123,7 +123,7 @@ import { MatIconModule } from '@angular/material/icon';
             <span class="text-xs font-semibold text-zinc-400 font-mono">EXPORT MODULE SOURCE</span>
             <button 
               (click)="copyCode()"
-              class="px-2 py-1 text-xs text-emerald-400 hover:text-emerald-300 hover:bg-emerald-950/35 border border-emerald-950 rounded transition font-mono flex items-center gap-1">
+              class="px-2 py-1 text-xs text-emerald-400 hover:text-emerald-300 hover:bg-emerald-950/35 border border-emerald-950 rounded transition font-mono flex items-center gap-1 cursor-pointer">
               <mat-icon class="text-xs scale-75">{{ copySuccess() ? 'check' : 'content_copy' }}</mat-icon> 
               {{ copySuccess() ? 'COPIED!' : 'COPY' }}
             </button>

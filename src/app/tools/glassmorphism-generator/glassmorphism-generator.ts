@@ -11,7 +11,6 @@ import { MatIconModule } from '@angular/material/icon';
     <div class="space-y-6 max-w-5xl mx-auto text-left">
       <!-- Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
         <!-- Controls panel card -->
         <div class="p-6 bg-zinc-90 border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 rounded-2xl space-y-4">
           <span class="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400 block border-b dark:border-zinc-800 pb-2">GLASS PARAMETERS</span>
@@ -69,7 +68,6 @@ import { MatIconModule } from '@angular/material/icon';
 
         <!-- Render Target Preview Frame & Exporter -->
         <div class="space-y-6">
-          
           <!-- Outer Preview Block loaded with demo backgrounds -->
           <div 
             class="h-64 rounded-2xl flex items-center justify-center p-8 border border-zinc-200 dark:border-zinc-850 relative overflow-hidden bg-cover bg-center shrink-0"
@@ -77,12 +75,10 @@ import { MatIconModule } from '@angular/material/icon';
             [class.from-indigo-500]="bgPreset() === 'gradient1'"
             [class.via-purple-500]="bgPreset() === 'gradient1'"
             [class.to-pink-500]="bgPreset() === 'gradient1'"
-            
             [class.bg-gradient-to-tr]="bgPreset() === 'gradient2'"
             [class.from-emerald-400]="bgPreset() === 'gradient2'"
             [class.via-teal-500]="bgPreset() === 'gradient2'"
             [class.to-indigo-650]="bgPreset() === 'gradient2'"
-
             [class.bg-gradient-to-r]="bgPreset() === 'gradient3'"
             [style.background-image]="bgPreset() === 'image' ? 'url(https://picsum.photos/seed/vibrant/600/400)' : ''"
           >
@@ -135,7 +131,6 @@ export class GlassmorphismGeneratorComponent {
   public opacity = signal<number>(25);
   public borderOpacity = signal<number>(30);
   public glassColor = signal<string>('#ffffff');
-  
   public bgPreset = signal<'gradient1' | 'gradient2' | 'gradient3' | 'image'>('gradient1');
   public copySuccess = signal<boolean>(false);
 

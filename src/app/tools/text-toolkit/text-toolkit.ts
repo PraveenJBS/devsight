@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, signal, computed, effect } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, signal, computed, effect, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
@@ -584,9 +584,9 @@ interface DiffLine {
         <!-- Workbench Code Editors Section Right columns -->
         <div class="lg:col-span-1 space-y-1">
           <!-- Master Grid for Inputs and Outputs -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="flex w-full h-[520px] resize-container">
             <!-- Panel Left (A: Raw Source Input) -->
-            <div 
+            <div [style.width.%]="leftWidth"
               (dragover)="onDragOver($event)"
               (dragleave)="onDragLeave($event)"
               (drop)="onDrop($event)"
@@ -660,8 +660,12 @@ interface DiffLine {
               }
             </div>
 
+            <div (mousedown)="startResize($event)"
+              class="w-4 shrink-0 cursor-col-resize bg-zinc-900 border border-zinc-900 rounded-2xl">
+            </div>
+
             <!-- Panel Right (B: Diff modified Target OR Procured Output preview) -->
-            <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden block flex flex-col h-[520px] transition-all relative">
+            <div [style.width.%]="100 - leftWidth" class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden block flex flex-col h-[520px] transition-all relative">
               <!-- Content Header switches on Diff tool -->
               @if (toolId() === 'text-diff-checker') {
                 <div class="p-3 bg-zinc-950 border-b border-zinc-850/80 flex items-center justify-between gap-2 text-xs font-mono shrink-0 select-none">
@@ -713,8 +717,7 @@ interface DiffLine {
                     <!-- Copy success prompt -->
                     <button (click)="copyOutput()"
                       [disabled]="!processedOutput()"
-                      class="px-2.5 py-1 bg-emerald-950/20 hover:bg-emerald-950/40 border border-emerald-950 text-emerald-400 font-mono text-[10px] uppercase font-bold rounded flex items-center gap-1 cursor-pointer transition disabled:opacity-35 disabled:cursor-not-allowed border-none hover:text-emerald-300"
-                    >
+                      class="px-2.5 py-1 bg-emerald-950/20 hover:bg-emerald-950/40 border border-emerald-950 text-emerald-400 font-mono text-[10px] uppercase font-bold rounded flex items-center gap-1 cursor-pointer transition disabled:opacity-35 disabled:cursor-not-allowed border-none hover:text-emerald-300">
                       <mat-icon class="text-xs scale-75">{{ copySuccess() ? 'check_circle' : 'content_copy' }}</mat-icon>
                       {{ copySuccess() ? 'COPIED!' : 'COPY' }}
                     </button>
@@ -722,8 +725,7 @@ interface DiffLine {
                     <button (click)="downloadOutput()"
                       [disabled]="!processedOutput()"
                       class="p-1 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded transition flex items-center justify-center cursor-pointer border-none bg-transparent" 
-                      title="Download Compiled File Output"
-                    >
+                      title="Download Compiled File Output">
                       <mat-icon class="text-sm">download</mat-icon>
                     </button>
                   </div>
@@ -862,6 +864,25 @@ interface DiffLine {
   `]
 })
 export class TextToolkitComponent {
+leftWidth = 50;
+private resizing = false;
+startResize(event: MouseEvent) {
+  event.preventDefault();
+  this.resizing = true;
+}
+@HostListener('document:mousemove', ['$event'])
+onMouseMove(event: MouseEvent) {
+  if (!this.resizing) return;
+  const container = document.querySelector('.resize-container') as HTMLElement;
+  const rect = container.getBoundingClientRect();
+  this.leftWidth = ((event.clientX - rect.left) / rect.width) * 100;
+  this.leftWidth = Math.max(20, Math.min(80, this.leftWidth));
+}
+
+@HostListener('document:mouseup')
+onMouseUp() {
+  this.resizing = false;
+}
   public toolId = signal<string>('text-formatter');
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('toolId') set toolIdSetter(val: string) {

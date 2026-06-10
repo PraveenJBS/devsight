@@ -11,7 +11,6 @@ import { MatIconModule } from '@angular/material/icon';
     <div class="space-y-6 max-w-5xl mx-auto text-left">
       <!-- Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
         <!-- Controls Sidebar -->
         <div class="p-6 bg-zinc-90 border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 rounded-2xl space-y-4">
           <span class="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400 block border-b dark:border-zinc-800 pb-2">NEUMORPHIC SHAPE CONTROLLER</span>
@@ -50,29 +49,25 @@ import { MatIconModule } from '@angular/material/icon';
           <div class="space-y-2 font-mono text-xs pt-1">
             <span class="text-zinc-[450] font-bold">SURFACE BEVEL / CURVATURE</span>
             <div class="grid grid-cols-4 gap-1.5">
-              <button 
-                (click)="shapeStyle.set('flat')"
+              <button (click)="shapeStyle.set('flat')"
                 [class.bg-emerald-500/10]="shapeStyle() === 'flat'"
                 [class.text-emerald-500]="shapeStyle() === 'flat'"
-                class="px-2 py-2 border border-zinc-200 dark:border-zinc-800 rounded-lg text-[10px] font-bold cursor-pointer transition uppercase"
+                class="px-2 py-2 border border-zinc-200 dark:border-zinc-800 rounded-lg text-[10px] font-bold cursor-pointer transition uppercase cursor-pointer"
               >FLAT</button>
-              <button 
-                (click)="shapeStyle.set('concave')"
+              <button (click)="shapeStyle.set('concave')"
                 [class.bg-emerald-500/10]="shapeStyle() === 'concave'"
                 [class.text-emerald-500]="shapeStyle() === 'concave'"
-                class="px-2 py-2 border border-zinc-200 dark:border-zinc-800 rounded-lg text-[10px] font-bold cursor-pointer transition uppercase"
+                class="px-2 py-2 border border-zinc-200 dark:border-zinc-800 rounded-lg text-[10px] font-bold cursor-pointer transition uppercase cursor-pointer"
               >CONCAVE</button>
-              <button 
-                (click)="shapeStyle.set('convex')"
+              <button (click)="shapeStyle.set('convex')"
                 [class.bg-emerald-500/10]="shapeStyle() === 'convex'"
                 [class.text-emerald-500]="shapeStyle() === 'convex'"
-                class="px-2 py-2 border border-zinc-200 dark:border-zinc-800 rounded-lg text-[10px] font-bold cursor-pointer transition uppercase"
+                class="px-2 py-2 border border-zinc-200 dark:border-zinc-800 rounded-lg text-[10px] font-bold cursor-pointer transition uppercase cursor-pointer"
               >CONVEX</button>
-              <button 
-                (click)="shapeStyle.set('pressed')"
+              <button (click)="shapeStyle.set('pressed')"
                 [class.bg-emerald-500/10]="shapeStyle() === 'pressed'"
                 [class.text-emerald-500]="shapeStyle() === 'pressed'"
-                class="px-2 py-2 border border-zinc-200 dark:border-zinc-800 rounded-lg text-[10px] font-bold cursor-pointer transition uppercase"
+                class="px-2 py-2 border border-zinc-200 dark:border-zinc-800 rounded-lg text-[10px] font-bold cursor-pointer transition uppercase cursor-pointer"
               >PRESSED</button>
             </div>
           </div>
@@ -80,7 +75,6 @@ import { MatIconModule } from '@angular/material/icon';
 
         <!-- Target Render and Exporter -->
         <div class="space-y-6">
-          
           <!-- Interactive Preview Area -->
           <div 
             class="h-64 rounded-2xl flex items-center justify-center p-8 border border-zinc-205 dark:border-zinc-850 shrink-0 select-none relative overflow-hidden"

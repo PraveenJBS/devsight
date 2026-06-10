@@ -11,7 +11,6 @@ import { MatIconModule } from '@angular/material/icon';
     <div class="space-y-6 max-w-5xl mx-auto text-left">
       <!-- Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
         <!-- Theme Controls Sidebar Panel -->
         <div class="p-6 bg-zinc-90 border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 rounded-2xl space-y-4 shadow-sm h-fit">
           <span class="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400 block border-b dark:border-zinc-800 pb-2">THEME COLOUR TOKENS</span>
@@ -61,16 +60,12 @@ import { MatIconModule } from '@angular/material/icon';
 
         <!-- Layout Live Mockup and Exporter Column -->
         <div class="lg:col-span-2 space-y-6">
-          
           <div class="space-y-2">
             <span class="text-xs font-mono font-bold text-zinc-500 block">THEME INTERACTIVE MOCK-DASHBOARD</span>
-            
             <!-- Dynamic mini dashboard using active tokens inside style sheets -->
-            <div 
-              class="p-6 border border-zinc-200 dark:border-zinc-850 rounded-2xl min-h-[280px] shadow-sm select-none"
+            <div class="p-6 border border-zinc-200 dark:border-zinc-850 rounded-2xl min-h-[280px] shadow-sm select-none"
               [style.background-color]="surfaceBgColor()"
-              [style.border-radius.px]="radius()"
-            >
+              [style.border-radius.px]="radius()">
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
                 <!-- Sidebar Simulated Segment -->
                 <div class="sm:col-span-1 p-4 bg-black/5 dark:bg-white/5 rounded-xl space-y-3" [style.border-radius.px]="radius()">

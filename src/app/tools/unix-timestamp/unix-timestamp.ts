@@ -12,23 +12,15 @@ import { MatIconModule } from '@angular/material/icon';
       <!-- Conversion Tab Panel -->
       <div class="p-6 bg-zinc-900 border border-zinc-800 rounded-2xl space-y-4">
         <span class="text-xs font-mono font-bold text-zinc-400 block pb-1 border-b border-zinc-850">EPOCH TO CALENDAR CONVERTER</span>
-        
         <div class="space-y-3">
           <div class="space-y-1.5">
             <span class="text-[10px] font-mono font-bold text-zinc-400">ENTER UNIX TIMESTAMP (Seconds / Milliseconds)</span>
             <div class="flex items-center bg-zinc-950 border border-zinc-850 rounded-xl px-3 overflow-hidden">
-              <input 
-                type="text" 
-                #epochInputRef
-                [value]="epochInput()"
-                (input)="epochInput.set(epochInputRef.value.trim())"
-                placeholder="1779947854"
-                class="w-full bg-transparent border-none text-zinc-100 text-sm font-mono focus:ring-0 p-3 select-text"
-              />
-              <button 
-                (click)="epochInput.set(currentEpoch().toString())"
-                class="p-2 text-xs font-mono font-bold text-emerald-400 hover:text-emerald-300 rounded-lg whitespace-nowrap"
-              >
+              <input type="text" #epochInputRef [value]="epochInput()"
+                (input)="epochInput.set(epochInputRef.value.trim())" placeholder="1779947854"
+                class="w-full bg-transparent border-none text-zinc-100 text-sm font-mono focus:ring-0 p-3 select-text"/>
+              <button (click)="epochInput.set(currentEpoch().toString())"
+                class="p-2 text-xs font-mono font-bold text-emerald-400 hover:text-emerald-300 rounded-lg whitespace-nowrap">
                 INSERT CURRENT
               </button>
             </div>
@@ -61,7 +53,6 @@ import { MatIconModule } from '@angular/material/icon';
       <!-- Human Calendar To Epoch Converter -->
       <div class="p-6 bg-zinc-900 border border-zinc-800 rounded-2xl space-y-4">
         <span class="text-xs font-mono font-bold text-zinc-400 block pb-1 border-b border-zinc-850">CALENDAR TO EPOCH CONVERTER</span>
-        
         <div class="grid grid-cols-1 sm:grid-cols-1 gap-4">
           <div class="space-y-1.5">
             <span class="text-[10px] font-mono font-bold text-zinc-400">SELECT DATE & TIME</span>
@@ -88,7 +79,6 @@ import { MatIconModule } from '@angular/material/icon';
           }
         </div>
       </div>
-      
       <!-- Live Ticker Card -->
       <div class="p-6 bg-zinc-900 border border-zinc-800 rounded-2xl text-center space-y-3 relative overflow-hidden">
         <span class="text-[10px] uppercase font-mono tracking-widest text-zinc-500 font-bold block">CURRENT UNIX TIMESTAMP</span>
@@ -97,11 +87,9 @@ import { MatIconModule } from '@angular/material/icon';
         </div>
         <div class="flex items-center justify-center gap-4 text-xs font-mono text-zinc-500">
           <span>{{ currentLocalTime() }}</span>
-          <button 
-            (click)="copyCurrentEpoch()"
-            class="p-1 hover:text-white rounded transition"
-            title="Copy current epoch"
-          >
+          <button (click)="copyCurrentEpoch()"
+            class="p-1 hover:text-white rounded transition cursor-pointer"
+            title="Copy current epoch">
             <mat-icon class="scale-75">{{ tickerCopied() ? 'check' : 'content_copy' }}</mat-icon>
           </button>
         </div>
@@ -113,7 +101,6 @@ export class UnixTimestampComponent implements OnDestroy {
   public currentEpoch = signal<number>(Math.floor(Date.now() / 1000));
   public currentLocalTime = signal<string>(new Date().toString());
   public tickerCopied = signal<boolean>(false);
-  
   // Converters inputs
   public epochInput = signal<string>('1779947854');
   public calendarDateInput = signal<string>('2026-05-28T12:00');

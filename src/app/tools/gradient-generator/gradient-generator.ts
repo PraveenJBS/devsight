@@ -16,7 +16,6 @@ export interface GradientStop {
     <div class="space-y-6 max-w-5xl mx-auto text-left">
       <!-- Grid Layout -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
         <!-- Controls Column -->
         <div class="p-6 bg-zinc-90 border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 rounded-2xl space-y-4">
           <span class="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400 block border-b dark:border-zinc-800 pb-2">GRADIENT CONTROLLER</span>
@@ -25,8 +24,7 @@ export interface GradientStop {
           <div class="space-y-2">
             <span class="text-xs font-mono font-bold text-zinc-400">GRADIENT TYPE</span>
             <div class="flex bg-zinc-100 dark:bg-zinc-950 p-1 rounded-xl border border-zinc-200 dark:border-zinc-850">
-              <button 
-                (click)="gradientType.set('linear')"
+              <button (click)="gradientType.set('linear')"
                 [class.bg-white]="gradientType() === 'linear'"
                 [class.dark:bg-zinc-850]="gradientType() === 'linear'"
                 [class.text-emerald-500]="gradientType() === 'linear'"
@@ -34,8 +32,7 @@ export interface GradientStop {
               >
                 LINEAR
               </button>
-              <button 
-                (click)="gradientType.set('radial')"
+              <button (click)="gradientType.set('radial')"
                 [class.bg-white]="gradientType() === 'radial'"
                 [class.dark:bg-zinc-850]="gradientType() === 'radial'"
                 [class.text-emerald-500]="gradientType() === 'radial'"
@@ -43,8 +40,7 @@ export interface GradientStop {
               >
                 RADIAL
               </button>
-              <button 
-                (click)="gradientType.set('conic')"
+              <button (click)="gradientType.set('conic')"
                 [class.bg-white]="gradientType() === 'conic'"
                 [class.dark:bg-zinc-850]="gradientType() === 'conic'"
                 [class.text-emerald-500]="gradientType() === 'conic'"
@@ -70,10 +66,8 @@ export interface GradientStop {
           <div class="space-y-3 pt-2">
             <div class="flex justify-between items-center">
               <span class="text-xs font-mono font-bold text-zinc-400">COLOR STOPS</span>
-              <button 
-                (click)="addNewStop()"
-                class="px-2 py-1 bg-emerald-500/10 text-emerald-500 text-[10px] font-bold rounded hover:bg-emerald-500/20 font-mono transition cursor-pointer"
-              >
+              <button (click)="addNewStop()"
+                class="px-2 py-1 bg-emerald-500/10 text-emerald-500 text-[10px] font-bold rounded hover:bg-emerald-500/20 font-mono transition cursor-pointer">
                 + ADD STOP
               </button>
             </div>
@@ -83,26 +77,15 @@ export interface GradientStop {
               @for (stop of stops(); track $index) {
                 <div class="flex items-center gap-3 bg-zinc-50 dark:bg-zinc-950 p-2 rounded-xl border border-zinc-150 dark:border-zinc-850">
                   <div class="w-6 h-6 rounded-md border border-zinc-200 dark:border-zinc-800 relative overflow-hidden shrink-0">
-                    <input 
-                      type="color" 
-                      [value]="stop.color" 
-                      (input)="onStopColorInput($event, $index)"
-                      class="absolute inset-0 opacity-0 cursor-pointer w-full h-full scale-150"
-                    />
+                    <input type="color" [value]="stop.color" (input)="onStopColorInput($event, $index)"
+                      class="absolute inset-0 opacity-0 cursor-pointer w-full h-full scale-150"/>
                     <div class="w-full h-full" [style.background-color]="stop.color"></div>
                   </div>
-                  <input 
-                    type="range" 
-                    min="0" 
-                    max="100" 
-                    [value]="stop.position" 
-                    (input)="onStopPositionInput($event, $index)"
-                    class="flex-1 cursor-pointer h-1.5 rounded-lg accent-zinc-500"
-                  />
+                  <input type="range" min="0" max="100" [value]="stop.position" (input)="onStopPositionInput($event, $index)"
+                    class="flex-1 cursor-pointer h-1.5 rounded-lg accent-zinc-500"/>
                   <span class="text-[10px] font-mono font-bold text-zinc-400 w-8 text-right">{{ stop.position }}%</span>
                   @if (stops().length > 2) {
-                    <button 
-                      (click)="removeStop($index)"
+                    <button (click)="removeStop($index)"
                       class="text-rose-450 hover:text-rose-600 scale-90 transition pt-1 cursor-pointer"
                     >
                       <mat-icon style="font-size:16px;">delete</mat-icon>
@@ -129,9 +112,8 @@ export interface GradientStop {
 
         <!-- Preview & Output Columns -->
         <div class="space-y-6">
-          
           <!-- Outer Preview Block -->
-          <div 
+          <div
             class="h-44 rounded-2xl flex flex-col justify-center items-center shadow-lg border border-zinc-200 dark:border-zinc-800 relative overflow-hidden"
             [style.background]="compiledCssGradient()"
           >
@@ -148,7 +130,7 @@ export interface GradientStop {
           <!-- Secondary Preview Elements (Buttons & Text) -->
           <div class="grid grid-cols-2 gap-4">
             <div class="p-4 border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 rounded-xl flex flex-col justify-center items-center h-24">
-              <button 
+              <button
                 class="px-5 py-2.5 rounded-xl font-bold font-mono text-xs text-white shadow-md cursor-pointer grow-0"
                 [style.background]="compiledCssGradient()"
               >
@@ -157,10 +139,8 @@ export interface GradientStop {
             </div>
 
             <div class="p-4 border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 rounded-xl flex flex-col justify-center items-center h-24 select-text">
-              <h1 
-                class="text-xl font-extrabold font-mono bg-clip-text text-transparent text-center select-all"
-                [style.background-image]="compiledCssGradient()"
-              >
+              <h1 class="text-xl font-extrabold font-mono bg-clip-text text-transparent text-center select-all"
+                [style.background-image]="compiledCssGradient()">
                 TEXT GRADIENT
               </h1>
             </div>

@@ -16,20 +16,16 @@ import { MatIconModule } from '@angular/material/icon';
           <div class="space-y-2">
             <span class="text-xs font-mono font-bold text-zinc-400">UUID VERSION</span>
             <div class="flex bg-zinc-950 p-1 rounded-xl border border-zinc-850">
-              <button 
-                (click)="version.set('v4')"
+              <button (click)="version.set('v4')"
                 [class.bg-zinc-850]="version() === 'v4'"
                 [class.text-emerald-400]="version() === 'v4'"
-                class="flex-1 py-2 text-xs font-mono font-bold rounded-lg transition"
-              >
+                class="flex-1 py-2 text-xs font-mono font-bold rounded-lg transition cursor-pointer">
                 V4 (Random)
               </button>
-              <button 
-                (click)="version.set('v1')"
+              <button (click)="version.set('v1')"
                 [class.bg-zinc-850]="version() === 'v1'"
                 [class.text-emerald-400]="version() === 'v1'"
-                class="flex-1 py-2 text-xs font-mono font-bold rounded-lg transition"
-              >
+                class="flex-1 py-2 text-xs font-mono font-bold rounded-lg transition cursor-pointer">
                 V1 (Time-based)
               </button>
             </div>
@@ -40,14 +36,8 @@ import { MatIconModule } from '@angular/material/icon';
             <span class="text-xs font-mono font-bold text-zinc-400">QUANTITY (MAX 105)</span>
             <div class="flex items-center bg-zinc-950 border border-zinc-800 rounded-xl px-3 overflow-hidden">
               <mat-icon class="text-zinc-600 scale-90">format_list_numbered</mat-icon>
-              <input 
-                type="number" 
-                min="1" 
-                max="105" 
-                [value]="count()"
-                (change)="onCountChange($event)"
-                class="w-full bg-transparent border-none text-zinc-100 text-sm font-mono focus:ring-0 p-3 select-text"
-              />
+              <input type="number" min="1" max="105" [value]="count()" (change)="onCountChange($event)"
+                class="w-full bg-transparent border-none text-zinc-100 text-sm font-mono focus:ring-0 p-3 select-text"/>
             </div>
           </div>
         </div>
@@ -81,10 +71,8 @@ import { MatIconModule } from '@angular/material/icon';
         </div>
 
         <!-- Submit Button -->
-        <button 
-          (click)="rebuildUUIDs()"
-          class="w-full py-3 bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold font-mono text-xs rounded-xl transition-all duration-200 active:scale-95 shadow-md flex items-center justify-center gap-2"
-        >
+        <button (click)="rebuildUUIDs()"
+          class="w-full py-3 bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold font-mono text-xs rounded-xl transition-all duration-200 active:scale-95 shadow-md flex items-center justify-center gap-2 cursor-pointer">
           <mat-icon class="scale-90">cached</mat-icon> GENERATE UUIDS
         </button>
       </div>
@@ -94,9 +82,7 @@ import { MatIconModule } from '@angular/material/icon';
         <div class="p-6 bg-zinc-900 border border-zinc-800 rounded-2xl space-y-4">
           <div class="flex justify-between items-center bg-zinc-950 px-4 py-2 rounded-lg border border-zinc-855 font-mono">
             <span class="text-[10px] text-zinc-500 uppercase font-bold">GENERATED OUTPUTS</span>
-            
-            <button 
-              (click)="copyAll()"
+            <button (click)="copyAll()"
               class="text-xs text-emerald-400 hover:text-emerald-300 flex items-center gap-1">
               <mat-icon class="text-xs scale-75">{{ copySuccess() ? 'check' : 'content_copy' }}</mat-icon>
               {{ copySuccess() ? 'COPIED ALL!' : 'COPY ALL' }}
@@ -108,11 +94,9 @@ import { MatIconModule } from '@angular/material/icon';
             @for (uuid of resultsList(); track uuid) {
               <div class="py-2 flex items-center justify-between group">
                 <span class="select-all">{{ uuid }}</span>
-                <button 
-                  (click)="copySingle(uuid, $index)"
+                <button (click)="copySingle(uuid, $index)"
                   class="opacity-0 group-hover:opacity-100 p-1 text-[10px] text-zinc-500 hover:text-white hover:bg-zinc-800 rounded transition"
-                  title="Copy this UUID"
-                >
+                  title="Copy this UUID">
                   <mat-icon class="text-xs scale-75">
                     {{ activeSingleCopiedIndex() === $index ? 'check' : 'content_copy' }}
                   </mat-icon>

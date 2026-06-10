@@ -40,67 +40,60 @@ interface BatchRow {
       <!-- Navigation tabs for the Base64 Suite -->
       <div class="flex flex-wrap items-center justify-between border-b border-zinc-200 dark:border-zinc-800 gap-2 pb-px select-none">
         <div class="flex flex-wrap gap-1">
-          <button 
-            (click)="setActiveTab('text')"
+          <button (click)="setActiveTab('text')"
             [class.border-emerald-500]="activeTab() === 'text'"
             [class.text-emerald-600]="activeTab() === 'text'"
             [class.dark:text-emerald-400]="activeTab() === 'text'"
-            class="px-4 py-2.5 text-xs font-mono font-bold border-b-2 border-transparent text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300 transition flex items-center gap-1.5"
+            class="px-4 py-2.5 text-xs font-mono font-bold border-b-2 border-transparent text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300 transition flex items-center gap-1.5 cursor-pointer"
             id="tab-text"
           >
             <mat-icon class="scale-75">edit_note</mat-icon> TEXT WORKSPACE
           </button>
-          
-          <button 
-            (click)="setActiveTab('file')"
+          <button (click)="setActiveTab('file')"
             [class.border-emerald-500]="activeTab() === 'file'"
             [class.text-emerald-600]="activeTab() === 'file'"
             [class.dark:text-emerald-400]="activeTab() === 'file'"
-            class="px-4 py-2.5 text-xs font-mono font-bold border-b-2 border-transparent text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300 transition flex items-center gap-1.5"
+            class="px-4 py-2.5 text-xs font-mono font-bold border-b-2 border-transparent text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300 transition flex items-center gap-1.5 cursor-pointer"
             id="tab-file"
           >
             <mat-icon class="scale-75">file_present</mat-icon> FILE WORKBENCH
           </button>
 
-          <button 
-            (click)="setActiveTab('validator')"
+          <button (click)="setActiveTab('validator')"
             [class.border-emerald-500]="activeTab() === 'validator'"
             [class.text-emerald-600]="activeTab() === 'validator'"
             [class.dark:text-emerald-400]="activeTab() === 'validator'"
-            class="px-4 py-2.5 text-xs font-mono font-bold border-b-2 border-transparent text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300 transition flex items-center gap-1.5"
+            class="px-4 py-2.5 text-xs font-mono font-bold border-b-2 border-transparent text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300 transition flex items-center gap-1.5 cursor-pointer"
             id="tab-validator"
           >
             <mat-icon class="scale-75">health_and_safety</mat-icon> VALIDATOR & REPAIR
           </button>
 
-          <button 
-            (click)="setActiveTab('templates')"
+          <button (click)="setActiveTab('templates')"
             [class.border-emerald-500]="activeTab() === 'templates'"
             [class.text-emerald-600]="activeTab() === 'templates'"
             [class.dark:text-emerald-400]="activeTab() === 'templates'"
-            class="px-4 py-2.5 text-xs font-mono font-bold border-b-2 border-transparent text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300 transition flex items-center gap-1.5"
+            class="px-4 py-2.5 text-xs font-mono font-bold border-b-2 border-transparent text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300 transition flex items-center gap-1.5 cursor-pointer"
             id="tab-templates"
           >
             <mat-icon class="scale-75">html</mat-icon> DEV SNIPPETS
           </button>
 
-          <button 
-            (click)="setActiveTab('jwt')"
+          <button (click)="setActiveTab('jwt')"
             [class.border-emerald-500]="activeTab() === 'jwt'"
             [class.text-emerald-600]="activeTab() === 'jwt'"
             [class.dark:text-emerald-400]="activeTab() === 'jwt'"
-            class="px-4 py-2.5 text-xs font-mono font-bold border-b-2 border-transparent text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300 transition flex items-center gap-1.5"
+            class="px-4 py-2.5 text-xs font-mono font-bold border-b-2 border-transparent text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300 transition flex items-center gap-1.5 cursor-pointer"
             id="tab-jwt"
           >
             <mat-icon class="scale-75">gavel</mat-icon> JWT DECODER
           </button>
 
-          <button 
-            (click)="setActiveTab('batch')"
+          <button (click)="setActiveTab('batch')"
             [class.border-emerald-500]="activeTab() === 'batch'"
             [class.text-emerald-600]="activeTab() === 'batch'"
             [class.dark:text-emerald-400]="activeTab() === 'batch'"
-            class="px-4 py-2.5 text-xs font-mono font-bold border-b-2 border-transparent text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300 transition flex items-center gap-1.5"
+            class="px-4 py-2.5 text-xs font-mono font-bold border-b-2 border-transparent text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300 transition flex items-center gap-1.5 cursor-pointer"
             id="tab-batch"
           >
             <mat-icon class="scale-75">dynamic_feed</mat-icon> BATCH BULK ENGINE
@@ -130,7 +123,7 @@ interface BatchRow {
                   [class.text-emerald-600]="textMode() === 'encode'"
                   [class.dark:text-emerald-400]="textMode() === 'encode'"
                   [class.shadow-xs]="textMode() === 'encode'"
-                  class="px-4 py-1.5 text-xs text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-white rounded-lg transition font-mono font-extrabold flex items-center gap-1"
+                  class="px-4 py-1.5 text-xs text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-white rounded-lg transition font-mono font-extrabold flex items-center gap-1 cursor-pointer"
                 >
                   <mat-icon class="scale-75">lock</mat-icon> ENCODE
                 </button>
@@ -141,7 +134,7 @@ interface BatchRow {
                   [class.text-amber-600]="textMode() === 'decode'"
                   [class.dark:text-amber-400]="textMode() === 'decode'"
                   [class.shadow-xs]="textMode() === 'decode'"
-                  class="px-4 py-1.5 text-xs text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-white rounded-lg transition font-mono font-extrabold flex items-center gap-1"
+                  class="px-4 py-1.5 text-xs text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-white rounded-lg transition font-mono font-extrabold flex items-center gap-1 cursor-pointer"
                 >
                   <mat-icon class="scale-75">lock_open</mat-icon> DECODE
                 </button>
@@ -194,7 +187,7 @@ interface BatchRow {
                 (click)="toggleSearchBar()"
                 [class.bg-emerald-500/10]="showSearch()"
                 [class.text-emerald-600]="showSearch()"
-                class="px-2 py-1 text-[11px] font-mono font-bold rounded-lg border border-zinc-250 dark:border-zinc-800 text-zinc-500 hover:text-zinc-800 dark:hover:text-white transition flex items-center gap-1"
+                class="px-2 py-1 text-[11px] font-mono font-bold rounded-lg border border-zinc-250 dark:border-zinc-800 text-zinc-500 hover:text-zinc-800 dark:hover:text-white transition flex items-center gap-1 cursor-pointer"
               >
                 <mat-icon class="scale-50">search</mat-icon> FIND/REPLACE
               </button>
@@ -204,25 +197,14 @@ interface BatchRow {
           <!-- Dynamic Search & Replace Bar -->
           @if (showSearch()) {
             <div class="p-3 bg-zinc-50 dark:bg-zinc-950/20 border border-zinc-200 dark:border-zinc-800 rounded-2xl flex flex-wrap items-center gap-3 animate-fade-in select-none">
-              <input 
-                #findRef
-                type="text"
-                placeholder="Find text..."
-                [value]="searchQuery()"
-                (input)="searchQuery.set(findRef.value)"
+              <input #findRef type="text" placeholder="Find text..." [value]="searchQuery()" (input)="searchQuery.set(findRef.value)"
                 class="bg-white dark:bg-zinc-900 text-xs font-mono px-3 py-1.5 border border-zinc-200 dark:border-zinc-800 rounded-xl text-zinc-800 dark:text-zinc-200 outline-none w-48 focus:ring-1 focus:ring-emerald-500"
               />
-              <input 
-                #replaceRef
-                type="text"
-                placeholder="Replace with..."
-                [value]="replaceQuery()"
-                (input)="replaceQuery.set(replaceRef.value)"
+              <input #replaceRef type="text" placeholder="Replace with..." [value]="replaceQuery()" (input)="replaceQuery.set(replaceRef.value)"
                 class="bg-white dark:bg-zinc-900 text-xs font-mono px-3 py-1.5 border border-zinc-200 dark:border-zinc-800 rounded-xl text-zinc-800 dark:text-zinc-200 outline-none w-48 focus:ring-1 focus:ring-emerald-500"
               />
-              <button 
-                (click)="executeReplace()"
-                class="px-3 py-1.5 text-xs font-mono font-bold bg-amber-500 hover:bg-amber-600 text-white rounded-xl shadow-xs transition"
+              <button (click)="executeReplace()"
+                class="px-3 py-1.5 text-xs font-mono font-bold bg-amber-500 hover:bg-amber-600 text-white rounded-xl shadow-xs transition cursor-pointer"
               >
                 REPLACE ALL
               </button>
@@ -236,9 +218,8 @@ interface BatchRow {
                 <mat-icon class="text-sm scale-90 text-amber-500">info</mat-icon>
                 {{ alert.text }}
               </span>
-              <button 
-                (click)="applySmartDetector(alert.action)"
-                class="px-2.5 py-1 text-[10px] font-bold bg-amber-200 dark:bg-amber-800 hover:bg-amber-300 dark:hover:bg-amber-700 text-amber-900 dark:text-amber-100 rounded-md transition"
+              <button (click)="applySmartDetector(alert.action)"
+                class="px-2.5 py-1 text-[10px] font-bold bg-amber-200 dark:bg-amber-800 hover:bg-amber-300 dark:hover:bg-amber-700 text-amber-900 dark:text-amber-100 rounded-md transition cursor-pointer"
               >
                 {{ alert.buttonText }}
               </button>
@@ -265,32 +246,26 @@ interface BatchRow {
                 </div>
                 <div class="flex items-center gap-1">
                   <!-- Undo/Redo Buttons -->
-                  <button 
-                    [disabled]="!canUndo()"
-                    (click)="triggerUndo()"
-                    class="p-1 text-zinc-400 hover:text-zinc-600 dark:hover:text-white disabled:opacity-40 transition"
+                  <button [disabled]="!canUndo()" (click)="triggerUndo()"
+                    class="p-1 text-zinc-400 hover:text-zinc-600 dark:hover:text-white disabled:opacity-40 transition cursor-pointer"
                     title="Undo"
                   >
                     <mat-icon class="scale-75">undo</mat-icon>
                   </button>
-                  <button 
-                    [disabled]="!canRedo()"
-                    (click)="triggerRedo()"
-                    class="p-1 text-zinc-400 hover:text-zinc-600 dark:hover:text-white disabled:opacity-40 transition"
+                  <button [disabled]="!canRedo()" (click)="triggerRedo()"
+                    class="p-1 text-zinc-400 hover:text-zinc-600 dark:hover:text-white disabled:opacity-40 transition cursor-pointer"
                     title="Redo"
                   >
                     <mat-icon class="scale-75">redo</mat-icon>
                   </button>
                   <span class="text-zinc-300 dark:text-zinc-800 px-1">|</span>
-                  <button 
-                    (click)="pasteInput()"
-                    class="px-2.5 py-1 text-[10px] font-mono font-bold text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white rounded hover:bg-zinc-100 dark:hover:bg-zinc-800 transition"
+                  <button (click)="pasteInput()"
+                    class="px-2.5 py-1 text-[10px] font-mono font-bold text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white rounded hover:bg-zinc-100 dark:hover:bg-zinc-800 transition cursor-pointer"
                   >
                     PASTE
                   </button>
-                  <button 
-                    (click)="clearInput()"
-                    class="px-2.5 py-1 text-[10px] font-mono font-bold text-rose-600 hover:text-rose-500 rounded hover:bg-rose-50 dark:hover:bg-rose-950/20 transition"
+                  <button (click)="clearInput()"
+                    class="px-2.5 py-1 text-[10px] font-mono font-bold text-rose-600 hover:text-rose-500 rounded hover:bg-rose-50 dark:hover:bg-rose-950/20 transition cursor-pointer"
                   >
                     CLEAR
                   </button>
@@ -300,8 +275,7 @@ interface BatchRow {
               <!-- High Custom Text Editor Canvas -->
               <div class="flex-1 flex flex-row relative min-h-0 bg-white dark:bg-zinc-900">
                 <!-- Line Numbers Column Gutter -->
-                <div 
-                  #leftGutter
+                <div #leftGutter
                   class="select-none text-right pr-2.5 pl-3.5 py-4 text-zinc-400 dark:text-zinc-600 bg-zinc-50 dark:bg-zinc-950/50 border-r border-zinc-200 dark:border-zinc-850 flex flex-col overflow-hidden text-[10px] leading-[20px] font-mono font-semibold"
                   style="min-width: 2.75rem;"
                 >
@@ -336,16 +310,14 @@ interface BatchRow {
                 @if (outputText()) {
                   <div class="flex items-center gap-1.5">
                     @if (textMode() === 'decode' && isOutputJson()) {
-                      <button 
-                        (click)="prettyPrintJsonOutput()"
-                        class="px-2 py-1 text-[10px] font-mono font-bold text-amber-600 dark:text-amber-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded border border-zinc-200 dark:border-zinc-850 transition flex items-center gap-1"
+                      <button (click)="prettyPrintJsonOutput()"
+                        class="px-2 py-1 text-[10px] font-mono font-bold text-amber-600 dark:text-amber-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded border border-zinc-200 dark:border-zinc-850 transition flex items-center gap-1 cursor-pointer"
                       >
                         <mat-icon class="scale-50">format_align_left</mat-icon> PRETTY PRINT JSON
                       </button>
                     }
-                    <button 
-                      (click)="copyOutput()"
-                      class="px-2.5 py-1 text-xs text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 border border-emerald-150 dark:border-emerald-950 rounded transition font-mono font-bold flex items-center gap-1"
+                    <button (click)="copyOutput()"
+                      class="px-2.5 py-1 text-xs text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 border border-emerald-150 dark:border-emerald-950 rounded transition font-mono font-bold flex items-center gap-1 cursor-pointer"
                     >
                       <mat-icon class="text-xs scale-75">{{ copySuccess() ? 'check' : 'content_copy' }}</mat-icon> 
                       {{ copySuccess() ? 'COPIED!' : 'COPY' }}
@@ -353,7 +325,6 @@ interface BatchRow {
                   </div>
                 }
               </div>
-              
               <div class="flex-1 w-full p-4 overflow-auto text-xs font-mono select-text bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-100">
                 @if (!inputText()) {
                   <div class="h-full flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-650 text-center space-y-3 p-6 select-none">
@@ -373,9 +344,8 @@ interface BatchRow {
                       </div>
                       <p class="text-[11px] leading-relaxed">{{ errorMsg() }}</p>
                       <div class="mt-3 flex gap-2">
-                        <button 
-                          (click)="switchToValidatorTab()"
-                          class="px-2.5 py-1 bg-rose-200 dark:bg-rose-900 hover:bg-rose-300 dark:hover:bg-rose-800 text-rose-900 dark:text-rose-100 text-[10px] font-bold rounded-md transition"
+                        <button (click)="switchToValidatorTab()"
+                          class="px-2.5 py-1 bg-rose-200 dark:bg-rose-900 hover:bg-rose-300 dark:hover:bg-rose-800 text-rose-900 dark:text-rose-100 text-[10px] font-bold rounded-md transition cursor-pointer"
                         >
                           Diagnose & Repair Code
                         </button>
@@ -411,14 +381,7 @@ interface BatchRow {
                 [class.bg-emerald-50/20]="isDragging()"
                 class="border-2 border-dashed border-zinc-200 dark:border-zinc-850 bg-white dark:bg-zinc-900/40 p-8 rounded-2xl flex flex-col items-center justify-center text-center space-y-4 cursor-pointer hover:border-zinc-350 dark:hover:border-zinc-750 transition shadow-xs relative overflow-hidden group select-none"
               >
-                <input 
-                  #fileInputEl
-                  type="file" 
-                  class="absolute inset-0 opacity-0 cursor-pointer"
-                  multiple
-                  (change)="onFileSelected($event)"
-                />
-                
+                <input #fileInputEl type="file" class="absolute inset-0 opacity-0 cursor-pointer" multiple (change)="onFileSelected($event)"/>
                 <div class="w-12 h-12 bg-zinc-100 dark:bg-zinc-950 rounded-full flex items-center justify-center border border-zinc-200 dark:border-zinc-850 group-hover:scale-105 transition-all">
                   <mat-icon class="text-zinc-600 dark:text-zinc-400">upload_file</mat-icon>
                 </div>
@@ -428,7 +391,7 @@ interface BatchRow {
                   <p class="text-[11px] text-zinc-500">Supports PNG, JPG, SVG, PDF, JSON, Audio up to 25MB.</p>
                 </div>
 
-                <button class="px-3.5 py-1.5 bg-zinc-100 dark:bg-zinc-850 border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-750 text-xs font-mono font-bold rounded-xl text-zinc-700 dark:text-zinc-300 transition select-none">
+                <button class="px-3.5 py-1.5 bg-zinc-100 dark:bg-zinc-850 border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-750 text-xs font-mono font-bold rounded-xl text-zinc-700 dark:text-zinc-300 transition select-none cursor-pointer">
                   BROWSE FILE
                 </button>
               </div>
@@ -438,9 +401,8 @@ interface BatchRow {
                 <div class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-5 space-y-4 shadow-sm select-none">
                   <div class="flex items-center justify-between border-b border-zinc-150 dark:border-zinc-850 pb-2">
                     <span class="text-xs font-bold font-mono text-zinc-500 uppercase">Uploaded Files ({{ uploadedFiles().length }})</span>
-                    <button 
-                      (click)="clearFiles()"
-                      class="text-[10px] font-mono font-extrabold text-rose-600 hover:text-rose-500"
+                    <button (click)="clearFiles()"
+                      class="text-[10px] font-mono font-extrabold text-rose-600 hover:text-rose-500 cursor-pointer"
                     >
                       CLEAR ALL
                     </button>
@@ -448,8 +410,7 @@ interface BatchRow {
 
                   <div class="space-y-2 max-h-[220px] overflow-y-auto scrollbar-thin">
                     @for (f of uploadedFiles(); track f.name; let idx = $index) {
-                      <div 
-                        (click)="selectFileIndex(idx)"
+                      <div (click)="selectFileIndex(idx)"
                         (keydown.enter)="selectFileIndex(idx)"
                         tabindex="0"
                         [class.border-emerald-500]="activeFileIndex() === idx"
@@ -465,9 +426,8 @@ interface BatchRow {
                             <p class="text-[10px] text-zinc-500 leading-tight">{{ formatBytes(f.size) }} &bull; {{ f.type.split('/')[1] || 'binary' | uppercase }}</p>
                           </div>
                         </div>
-                        <button 
-                          (click)="removeFileIndex(idx, $event)"
-                          class="p-1 hover:bg-rose-50 dark:hover:bg-rose-950/20 text-zinc-400 hover:text-rose-500 rounded transition"
+                        <button (click)="removeFileIndex(idx, $event)"
+                          class="p-1 hover:bg-rose-50 dark:hover:bg-rose-950/20 text-zinc-400 hover:text-rose-500 rounded transition cursor-pointer"
                         >
                           <mat-icon class="scale-75">close</mat-icon>
                         </button>
@@ -491,21 +451,18 @@ interface BatchRow {
                     </div>
 
                     <div class="flex items-center gap-1.5 shrink-0 self-start sm:self-center">
-                      <button 
-                        (click)="copyRawBase64(file.base64)"
-                        class="px-2.5 py-1.5 bg-zinc-50 dark:bg-zinc-850 hover:bg-zinc-150 dark:hover:bg-zinc-750 border border-zinc-250 dark:border-zinc-800 text-xs font-mono font-bold rounded-xl text-zinc-700 dark:text-zinc-300 transition"
+                      <button (click)="copyRawBase64(file.base64)"
+                        class="px-2.5 py-1.5 bg-zinc-50 dark:bg-zinc-850 hover:bg-zinc-150 dark:hover:bg-zinc-750 border border-zinc-250 dark:border-zinc-800 text-xs font-mono font-bold rounded-xl text-zinc-700 dark:text-zinc-300 transition cursor-pointer"
                       >
                         COPY BASE64
                       </button>
-                      <button 
-                        (click)="copyDataUri(file.dataUri)"
-                        class="px-2.5 py-1.5 bg-zinc-50 dark:bg-zinc-850 hover:bg-zinc-150 dark:hover:bg-zinc-750 border border-zinc-250 dark:border-zinc-800 text-xs font-mono font-bold rounded-xl text-zinc-700 dark:text-zinc-300 transition"
+                      <button (click)="copyDataUri(file.dataUri)"
+                        class="px-2.5 py-1.5 bg-zinc-50 dark:bg-zinc-850 hover:bg-zinc-150 dark:hover:bg-zinc-750 border border-zinc-250 dark:border-zinc-800 text-xs font-mono font-bold rounded-xl text-zinc-700 dark:text-zinc-300 transition cursor-pointer"
                       >
                         COPY DATA URI
                       </button>
-                      <button 
-                        (click)="downloadDecodedFile(file)"
-                        class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-mono font-bold rounded-xl shadow-xs transition"
+                      <button (click)="downloadDecodedFile(file)"
+                        class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-mono font-bold rounded-xl shadow-xs transition cursor-pointer"
                       >
                         DOWNLOAD FILE
                       </button>
@@ -529,8 +486,7 @@ interface BatchRow {
                           />
                           <p class="text-[11px] text-zinc-500 font-mono">Pixel-accurate client-rendered image preview.</p>
                         </div>
-                      } 
-                      
+                      }
                       <!-- Audio Previews -->
                       @else if (file.type.startsWith('audio/')) {
                         <div class="space-y-4 max-w-sm w-full text-center select-none">
@@ -540,7 +496,7 @@ interface BatchRow {
                           <audio controls [src]="file.dataUri" class="w-full mx-auto"></audio>
                           <p class="text-[11px] text-zinc-500 font-mono">Web Audio component linked to Base64 byte array.</p>
                         </div>
-                      } 
+                      }
 
                       <!-- PDF Previews (Visual download panel for PDF) -->
                       @else if (file.type === 'application/pdf') {
@@ -552,14 +508,13 @@ interface BatchRow {
                             <p class="text-xs font-bold text-zinc-800 dark:text-zinc-200 font-mono">PDF Binary Payload Decoded</p>
                             <p class="text-[11px] text-zinc-500 mt-0.5">We found valid PDF stream indices. In compliance with browser frame constraints, download the PDF block locally to read it fully.</p>
                           </div>
-                          <button 
-                            (click)="downloadDecodedFile(file)"
-                            class="px-3.5 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-mono font-bold rounded-xl transition"
+                          <button (click)="downloadDecodedFile(file)"
+                            class="px-3.5 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-mono font-bold rounded-xl transition cursor-pointer"
                           >
                             DOWNLOAD DECODED PDF
                           </button>
                         </div>
-                      } 
+                      }
 
                       <!-- Text/HTML/JSON Previews -->
                       @else if (file.type === 'application/json' || file.type.startsWith('text/')) {
@@ -571,8 +526,7 @@ interface BatchRow {
                             <pre class="text-zinc-700 dark:text-zinc-300 whitespace-pre-wrap">{{ getFileTextPreview(file) }}</pre>
                           </div>
                         </div>
-                      } 
-                      
+                      }
                       <!-- Default Fallback binary visualizers -->
                       @else {
                         <div class="text-center space-y-2 select-none">
@@ -588,9 +542,8 @@ interface BatchRow {
                   <div class="space-y-2">
                     <div class="flex items-center justify-between select-none">
                       <span class="text-[10px] font-mono font-bold text-zinc-500 uppercase tracking-widest">Base64 output string characters (first 500 chars)</span>
-                      <button 
-                        (click)="copyRawBase64(file.base64)"
-                        class="text-[10px] font-mono font-bold text-emerald-600 hover:text-emerald-500 flex items-center gap-1"
+                      <button (click)="copyRawBase64(file.base64)"
+                        class="text-[10px] font-mono font-bold text-emerald-600 hover:text-emerald-500 flex items-center gap-1 cursor-pointer"
                       >
                         <mat-icon class="scale-50">content_copy</mat-icon> COPY FULL CHARACTER STREAM
                       </button>
@@ -696,24 +649,21 @@ interface BatchRow {
 
                   <div class="flex flex-col gap-2">
                     @if (valReport().invalidCharacters.length > 0) {
-                      <button 
-                        (click)="repairCleanWhitespace()"
-                        class="px-3.5 py-1.5 bg-amber-500 hover:bg-amber-600 text-white text-xs font-mono font-bold rounded-xl transition flex items-center justify-center gap-1.5"
+                      <button (click)="repairCleanWhitespace()"
+                        class="px-3.5 py-1.5 bg-amber-500 hover:bg-amber-600 text-white text-xs font-mono font-bold rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer"
                       >
                         <mat-icon class="scale-75">cleaning_services</mat-icon> STRIP INVALID & SPACES
                       </button>
                     }
                     @if (valText().length % 4 !== 0) {
-                      <button 
-                        (click)="repairTrailingPadding()"
-                        class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-mono font-bold rounded-xl transition flex items-center justify-center gap-1.5"
+                      <button (click)="repairTrailingPadding()"
+                        class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-mono font-bold rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer"
                       >
                         <mat-icon class="scale-75">build</mat-icon> FIX TRAILING EQUATION PAD
                       </button>
                     }
-                    <button 
-                      (click)="normalizeUrlSafeToStandardVal()"
-                      class="px-3.5 py-1.5 bg-zinc-100 dark:bg-zinc-850 hover:bg-zinc-200 dark:hover:bg-zinc-750 text-zinc-800 dark:text-zinc-350 text-xs font-mono font-bold rounded-xl transition flex items-center justify-center gap-1.5"
+                    <button (click)="normalizeUrlSafeToStandardVal()"
+                      class="px-3.5 py-1.5 bg-zinc-100 dark:bg-zinc-850 hover:bg-zinc-200 dark:hover:bg-zinc-750 text-zinc-800 dark:text-zinc-350 text-xs font-mono font-bold rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer"
                     >
                       <mat-icon class="scale-75">swap_calls</mat-icon> CONVERT URL-SAFE TO STANDARD
                     </button>
@@ -749,9 +699,8 @@ interface BatchRow {
                 <p class="text-[11px] text-zinc-550 leading-tight">Templates will compute using this text, which can be custom-defined or selected from file components.</p>
               </div>
               <div class="flex items-end justify-start md:justify-end">
-                <button 
-                  (click)="importFromActiveWorkspace()"
-                  class="px-3.5 py-2 border border-emerald-250 dark:border-emerald-800 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-bold rounded-xl hover:bg-emerald-500/20 transition flex items-center gap-1.5"
+                <button (click)="importFromActiveWorkspace()"
+                  class="px-3.5 py-2 border border-emerald-250 dark:border-emerald-800 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-bold rounded-xl hover:bg-emerald-500/20 transition flex items-center gap-1.5 cursor-pointer"
                 >
                   <mat-icon class="scale-75">get_app</mat-icon> LINK TEXT WORKSPACE
                 </button>
@@ -767,9 +716,8 @@ interface BatchRow {
                     <span class="text-xs font-bold text-zinc-700 dark:text-zinc-300 font-mono flex items-center gap-1">
                       <span class="w-2 h-2 bg-pink-500 rounded-full"></span> 1. CSS Background Inline
                     </span>
-                    <button 
-                      (click)="copyToClipboard(cssBgCode())" 
-                      class="text-[10px] font-mono font-bold text-emerald-600 hover:text-emerald-500 flex items-center gap-1"
+                    <button (click)="copyToClipboard(cssBgCode())"
+                      class="text-[10px] font-mono font-bold text-emerald-600 hover:text-emerald-500 flex items-center gap-1 cursor-pointer"
                     >
                       <mat-icon class="scale-50">content_copy</mat-icon> COPY CODE
                     </button>
@@ -783,9 +731,8 @@ interface BatchRow {
                     <span class="text-xs font-bold text-zinc-700 dark:text-zinc-300 font-mono flex items-center gap-1">
                       <span class="w-2 h-2 bg-blue-500 rounded-full"></span> 2. HTML Image Tag
                     </span>
-                    <button 
-                      (click)="copyToClipboard(htmlImgCode())" 
-                      class="text-[10px] font-mono font-bold text-emerald-600 hover:text-emerald-500 flex items-center gap-1"
+                    <button (click)="copyToClipboard(htmlImgCode())"
+                      class="text-[10px] font-mono font-bold text-emerald-600 hover:text-emerald-500 flex items-center gap-1 cursor-pointer"
                     >
                       <mat-icon class="scale-50">content_copy</mat-icon> COPY CODE
                     </button>
@@ -799,9 +746,8 @@ interface BatchRow {
                     <span class="text-xs font-bold text-zinc-700 dark:text-zinc-300 font-mono flex items-center gap-1">
                       <span class="w-2 h-2 bg-purple-500 rounded-full"></span> 3. Markdown Document Format
                     </span>
-                    <button 
-                      (click)="copyToClipboard(markdownImgCode())" 
-                      class="text-[10px] font-mono font-bold text-emerald-600 hover:text-emerald-500 flex items-center gap-1"
+                    <button (click)="copyToClipboard(markdownImgCode())"
+                      class="text-[10px] font-mono font-bold text-emerald-600 hover:text-emerald-500 flex items-center gap-1 cursor-pointer"
                     >
                       <mat-icon class="scale-50">content_copy</mat-icon> COPY CODE
                     </button>
@@ -815,9 +761,8 @@ interface BatchRow {
                     <span class="text-xs font-bold text-zinc-700 dark:text-zinc-300 font-mono flex items-center gap-1">
                       <span class="w-2 h-2 bg-red-600 rounded-full"></span> 4. Angular component model binding
                     </span>
-                    <button 
-                      (click)="copyToClipboard(angularBindingCode())" 
-                      class="text-[10px] font-mono font-bold text-emerald-600 hover:text-emerald-500 flex items-center gap-1"
+                    <button (click)="copyToClipboard(angularBindingCode())"
+                      class="text-[10px] font-mono font-bold text-emerald-600 hover:text-emerald-500 flex items-center gap-1 cursor-pointer cursor-pointer"
                     >
                       <mat-icon class="scale-50">content_copy</mat-icon> COPY CODE
                     </button>
@@ -918,23 +863,21 @@ interface BatchRow {
             <!-- Configuration values -->
             <div class="flex flex-wrap items-center gap-4 border-b border-zinc-150 dark:border-zinc-850 pb-4 select-none">
               <div class="flex items-center bg-zinc-200/50 dark:bg-zinc-900 rounded-xl p-1 border border-zinc-250 dark:border-zinc-800">
-                <button 
-                  (click)="batchMode.set('encode')" 
+                <button (click)="batchMode.set('encode')"
                   [class.bg-white]="batchMode() === 'encode'"
                   [class.dark:bg-zinc-800]="batchMode() === 'encode'"
                   [class.text-emerald-600]="batchMode() === 'encode'"
                   [class.dark:text-emerald-400]="batchMode() === 'encode'"
-                  class="px-3.5 py-1.5 text-xs text-zinc-500 dark:text-zinc-400 rounded-lg transition font-mono font-bold"
+                  class="px-3.5 py-1.5 text-xs text-zinc-500 dark:text-zinc-400 rounded-lg transition font-mono font-bold cursor-pointer"
                 >
                   BATCH ENCODE
                 </button>
-                <button 
-                  (click)="batchMode.set('decode')" 
+                <button (click)="batchMode.set('decode')"
                   [class.bg-white]="batchMode() === 'decode'"
                   [class.dark:bg-zinc-800]="batchMode() === 'decode'"
                   [class.text-amber-600]="batchMode() === 'decode'"
                   [class.dark:text-amber-400]="batchMode() === 'decode'"
-                  class="px-3.5 py-1.5 text-xs text-zinc-500 dark:text-zinc-400 rounded-lg transition font-mono font-bold"
+                  class="px-3.5 py-1.5 text-xs text-zinc-500 dark:text-zinc-400 rounded-lg transition font-mono font-bold cursor-pointer"
                 >
                   BATCH DECODE
                 </button>
@@ -943,8 +886,7 @@ interface BatchRow {
               <!-- Format safe selections -->
               <div class="flex items-center gap-2">
                 <span class="text-[11px] font-mono font-bold text-zinc-500 uppercase">WRAP STYLE:</span>
-                <select 
-                  [value]="batchFormat()"
+                <select [value]="batchFormat()"
                   (change)="batchFormat.set($any($event.target).value)"
                   class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-xs font-mono text-zinc-700 dark:text-zinc-300 rounded-xl p-1 px-2.5 focus:outline-none"
                 >
@@ -972,9 +914,8 @@ interface BatchRow {
                 <div class="flex items-center justify-between border-b border-zinc-150 dark:border-zinc-850 pb-2 mb-3 select-none">
                   <span class="text-xs font-bold font-mono text-zinc-500 uppercase">Batch Conversion Outcomes</span>
                   @if (batchRows().length > 0) {
-                    <button 
-                      (click)="downloadBatchCsv()"
-                      class="text-[10px] font-mono font-extrabold text-emerald-600 dark:text-emerald-400 flex items-center gap-1 hover:underline"
+                    <button (click)="downloadBatchCsv()"
+                      class="text-[10px] font-mono font-extrabold text-emerald-600 dark:text-emerald-400 flex items-center gap-1 hover:underline cursor-pointer"
                     >
                       <mat-icon class="scale-50">download</mat-icon> DOWNLOAD CSV REPORT
                     </button>
@@ -996,9 +937,8 @@ interface BatchRow {
                           <span class="text-zinc-500 shrink-0 select-none">&bull;</span> &nbsp;
                           <span class="text-emerald-600 dark:text-emerald-400 font-bold select-all">{{ row.output }}</span>
                         </div>
-                        <button 
-                          (click)="copyToClipboard(row.output)"
-                          class="p-1 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-400 hover:text-emerald-500 rounded transition"
+                        <button (click)="copyToClipboard(row.output)"
+                          class="p-1 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-400 hover:text-emerald-500 rounded transition cursor-pointer"
                           title="Copy Row Output"
                         >
                           <mat-icon class="scale-75">content_copy</mat-icon>

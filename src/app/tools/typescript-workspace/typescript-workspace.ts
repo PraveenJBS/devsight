@@ -70,10 +70,8 @@ interface TSProperty {
                   {{ getActiveToolDesc() }}
                 </p>
               </div>
-              <button
-                (click)="copyCode()"
-                class="px-2.5 py-1 text-xs text-emerald-400 hover:text-emerald-300 bg-emerald-950/20 hover:bg-emerald-950/30 border border-emerald-950 rounded-lg transition font-mono flex items-center gap-1.5"
-              >
+              <button (click)="copyCode()"
+                class="px-2.5 py-1 text-xs text-emerald-400 hover:text-emerald-300 bg-emerald-950/20 hover:bg-emerald-950/30 border border-emerald-950 rounded-lg transition font-mono flex items-center gap-1.5 cursor-pointer">
                 <mat-icon class="scale-50">{{ copied() ? 'check' : 'content_copy' }}</mat-icon>
                 {{ copied() ? 'COPIED!' : 'COPY CODE' }}
               </button>
@@ -113,10 +111,8 @@ interface TSProperty {
                 <div class="space-y-2 text-left">
                   <div class="flex items-center justify-between">
                     <span class="text-xs font-bold text-zinc-400 font-mono">PROPERTIES / FIELDS</span>
-                    <button
-                      (click)="addProperty()"
-                      class="px-2 py-0.5 text-[10px] font-mono bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-750 text-zinc-650 dark:text-zinc-300 rounded border border-zinc-200 dark:border-zinc-700 transition"
-                    >
+                    <button (click)="addProperty()"
+                      class="px-2 py-0.5 text-[10px] font-mono bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-750 text-zinc-650 dark:text-zinc-300 rounded border border-zinc-200 dark:border-zinc-700 transition cursor-pointer">
                       + ADD FIELD
                     </button>
                   </div>
@@ -162,11 +158,9 @@ interface TSProperty {
                           />
                           Nullable
                         </span>
-                        <button
-                          (click)="removeProperty($index)"
-                          class="ml-auto text-zinc-500 hover:text-rose-400 transition"
-                          title="Remove field"
-                        >
+                        <button (click)="removeProperty($index)"
+                          class="ml-auto text-zinc-500 hover:text-rose-400 transition cursor-pointer"
+                          title="Remove field">
                           <mat-icon class="scale-50">delete</mat-icon>
                         </button>
                       </div>

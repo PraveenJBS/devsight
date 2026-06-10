@@ -11,7 +11,6 @@ import { MatIconModule } from '@angular/material/icon';
     <div class="space-y-6 max-w-5xl mx-auto text-left">
       <!-- Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
         <!-- Controls panel card -->
         <div class="p-6 bg-zinc-90 border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 rounded-2xl space-y-4">
           <span class="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400 block border-b dark:border-zinc-800 pb-2">8-AXIS VECTOR ANCHORS</span>
@@ -56,14 +55,11 @@ import { MatIconModule } from '@angular/material/icon';
 
         <!-- Render Target Preview Frame & Exporter -->
         <div class="space-y-6">
-          
           <!-- Outer Render frame -->
-          <div 
-            class="h-64 rounded-2xl flex items-center justify-center border border-zinc-200 dark:border-zinc-850 bg-zinc-100 dark:bg-zinc-950 relative overflow-hidden text-center shrink-0"
+          <div class="h-64 rounded-2xl flex items-center justify-center border border-zinc-200 dark:border-zinc-850 bg-zinc-100 dark:bg-zinc-950 relative overflow-hidden text-center shrink-0"
           >
             <!-- Blob element -->
-            <div 
-              class="w-36 h-36 bg-gradient-to-br from-indigo-500 to-pink-500 shadow-xl p-4 flex flex-col justify-center items-center text-white scale-102 transition"
+            <div class="w-36 h-36 bg-gradient-to-br from-indigo-500 to-pink-500 shadow-xl p-4 flex flex-col justify-center items-center text-white scale-102 transition"
               [style.border-radius]="compiledBorderRadius()"
             >
               <span class="text-xs font-mono font-bold tracking-widest uppercase">BLOB TARGET</span>

@@ -11,38 +11,30 @@ import { MatIconModule } from '@angular/material/icon';
     <div class="space-y-6 max-w-5xl mx-auto text-left">
       <!-- Layout Controls Top Bar -->
       <div class="flex flex-wrap items-center justify-between gap-4 border-b dark:border-zinc-800 pb-4">
-        
         <!-- Viewport selector buttons -->
         <div class="flex gap-2 font-mono text-[10px] font-bold">
-          <button 
-            (click)="viewportType.set('desktop')"
+          <button (click)="viewportType.set('desktop')"
             [class.bg-emerald-500/10]="viewportType() === 'desktop'"
             [class.text-emerald-500]="viewportType() === 'desktop'"
-            class="px-3.5 py-2 border border-zinc-200 dark:border-zinc-850 rounded-xl cursor-pointer transition flex items-center gap-1 uppercase"
-          >
+            class="px-3.5 py-2 border border-zinc-200 dark:border-zinc-850 rounded-xl cursor-pointer transition flex items-center gap-1 uppercase">
             <mat-icon style="font-size:14px; width:14px; height:14px;" class="flex items-center justify-center">desktop_windows</mat-icon> DESKTOP LAYOUT
           </button>
-          
-          <button 
-            (click)="viewportType.set('mobile')"
+          <button (click)="viewportType.set('mobile')"
             [class.bg-emerald-500/10]="viewportType() === 'mobile'"
             [class.text-emerald-500]="viewportType() === 'mobile'"
-            class="px-3.5 py-2 border border-zinc-200 dark:border-zinc-855 rounded-xl cursor-pointer transition flex items-center gap-1 uppercase"
-          >
+            class="px-3.5 py-2 border border-zinc-200 dark:border-zinc-855 rounded-xl cursor-pointer transition flex items-center gap-1 uppercase">
             <mat-icon style="font-size:14px; width:14px; height:14px;" class="flex items-center justify-center">phone_iphone</mat-icon> MOBILE GRID
           </button>
         </div>
 
         <!-- Selected Widget Preset picker -->
         <div class="flex gap-2 font-mono text-[10px] font-bold">
-          <button 
-            (click)="selectedUiPreset.set('dashboard')"
+          <button (click)="selectedUiPreset.set('dashboard')"
             [class.bg-emerald-500/10]="selectedUiPreset() === 'dashboard'"
             [class.text-emerald-500]="selectedUiPreset() === 'dashboard'"
             class="px-3 py-1.5 border border-zinc-200 dark:border-zinc-800 rounded-lg cursor-pointer text-xs"
           >ANALYTICS</button>
-          <button 
-            (click)="selectedUiPreset.set('form')"
+          <button (click)="selectedUiPreset.set('form')"
             [class.bg-emerald-500/10]="selectedUiPreset() === 'form'"
             [class.text-emerald-500]="selectedUiPreset() === 'form'"
             class="px-3 py-1.5 border border-zinc-200 dark:border-zinc-800 rounded-lg cursor-pointer text-xs"
@@ -53,16 +45,12 @@ import { MatIconModule } from '@angular/material/icon';
 
       <!-- Live Virtual Simulator viewports area -->
       <div class="flex justify-center items-center bg-zinc-50 dark:bg-zinc-950 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-850 relative overflow-hidden transition-all duration-300">
-        
-        <div 
-          [class.max-w-[340px]]="viewportType() === 'mobile'"
+        <div [class.max-w-[340px]]="viewportType() === 'mobile'"
           [class.w-full]="viewportType() === 'mobile'"
           [class.h-[500px]]="viewportType() === 'mobile'"
           [class.w-full]="viewportType() === 'desktop'"
           [class.min-h-[280px]]="viewportType() === 'desktop'"
-          class="bg-white dark:bg-zinc-900 border border-zinc-250 dark:border-zinc-800 rounded-2xl shadow-xl flex flex-col p-6 text-left transition-all duration-300 relative overflow-y-auto"
-        >
-          
+          class="bg-white dark:bg-zinc-900 border border-zinc-250 dark:border-zinc-800 rounded-2xl shadow-xl flex flex-col p-6 text-left transition-all duration-300 relative overflow-y-auto">
           <!-- Presets template renderer -->
           @if (selectedUiPreset() === 'dashboard') {
             <div class="space-y-4">
@@ -166,7 +154,7 @@ export class UiPreviewStudioComponent {
   <h4 class="text-sm font-extrabold">Contact designs team</h4>
   <input type="text" placeholder="dev@corp.com" class="w-full bg-white p-2 rounded border" />
   <textarea placeholder="Comment" class="w-full bg-white p-2 rounded border"></textarea>
-  <button class="w-full py-2 bg-emerald-500 text-black font-bold rounded-lg text-center">SUBMIT REPORT</button>
+  <button class="w-full py-2 bg-emerald-500 text-black font-bold rounded-lg text-center cursor-pointer">SUBMIT REPORT</button>
 </div>`;
   });
 

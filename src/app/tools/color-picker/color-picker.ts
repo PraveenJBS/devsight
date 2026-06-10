@@ -1,17 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal, computed, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { 
-  hexToRgb, 
-  rgbToHex, 
-  rgbToHsl, 
-  hslToRgb, 
-  rgbToHsv, 
-  hsvToRgb, 
-  rgbToOklch, 
-  oklchToRgb, 
-  matchTailwindColor 
-} from '../color-utils';
+import { hexToRgb, rgbToHex, rgbToHsl, hslToRgb, rgbToHsv, hsvToRgb, rgbToOklch, oklchToRgb, matchTailwindColor } from '../color-utils';
 
 @Component({
   selector: 'app-color-picker',
@@ -22,18 +12,14 @@ import {
     <div class="space-y-6 max-w-4xl mx-auto text-left">
       <!-- Top Layout Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
         <!-- Controls & Picking Column -->
         <div class="p-6 bg-zinc-90 w-full border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 rounded-2xl space-y-4">
           <div class="flex items-center justify-between">
             <span class="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400">VISUAL SELECTION</span>
-            
             <!-- Eyedropper trigger if supported -->
             @if (hasEyedropper) {
-              <button 
-                (click)="triggerEyedropper()"
-                class="px-2.5 py-1.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-950 dark:hover:bg-zinc-800 text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 rounded-xl transition flex items-center gap-1.5 cursor-pointer"
-              >
+              <button (click)="triggerEyedropper()"
+                class="px-2.5 py-1.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-950 dark:hover:bg-zinc-800 text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 rounded-xl transition flex items-center gap-1.5 cursor-pointer">
                 <mat-icon class="scale-75">colorize</mat-icon> EYEDROPPER
               </button>
             }
@@ -45,10 +31,7 @@ import {
               class="w-16 h-16 rounded-xl shadow-inner border border-zinc-200 dark:border-zinc-800 shrink-0 relative overflow-hidden"
               [style.background-color]="colorWithOpacity()"
             >
-              <input 
-                type="color" 
-                [value]="hex()"
-                (input)="onHexColorInput($event)"
+              <input type="color" [value]="hex()" (input)="onHexColorInput($event)"
                 class="absolute inset-0 opacity-0 cursor-pointer w-full h-full scale-150"
               />
             </div>
@@ -64,12 +47,7 @@ import {
               <span>OPACITY (ALPHA)</span>
               <span>{{ alpha() }}%</span>
             </div>
-            <input 
-              type="range" 
-              min="0" 
-              max="100" 
-              [value]="alpha()"
-              (input)="onAlphaSliderInput($event)"
+            <input type="range" min="0" max="100" [value]="alpha()" (input)="onAlphaSliderInput($event)"
               class="w-full h-2 rounded-lg appearance-auto bg-zinc-200 dark:bg-zinc-800 cursor-pointer accent-emerald-500"
             />
           </div>
@@ -79,12 +57,10 @@ import {
             <span class="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400">MATERIAL PRESET DOTS</span>
             <div class="flex flex-wrap gap-2">
               @for (preset of presets; track preset) {
-                <button 
-                  (click)="setHexColor(preset)"
+                <button (click)="setHexColor(preset)"
                   class="w-7 h-7 rounded-full border border-white/20 dark:border-zinc-800 shadow-sm transition transform hover:scale-110 cursor-pointer"
-                  [style.background-color]="preset"
-                  [title]="preset"
-                ></button>
+                  [style.background-color]="preset" [title]="preset">
+                </button>
               }
             </div>
           </div>
@@ -99,35 +75,35 @@ import {
             <div class="flex items-center justify-between p-2 rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-900">
               <span class="text-[10px] text-zinc-500 font-bold">HEX</span>
               <span class="text-xs text-zinc-800 dark:text-zinc-200 font-bold select-all pr-2">{{ hex() }}</span>
-              <button (click)="copyValue(hex())" class="p-1 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded transition text-emerald-500"><mat-icon class="scale-75">content_copy</mat-icon></button>
+              <button (click)="copyValue(hex())" class="p-1 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded transition text-emerald-500 cursor-pointer"><mat-icon class="scale-75">content_copy</mat-icon></button>
             </div>
 
             <!-- RGB Row -->
             <div class="flex items-center justify-between p-2 rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-900">
               <span class="text-[10px] text-zinc-500 font-bold">RGB / RGBA</span>
               <span class="text-xs text-zinc-800 dark:text-zinc-200 font-bold select-all pr-2">{{ rgbString() }}</span>
-              <button (click)="copyValue(rgbString())" class="p-1 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded transition text-emerald-500"><mat-icon class="scale-75">content_copy</mat-icon></button>
+              <button (click)="copyValue(rgbString())" class="p-1 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded transition text-emerald-500 cursor-pointer"><mat-icon class="scale-75">content_copy</mat-icon></button>
             </div>
 
             <!-- HSL Row -->
             <div class="flex items-center justify-between p-2 rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-900">
               <span class="text-[10px] text-zinc-500 font-bold">HSL / HSLA</span>
               <span class="text-xs text-zinc-800 dark:text-zinc-200 font-bold select-all pr-2">{{ hslString() }}</span>
-              <button (click)="copyValue(hslString())" class="p-1 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded transition text-emerald-500"><mat-icon class="scale-75">content_copy</mat-icon></button>
+              <button (click)="copyValue(hslString())" class="p-1 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded transition text-emerald-500 cursor-pointer"><mat-icon class="scale-75">content_copy</mat-icon></button>
             </div>
 
             <!-- HSV Row -->
             <div class="flex items-center justify-between p-2 rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-900">
               <span class="text-[10px] text-zinc-500 font-bold">HSV</span>
               <span class="text-xs text-zinc-800 dark:text-zinc-200 font-bold select-all pr-2">{{ hsvString() }}</span>
-              <button (click)="copyValue(hsvString())" class="p-1 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded transition text-emerald-500"><mat-icon class="scale-75">content_copy</mat-icon></button>
+              <button (click)="copyValue(hsvString())" class="p-1 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded transition text-emerald-500 cursor-pointer"><mat-icon class="scale-75">content_copy</mat-icon></button>
             </div>
 
             <!-- OKLCH Row -->
             <div class="flex items-center justify-between p-2 rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-900">
               <span class="text-[10px] text-zinc-500 font-bold">OKLCH</span>
               <span class="text-xs text-zinc-800 dark:text-zinc-200 font-bold select-all pr-2">{{ oklchString() }}</span>
-              <button (click)="copyValue(oklchString())" class="p-1 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded transition text-emerald-500"><mat-icon class="scale-75">content_copy</mat-icon></button>
+              <button (click)="copyValue(oklchString())" class="p-1 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded transition text-emerald-500 cursor-pointer"><mat-icon class="scale-75">content_copy</mat-icon></button>
             </div>
           </div>
         </div>
@@ -136,11 +112,9 @@ import {
 
       <!-- Bottom Layout Section: Matches & Favorites -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
         <!-- Palette matching column -->
         <div class="p-6 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 rounded-2xl space-y-4">
           <span class="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400 block border-b dark:border-zinc-800 pb-2">TAILWIND COLOR MATCHING</span>
-          
           <div class="flex items-center gap-4 bg-zinc-50 dark:bg-zinc-950 p-4 rounded-xl border border-zinc-150 dark:border-zinc-850">
             <div class="w-12 h-12 rounded-lg shadow-sm border dark:border-zinc-800 shrink-0" [style.background-color]="tailwindMatch().hex"></div>
             <div class="flex-1 min-w-0 font-mono text-left">
@@ -148,10 +122,8 @@ import {
               <h4 class="text-md font-bold text-zinc-800 dark:text-white mt-1">bg-{{ tailwindMatch().name }}-{{ tailwindMatch().shade }}</h4>
               <p class="text-[10px] text-zinc-500 dark:text-zinc-400 mt-0.5">Hex: {{ tailwindMatch().hex }} (diff: {{ tailwindMatch().distance | number:'1.0-1' }})</p>
             </div>
-            <button 
-              (click)="copyValue('bg-' + tailwindMatch().name + '-' + tailwindMatch().shade)"
-              class="px-2 py-1 bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-800 dark:hover:bg-zinc-750 font-mono text-[10px] text-zinc-700 dark:text-zinc-300 rounded font-bold transition flex items-center gap-1 shrink-0"
-            >
+            <button (click)="copyValue('bg-' + tailwindMatch().name + '-' + tailwindMatch().shade)"
+              class="px-2 py-1 bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-800 dark:hover:bg-zinc-750 font-mono text-[10px] text-zinc-700 dark:text-zinc-300 rounded font-bold transition flex items-center gap-1 shrink-0 cursor-pointer">
               <mat-icon class="scale-75 text-xs">content_copy</mat-icon> CLASS
             </button>
           </div>
@@ -161,10 +133,8 @@ import {
         <div class="p-6 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 rounded-2xl space-y-4">
           <div class="flex items-center justify-between border-b dark:border-zinc-800 pb-2">
             <span class="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400">SAVED & FAVORITE DOTS</span>
-            <button 
-              (click)="saveActiveToFavorites()"
-              class="px-2 py-1 bg-emerald-500/10 hover:bg-emerald-500/20 text-[10px] font-mono text-emerald-600 dark:text-emerald-400 rounded-lg transition font-bold"
-            >
+            <button (click)="saveActiveToFavorites()"
+              class="px-2 py-1 bg-emerald-500/10 hover:bg-emerald-500/20 text-[10px] font-mono text-emerald-600 dark:text-emerald-400 rounded-lg transition font-bold cursor-pointer">
               + ADD TO FAVORITE
             </button>
           </div>
@@ -176,15 +146,11 @@ import {
             } @else {
               @for (fav of favorites(); track fav) {
                 <div class="group relative flex items-center justify-center">
-                  <button 
-                    (click)="setHexColor(fav)"
+                  <button (click)="setHexColor(fav)"
                     class="w-7 h-7 rounded-full shadow border border-white/20 hover:scale-110 transition cursor-pointer"
-                    [style.background-color]="fav"
-                    [title]="fav"
-                  ></button>
-                  <button 
-                    (click)="removeFavorite(fav); $event.stopPropagation()"
-                    class="absolute -top-1 -right-1 bg-rose-500 text-white rounded-full p-0.5 opacity-0 group-hover:opacity-100 hover:scale-110 transition scale-75 cursor-pointer leading-none flex items-center justify-center h-4 w-4"
+                    [style.background-color]="fav" [title]="fav"></button>
+                  <button (click)="removeFavorite(fav); $event.stopPropagation()"
+                    class="absolute -top-1 -right-1 bg-rose-500 text-white rounded-full p-0.5 opacity-0 group-hover:opacity-100 hover:scale-110 transition scale-75 cursor-pointer leading-none flex items-center justify-center h-4 w-4 cursor-pointer"
                     title="Remove"
                   >
                     <mat-icon style="font-size: 10px; width: 10px; height: 10px;" class="leading-none flex items-center justify-center">close</mat-icon>

@@ -27,11 +27,9 @@
         }
 
         <!-- Toggle Theme -->
-        <button 
-          (click)="toolbox.toggleTheme()"
+        <button (click)="toolbox.toggleTheme()"
           class="p-2 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-zinc-100 dark:bg-zinc-900 text-zinc-650 dark:text-zinc-350 hover:text-zinc-900 dark:hover:text-white transition cursor-pointer flex items-center justify-center"
-          title="Toggle color scheme theme"
-        >
+          title="Toggle color scheme theme">
           @if (toolbox.theme() === 'dark') {
             <mat-icon class="scale-90 text-[18px]">wb_sunny</mat-icon>
           } @else {

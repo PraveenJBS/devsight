@@ -69,10 +69,8 @@ interface MarbleEvent {
                   {{ getActiveToolDesc() }}
                 </p>
               </div>
-              <button
-                (click)="copyCode()"
-                class="px-2.5 py-1 text-xs text-emerald-400 hover:text-emerald-300 bg-emerald-950/20 hover:bg-emerald-950/30 border border-emerald-950 rounded-lg transition font-mono flex items-center gap-1.5"
-              >
+              <button (click)="copyCode()"
+                class="px-2.5 py-1 text-xs text-emerald-400 hover:text-emerald-300 bg-emerald-950/20 hover:bg-emerald-950/30 border border-emerald-950 rounded-lg transition font-mono flex items-center gap-1.5 cursor-pointer">
                 <mat-icon class="scale-50">{{ copied() ? 'check' : 'content_copy' }}</mat-icon>
                 {{ copied() ? 'COPIED!' : 'COPY CODE' }}
               </button>
@@ -97,16 +95,12 @@ interface MarbleEvent {
                       <option value="take">take(3)</option>
                     </select>
 
-                    <button
-                      (click)="triggerManualEmit()"
-                      class="px-3 py-1 bg-emerald-650 hover:bg-emerald-600 text-xs text-white rounded-lg transition font-mono font-semibold"
-                    >
+                    <button (click)="triggerManualEmit()"
+                      class="px-3 py-1 bg-emerald-650 hover:bg-emerald-600 text-xs text-white rounded-lg transition font-mono font-semibold cursor-pointer">
                       EMIT CURRENT VALUE
                     </button>
-                    <button
-                      (click)="clearVisualizer()"
-                      class="px-2.5 py-1 bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-250 hover:dark:bg-zinc-750 text-xs text-zinc-650 dark:text-zinc-300 rounded-lg transition font-mono"
-                    >
+                    <button (click)="clearVisualizer()"
+                      class="px-2.5 py-1 bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-250 hover:dark:bg-zinc-750 text-xs text-zinc-650 dark:text-zinc-300 rounded-lg transition font-mono cursor-pointer">
                       CLEAR
                     </button>
                   </div>
@@ -218,10 +212,8 @@ interface MarbleEvent {
                 <div class="p-4 bg-zinc-100/40 dark:bg-zinc-950/30 border border-zinc-150 dark:border-zinc-800 rounded-xl space-y-4 text-left">
                   <div class="flex justify-between items-center pb-2 border-b border-zinc-200 dark:border-zinc-800">
                     <span class="text-xs font-mono font-bold text-zinc-400">SUBJECT COMPARATOR WORKBENCH</span>
-                    <button
-                      (click)="triggerSubjectEmit()"
-                      class="px-2.5 py-1 bg-gradient-to-r from-emerald-500 to-teal-500 hover:opacity-90 text-[10px] text-zinc-950 rounded-md transition font-mono font-bold uppercase"
-                    >
+                    <button (click)="triggerSubjectEmit()"
+                      class="px-2.5 py-1 bg-gradient-to-r from-emerald-500 to-teal-500 hover:opacity-90 text-[10px] text-zinc-950 rounded-md transition font-mono font-bold uppercase cursor-pointer">
                       trigger .next("Value")
                     </button>
                   </div>
@@ -299,28 +291,22 @@ interface MarbleEvent {
                 <div class="p-4 bg-zinc-100/40 dark:bg-zinc-950/20 border border-zinc-100 dark:border-zinc-850 rounded-xl space-y-4 text-left">
                   <span class="text-[10px] font-bold text-zinc-400 uppercase block font-mono">SNIPPETS PRESETS</span>
                   <div class="space-y-2">
-                    <button
-                      (click)="selectedSnippet.set('debounce-search')"
+                    <button (click)="selectedSnippet.set('debounce-search')"
                       [class.bg-emerald-950/30]="selectedSnippet() === 'debounce-search'"
                       [class.text-emerald-400]="selectedSnippet() === 'debounce-search'"
-                      class="w-full text-left p-2 rounded border border-zinc-250 dark:border-zinc-800 hover:border-emerald-500 text-xs font-mono transition"
-                    >
+                      class="w-full text-left p-2 rounded border border-zinc-250 dark:border-zinc-800 hover:border-emerald-500 text-xs font-mono transition cursor-pointer">
                       Debounce Search Builder
                     </button>
-                    <button
-                      (click)="selectedSnippet.set('retry-strategy')"
+                    <button (click)="selectedSnippet.set('retry-strategy')"
                       [class.bg-emerald-950/30]="selectedSnippet() === 'retry-strategy'"
                       [class.text-emerald-400]="selectedSnippet() === 'retry-strategy'"
-                      class="w-full text-left p-2 rounded border border-zinc-250 dark:border-zinc-800 hover:border-emerald-500 text-xs font-mono transition"
-                    >
+                      class="w-full text-left p-2 rounded border border-zinc-250 dark:border-zinc-800 hover:border-emerald-500 text-xs font-mono transition cursor-pointer">
                       Retry Backoff Strategy
                     </button>
-                    <button
-                      (click)="selectedSnippet.set('infinite-scroll')"
+                    <button (click)="selectedSnippet.set('infinite-scroll')"
                       [class.bg-emerald-950/30]="selectedSnippet() === 'infinite-scroll'"
                       [class.text-emerald-400]="selectedSnippet() === 'infinite-scroll'"
-                      class="w-full text-left p-2 rounded border border-zinc-250 dark:border-zinc-800 hover:border-emerald-500 text-xs font-mono transition"
-                    >
+                      class="w-full text-left p-2 rounded border border-zinc-250 dark:border-zinc-800 hover:border-emerald-500 text-xs font-mono transition cursor-pointer">
                       Infinite Scroll Stream
                     </button>
                   </div>

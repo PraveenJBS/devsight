@@ -12,7 +12,6 @@ import { hexToRgb, rgbToHex, getContrastRatio, getApcaContrast, RGB } from '../c
     <div class="space-y-6 max-w-5xl mx-auto text-left">
       <!-- Outer Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
         <!-- Controls Sidebar Panel -->
         <div class="lg:col-span-1 p-6 bg-zinc-90 border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 rounded-2xl space-y-4">
           <span class="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400 block border-b dark:border-zinc-800 pb-2">CONTROLLER COLORS</span>
@@ -22,20 +21,12 @@ import { hexToRgb, rgbToHex, getContrastRatio, getApcaContrast, RGB } from '../c
             <label class="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400">TEXT (FOREGROUND)</label>
             <div class="flex items-center gap-2 bg-zinc-50 dark:bg-zinc-950 p-2 rounded-xl border border-zinc-150 dark:border-zinc-850">
               <div class="w-8 h-8 rounded-lg shadow-sm border border-zinc-200 dark:border-zinc-800 relative overflow-hidden shrink-0">
-                <input 
-                  type="color" 
-                  [value]="textHex()" 
-                  (input)="onTextHexInput($event)"
-                  class="absolute inset-0 opacity-0 cursor-pointer w-full h-full scale-150"
-                />
+                <input type="color" [value]="textHex()" (input)="onTextHexInput($event)"
+                  class="absolute inset-0 opacity-0 cursor-pointer w-full h-full scale-150"/>
                 <div class="w-full h-full" [style.background-color]="textHex()"></div>
               </div>
-              <input 
-                type="text" 
-                [value]="textHex()"
-                (change)="onTextStringChange($event)"
-                class="flex-1 bg-transparent border-none font-mono text-sm text-zinc-800 dark:text-zinc-200 focus:ring-0 p-1 uppercase"
-              />
+              <input type="text" [value]="textHex()" (change)="onTextStringChange($event)"
+                class="flex-1 bg-transparent border-none font-mono text-sm text-zinc-800 dark:text-zinc-200 focus:ring-0 p-1 uppercase"/>
             </div>
           </div>
 
@@ -44,27 +35,18 @@ import { hexToRgb, rgbToHex, getContrastRatio, getApcaContrast, RGB } from '../c
             <label class="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400">SURFACE (BACKGROUND)</label>
             <div class="flex items-center gap-2 bg-zinc-50 dark:bg-zinc-950 p-2 rounded-xl border border-zinc-150 dark:border-zinc-850">
               <div class="w-8 h-8 rounded-lg shadow-sm border border-zinc-200 dark:border-zinc-800 relative overflow-hidden shrink-0">
-                <input 
-                  type="color" 
-                  [value]="bgHex()" 
-                  (input)="onBgHexInput($event)"
-                  class="absolute inset-0 opacity-0 cursor-pointer w-full h-full scale-150"
-                />
+                <input type="color" [value]="bgHex()" (input)="onBgHexInput($event)"
+                  class="absolute inset-0 opacity-0 cursor-pointer w-full h-full scale-150"/>
                 <div class="w-full h-full" [style.background-color]="bgHex()"></div>
               </div>
-              <input 
-                type="text" 
-                [value]="bgHex()"
-                (change)="onBgStringChange($event)"
-                class="flex-1 bg-transparent border-none font-mono text-sm text-zinc-800 dark:text-zinc-200 focus:ring-0 p-1 uppercase"
-              />
+              <input type="text" [value]="bgHex()" (change)="onBgStringChange($event)"
+                class="flex-1 bg-transparent border-none font-mono text-sm text-zinc-800 dark:text-zinc-200 focus:ring-0 p-1 uppercase"/>
             </div>
           </div>
 
           <!-- Typography Adjusters -->
           <div class="space-y-4 pt-2 border-t dark:border-zinc-800">
             <span class="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400 block pb-1">TYPOGRAPHY SPECS</span>
-            
             <div class="space-y-1.5">
               <div class="flex justify-between text-[11px] font-mono text-zinc-500">
                 <span>FONT SIZE</span>
@@ -93,29 +75,17 @@ import { hexToRgb, rgbToHex, getContrastRatio, getApcaContrast, RGB } from '../c
 
         <!-- Render Preview Frame & Contrast Analysis Score Column -->
         <div class="lg:col-span-2 space-y-6">
-          
           <!-- Large Live Sandbox preview -->
-          <div 
-            class="p-8 border border-zinc-200 dark:border-zinc-800 rounded-2xl flex flex-col justify-center min-h-[180px] shadow-sm relative overflow-hidden"
-            [style.background-color]="bgHex()"
-          >
+          <div class="p-8 border border-zinc-200 dark:border-zinc-800 rounded-2xl flex flex-col justify-center min-h-[180px] shadow-sm relative overflow-hidden"
+            [style.background-color]="bgHex()">
             <!-- Contrast badge label -->
-            <span 
-              class="absolute top-3 right-3 text-[10px] font-mono font-extrabold tracking-wider border px-2 py-0.5 rounded-md"
-              [style.color]="textHex()"
-              [style.border-color]="textHex() + '40'"
-            >
+            <span class="absolute top-3 right-3 text-[10px] font-mono font-extrabold tracking-wider border px-2 py-0.5 rounded-md"
+              [style.color]="textHex()" [style.border-color]="textHex() + '40'">
               PREVIEW RECT
             </span>
-            
             <!-- Real rendered test sentences -->
             <div [style.color]="textHex()">
-              <h1 
-                [style.font-size.px]="fontSize()"
-                [style.font-weight]="fontWeight()"
-                [style.line-height]="lineHeight()"
-                class="tracking-tight select-text"
-              >
+              <h1 [style.font-size.px]="fontSize()" [style.font-weight]="fontWeight()" [style.line-height]="lineHeight()" class="tracking-tight select-text">
                 The quick brown fox jumps over the lazy dog.
               </h1>
               <p class="text-xs opacity-80 mt-2 font-mono leading-relaxed select-all">
@@ -126,7 +96,6 @@ import { hexToRgb, rgbToHex, getContrastRatio, getApcaContrast, RGB } from '../c
 
           <!-- Score Metrics and Accessibility Badges -->
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            
             <!-- Contrast Ratio card -->
             <div class="p-4 border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 rounded-xl space-y-1">
               <span class="text-[9px] font-mono text-zinc-500 font-extrabold uppercase">CONTRAST METRICS</span>
@@ -169,10 +138,8 @@ import { hexToRgb, rgbToHex, getContrastRatio, getApcaContrast, RGB } from '../c
                   <span class="text-rose-400 font-bold">&#9888; Low Contrast:</span> This combination is hard to read. Press the auto-fix button below to optimize.
                 }
               </div>
-              <button 
-                (click)="autofixContrast()"
-                class="px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold font-mono text-xs rounded-xl transition flex items-center gap-1.5 justify-center cursor-pointer shrink-0"
-              >
+              <button (click)="autofixContrast()"
+                class="px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold font-mono text-xs rounded-xl transition flex items-center gap-1.5 justify-center cursor-pointer shrink-0">
                 <mat-icon class="scale-75">auto_clean_templates</mat-icon> ONE-CLICK AUTO FIX
               </button>
             </div>
@@ -181,7 +148,6 @@ import { hexToRgb, rgbToHex, getContrastRatio, getApcaContrast, RGB } from '../c
           <!-- Multi-surface test matrix -->
           <div class="space-y-3 pt-2">
             <span class="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400 block">MULTI-SURFACE COMPATIBILITY ANALYSIS</span>
-            
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
               <div class="p-4 bg-white border border-zinc-200 rounded-xl space-y-2">
                 <div class="text-[10px] font-mono text-zinc-500 font-bold uppercase">WHITE BACKGROUND</div>

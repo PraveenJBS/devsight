@@ -11,7 +11,6 @@ import { MatIconModule } from '@angular/material/icon';
     <div class="space-y-6 max-w-5xl mx-auto text-left">
       <!-- Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
         <!-- Upload & interactive Canvas side -->
         <div class="p-6 bg-zinc-90 border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 rounded-2xl space-y-4">
           <span class="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400 block border-b dark:border-zinc-800 pb-2">IMAGE REPOSITORY SOURCE</span>
@@ -25,12 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
             [class.bg-emerald-500/5]="isDragging()"
             class="border-2 border-dashed border-zinc-300 dark:border-zinc-850 rounded-2xl p-8 flex flex-col items-center justify-center text-center transition cursor-pointer relative"
           >
-            <input 
-              type="file" 
-              accept="image/*" 
-              (change)="onFileSelected($event)" 
-              class="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
-            />
+            <input type="file" accept="image/*" (change)="onFileSelected($event)" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full"/>
             <mat-icon class="scale-130 text-zinc-400 dark:text-zinc-600 mb-2">cloud_upload</mat-icon>
             <p class="text-xs font-mono font-bold text-zinc-650 dark:text-zinc-350">DRAG AND DROP PICTURE OR CLICK TO BROWSE</p>
             <p class="text-[10px] text-zinc-500 dark:text-zinc-400 mt-1 uppercase font-mono">ALL EXTRATIONS OCCUR 100% SECURE & LOCAL</p>

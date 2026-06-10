@@ -17,7 +17,6 @@ export interface PaletteColor {
     <div class="space-y-6 max-w-5xl mx-auto text-left">
       <!-- Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
         <!-- Controls Column -->
         <div class="lg:col-span-1 p-6 bg-zinc-90 border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 rounded-2xl space-y-4">
           <span class="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400 block border-b dark:border-zinc-800 pb-2">PALETTE PREFERENCES</span>
@@ -39,8 +38,7 @@ export interface PaletteColor {
             <span class="text-xs font-mono font-bold text-zinc-400">HARMONY MODEL</span>
             <div class="flex flex-col gap-1.5 font-mono text-xs">
               @for (mode of harmonyModes; track mode.id) {
-                <button 
-                  (click)="harmonyModel.set(mode.id)"
+                <button (click)="harmonyModel.set(mode.id)"
                   [class.bg-emerald-500/10]="harmonyModel() === mode.id"
                   [class.text-emerald-500]="harmonyModel() === mode.id"
                   [class.border-emerald-500/30]="harmonyModel() === mode.id"
@@ -78,10 +76,8 @@ export interface PaletteColor {
                   <h3 class="text-xs font-extrabold text-zinc-855 dark:text-zinc-100 mt-1 uppercase">{{ col.hex }}</h3>
                 </div>
 
-                <button 
-                  (click)="copyValue(col.hex)"
-                  class="w-full py-1 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-950 dark:hover:bg-zinc-800 rounded-lg text-[9px] font-mono font-bold text-zinc-500 hover:text-emerald-500 transition flex items-center justify-center gap-1 cursor-pointer"
-                >
+                <button (click)="copyValue(col.hex)"
+                  class="w-full py-1 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-950 dark:hover:bg-zinc-800 rounded-lg text-[9px] font-mono font-bold text-zinc-500 hover:text-emerald-500 transition flex items-center justify-center gap-1 cursor-pointer">
                   <mat-icon style="font-size:11px;" class="flex items-center justify-center">content_copy</mat-icon> HEX
                 </button>
               </div>

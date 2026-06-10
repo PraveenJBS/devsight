@@ -28,33 +28,29 @@ interface ValidationIssue {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="space-y-6 select-text text-zinc-100">
-      
       <!-- Upper Tabs Option Selection Bar -->
       <div class="flex flex-wrap items-center justify-between gap-4 p-2 bg-zinc-950 border border-zinc-800 rounded-2xl select-none">
         <div class="flex flex-wrap items-center gap-1.5">
-          <button 
-            (click)="activeTab.set('playground')"
+          <button (click)="activeTab.set('playground')"
             [class.bg-zinc-800]="activeTab() === 'playground'"
             [class.text-emerald-400]="activeTab() === 'playground'"
-            class="px-4 py-2 text-xs font-mono font-bold rounded-xl text-zinc-400 hover:text-zinc-200 transition-all duration-200 flex items-center gap-1.5"
+            class="px-4 py-2 text-xs font-mono font-bold rounded-xl text-zinc-400 hover:text-zinc-200 transition-all duration-200 flex items-center gap-1.5 cursor-pointer"
           >
             <mat-icon class="text-xs scale-90">preview</mat-icon>
             PLAYGROUND & VIEWER
           </button>
-          <button 
-            (click)="activeTab.set('editor')"
+          <button (click)="activeTab.set('editor')"
             [class.bg-zinc-800]="activeTab() === 'editor'"
             [class.text-cyan-400]="activeTab() === 'editor'"
-            class="px-4 py-2 text-xs font-mono font-bold rounded-xl text-zinc-400 hover:text-zinc-200 transition-all duration-200 flex items-center gap-1.5"
+            class="px-4 py-2 text-xs font-mono font-bold rounded-xl text-zinc-400 hover:text-zinc-200 transition-all duration-200 flex items-center gap-1.5 cursor-pointer"
           >
             <mat-icon class="text-xs scale-90">code</mat-icon>
             EDIT & CONVERT TOOLS
           </button>
-          <button 
-            (click)="activeTab.set('seo-preview')"
+          <button (click)="activeTab.set('seo-preview')"
             [class.bg-zinc-800]="activeTab() === 'seo-preview'"
             [class.text-indigo-400]="activeTab() === 'seo-preview'"
-            class="px-4 py-2 text-xs font-mono font-bold rounded-xl text-zinc-400 hover:text-zinc-200 transition-all duration-200 flex items-center gap-1.5"
+            class="px-4 py-2 text-xs font-mono font-bold rounded-xl text-zinc-400 hover:text-zinc-200 transition-all duration-200 flex items-center gap-1.5 cursor-pointer"
           >
             <mat-icon class="text-xs scale-90">devices</mat-icon>
             SEO & SOCIAL PREVIEW
@@ -70,14 +66,10 @@ interface ValidationIssue {
 
       <!-- MAIN SPLIT WORKSPACE INTERFACE -->
       <div class="grid grid-cols-1 xl:grid-cols-12 gap-6 items-start">
-        
         <!-- COLUMN A (LEFT SIDE - CODE CANVAS & UTILITIES) -->
         <!-- Resizing dynamically to 5 columns in split-ready structures, or full block in separate views -->
         <div [class.xl:col-span-6]="!isInputFullScreen()" [class.col-span-12]="isInputFullScreen()" class="space-y-6">
-          <div 
-            [class]="isInputFullScreen() ? 'fixed inset-4 z-[9999] bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden h-[calc(100vh-32px)] shadow-2xl flex flex-col' : 'flex flex-col bg-zinc-900 border border-zinc-805 rounded-2xl overflow-hidden h-[630px] shadow-lg relative'"
-          >
-            
+          <div [class]="isInputFullScreen() ? 'fixed inset-4 z-[9999] bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden h-[calc(100vh-32px)] shadow-2xl flex flex-col' : 'flex flex-col bg-zinc-900 border border-zinc-805 rounded-2xl overflow-hidden h-[630px] shadow-lg relative'">
             <!-- Editor Title Ribbon & Commands -->
             <div class="flex items-center justify-between px-4 py-3 bg-zinc-950 border-b border-zinc-800/80">
               <div class="flex items-center gap-2 font-mono">
@@ -89,45 +81,30 @@ interface ValidationIssue {
 
               <!-- Top Quick actions inside editor frame bar -->
               <div class="flex items-center gap-2">
-                <button 
-                  (click)="triggerFileInput()"
-                  class="p-1.5 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-lg transition-all duration-150 flex items-center gap-1 text-[11px] font-mono font-bold border border-transparent hover:border-zinc-700"
-                  title="Upload / Open Local HTML File"
-                >
+                <button (click)="triggerFileInput()"
+                  class="p-1.5 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-lg transition-all duration-150 flex items-center gap-1 text-[11px] font-mono font-bold border border-transparent hover:border-zinc-700 cursor-pointer"
+                  title="Upload / Open Local HTML File">
                   <mat-icon class="scale-90 text-zinc-400">file_upload</mat-icon>
                   OPEN FILE
                 </button>
-                <input 
-                  #fileInputEl 
-                  type="file" 
-                  accept=".html,.htm,.txt" 
-                  class="hidden" 
-                  (change)="onFileSelected($event)" 
-                />
-                
-                <button 
-                  (click)="beautifyHTML()"
-                  class="p-1.5 hover:bg-zinc-800 text-zinc-450 hover:text-emerald-400 rounded-lg transition-all duration-150 flex items-center gap-1 text-[11px] font-mono font-bold"
-                  title="Pretty print HTML structure (Ctrl+S)"
-                >
+                <input #fileInputEl type="file" accept=".html,.htm,.txt" class="hidden" (change)="onFileSelected($event)" />
+                <button (click)="beautifyHTML()"
+                  class="p-1.5 hover:bg-zinc-800 text-zinc-450 hover:text-emerald-400 rounded-lg transition-all duration-150 flex items-center gap-1 text-[11px] font-mono font-bold cursor-pointer"
+                  title="Pretty print HTML structure (Ctrl+S)">
                   <mat-icon class="scale-90">format_align_left</mat-icon>
                   PRETTY PRINT
                 </button>
 
-                <button 
-                  (click)="clearCode()"
-                  class="p-1.5 hover:bg-zinc-900/85 hover:text-rose-450 text-zinc-500 rounded-lg transition-all duration-150 flex items-center gap-1 text-[11px] font-mono font-bold"
-                  title="Clear source code from buffer"
-                >
+                <button (click)="clearCode()"
+                  class="p-1.5 hover:bg-zinc-900/85 hover:text-rose-450 text-zinc-500 rounded-lg transition-all duration-150 flex items-center gap-1 text-[11px] font-mono font-bold cursor-pointer"
+                  title="Clear source code from buffer">
                   <mat-icon class="scale-75">clear</mat-icon>
                   CLEAR
                 </button>
 
-                <button 
-                  (click)="isInputFullScreen.set(!isInputFullScreen())"
-                  class="p-1.5 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-lg transition-all duration-150 flex items-center gap-1 text-[11px] font-mono font-bold border border-transparent hover:border-zinc-700"
-                  [title]="isInputFullScreen() ? 'Exit Full Screen' : 'Full Screen View'"
-                >
+                <button (click)="isInputFullScreen.set(!isInputFullScreen())"
+                  class="p-1.5 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-lg transition-all duration-150 flex items-center gap-1 text-[11px] font-mono font-bold border border-transparent hover:border-zinc-700 cursor-pointer"
+                  [title]="isInputFullScreen() ? 'Exit Full Screen' : 'Full Screen View'">
                   <mat-icon class="scale-90">{{ isInputFullScreen() ? 'fullscreen_exit' : 'fullscreen' }}</mat-icon>
                   {{ isInputFullScreen() ? 'EXIT' : 'FULL' }}
                 </button>
@@ -135,9 +112,7 @@ interface ValidationIssue {
             </div>
 
             <!-- Drag & Drop Zone Covering Editor Body -->
-            <div 
-              class="flex-1 flex overflow-hidden relative select-text" 
-              (dragover)="onDragOver($event)"
+            <div class="flex-1 flex overflow-hidden relative select-text" (dragover)="onDragOver($event)"
               (dragleave)="onDragLeave($event)"
               (drop)="onFileDrop($event)"
               [class.bg-emerald-950/20]="isDraggingOver()"
@@ -157,48 +132,31 @@ interface ValidationIssue {
               @if (showSearchOverlay()) {
                 <div class="absolute top-2 right-4 z-35 p-3 border border-zinc-800 bg-zinc-950/95 rounded-xl shadow-2xl flex items-center gap-2 flex-wrap">
                   <div class="flex items-center bg-zinc-90 w-44 rounded-lg px-2 py-1 border border-zinc-850">
-                    <input 
-                      #findInput
-                      type="text"
-                      [formControl]="findControl"
-                      placeholder="Find characters..."
-                      class="bg-transparent text-xs text-white border-none outline-none w-full"
-                    />
+                    <input #findInput type="text" [formControl]="findControl" placeholder="Find characters..."
+                      class="bg-transparent text-xs text-white border-none outline-none w-full"/>
                   </div>
                   <div class="flex items-center bg-zinc-90 w-44 rounded-lg px-2 py-1 border border-zinc-850">
-                    <input 
-                      type="text"
-                      [formControl]="replaceControl"
-                      placeholder="Replace with..."
-                      class="bg-transparent text-xs text-white border-none outline-none w-full"
-                    />
+                    <input type="text" [formControl]="replaceControl" placeholder="Replace with..."
+                      class="bg-transparent text-xs text-white border-none outline-none w-full"/>
                   </div>
                   <div class="flex items-center gap-1">
-                    <button 
-                      (click)="performFindNext()"
-                      class="px-2 py-1 bg-zinc-800 hover:bg-zinc-700 text-[10px] font-mono font-bold rounded"
-                      title="Locate instances"
-                    >
+                    <button (click)="performFindNext()"
+                      class="px-2 py-1 bg-zinc-800 hover:bg-zinc-700 text-[10px] font-mono font-bold rounded cursor-pointer"
+                      title="Locate instances">
                       FIND
                     </button>
-                    <button 
-                      (click)="performReplace()"
-                      class="px-2 py-1 bg-zinc-850 hover:bg-zinc-750 text-[10px] font-mono font-bold rounded"
-                      title="Replace occurrence"
-                    >
+                    <button (click)="performReplace()"
+                      class="px-2 py-1 bg-zinc-850 hover:bg-zinc-750 text-[10px] font-mono font-bold rounded cursor-pointer"
+                      title="Replace occurrence">
                       REP
                     </button>
-                    <button 
-                      (click)="performReplaceAll()"
-                      class="px-2 py-1 bg-emerald-900/50 hover:bg-emerald-850 hover:text-emerald-300 text-[10px] font-mono font-bold rounded"
-                      title="Replace all"
-                    >
+                    <button (click)="performReplaceAll()"
+                      class="px-2 py-1 bg-emerald-900/50 hover:bg-emerald-850 hover:text-emerald-300 text-[10px] font-mono font-bold rounded cursor-pointer"
+                      title="Replace all">
                       ALL
                     </button>
-                    <button 
-                      (click)="showSearchOverlay.set(false)"
-                      class="p-1 hover:bg-zinc-800 text-zinc-450 rounded-md"
-                    >
+                    <button (click)="showSearchOverlay.set(false)"
+                      class="p-1 hover:bg-zinc-800 text-zinc-450 rounded-md cursor-pointer">
                       <mat-icon class="scale-75">close</mat-icon>
                     </button>
                   </div>
@@ -206,10 +164,8 @@ interface ValidationIssue {
               }
 
               <!-- Dynamic Code Gutter Line List Column -->
-              <div 
-                #gutterElement
-                class="w-12 bg-zinc-950/70 border-r border-zinc-850/80 flex flex-col pt-4 overflow-hidden select-none"
-              >
+              <div #gutterElement
+                class="w-12 bg-zinc-950/70 border-r border-zinc-850/80 flex flex-col pt-4 overflow-hidden select-none">
                 @for (num of lineNumbers(); track num) {
                   <div class="text-[10px] text-zinc-650 font-mono text-right pr-2 leading-[20px] h-[20px] select-none">
                     {{ num }}
@@ -218,14 +174,8 @@ interface ValidationIssue {
               </div>
 
               <!-- Pure Editable Code Editor Area -->
-              <textarea
-                #codeEditorEl
-                [value]="htmlCode()"
-                (input)="onCodeChange($event)"
-                (keydown)="onKeydown($event)"
-                (keyup)="onKeyup($event)"
-                (scroll)="onScroll($event, gutterElement)"
-                placeholder="Type or paste html structure here..."
+              <textarea #codeEditorEl [value]="htmlCode()" (input)="onCodeChange($event)" (keydown)="onKeydown($event)"
+                (keyup)="onKeyup($event)" (scroll)="onScroll($event, gutterElement)" placeholder="Type or paste html structure here..."
                 class="flex-1 w-full p-4 pt-4 text-xs font-mono bg-zinc-900 text-zinc-100 placeholder-zinc-600 border-none outline-none resize-none focus:ring-0 leading-[20px] overflow-y-auto select-all selection:bg-emerald-800/40"
               ></textarea>
             </div>
@@ -236,11 +186,8 @@ interface ValidationIssue {
                 <span class="flex items-center gap-1"><span class="text-zinc-650">Lines:</span> {{ lineNumbers().length }}</span>
                 <span class="flex items-center gap-1"><span class="text-zinc-650">Bytes:</span> {{ htmlCode().length }}B</span>
                 @if (validationIssues().length > 0) {
-                  <button 
-                    type="button"
-                    (click)="activeTab.set('editor')"
-                    class="flex items-center gap-1 cursor-pointer hover:text-amber-400 bg-transparent border-none p-0 text-[11px] font-mono text-zinc-500 outline-none"
-                  >
+                  <button type="button" (click)="activeTab.set('editor')"
+                    class="flex items-center gap-1 cursor-pointer hover:text-amber-400 bg-transparent border-none p-0 text-[11px] font-mono text-zinc-500 outline-none cursor-pointer">
                     <mat-icon class="text-[11px] h-3 w-3 text-amber-500 align-middle">warning</mat-icon>
                     {{ validationIssues().length }} warnings
                   </button>
@@ -252,18 +199,14 @@ interface ValidationIssue {
                 }
               </div>
               <div class="flex items-center gap-2.5">
-                <button 
-                  (click)="showSearchOverlay.set(!showSearchOverlay())"
-                  class="px-2 py-0.5 bg-zinc-900 hover:bg-zinc-800 hover:text-white border border-zinc-800 rounded flex items-center gap-1 transition-all duration-150"
-                  title="Search and Replace occurrences"
-                >
+                <button (click)="showSearchOverlay.set(!showSearchOverlay())"
+                  class="px-2 py-0.5 bg-zinc-900 hover:bg-zinc-800 hover:text-white border border-zinc-800 rounded flex items-center gap-1 transition-all duration-150 cursor-pointer"
+                  title="Search and Replace occurrences">
                   <mat-icon class="scale-75 text-zinc-400">search</mat-icon> Find/Rep
                 </button>
-                <button 
-                  (click)="downloadHTMLFile()"
-                  class="px-2 py-0.5 bg-zinc-900 hover:bg-zinc-800 hover:text-white border border-zinc-800 rounded flex items-center gap-1 transition-all duration-150"
-                  title="Save locally"
-                >
+                <button (click)="downloadHTMLFile()"
+                  class="px-2 py-0.5 bg-zinc-900 hover:bg-zinc-800 hover:text-white border border-zinc-800 rounded flex items-center gap-1 transition-all duration-150 cursor-pointer"
+                  title="Save locally">
                   <mat-icon class="scale-75 text-zinc-400">download</mat-icon> Save .html
                 </button>
               </div>
@@ -288,15 +231,13 @@ interface ValidationIssue {
             } @else {
               <div class="space-y-2 max-h-[170px] overflow-y-auto pr-1">
                 @for (issue of validationIssues(); track issue.message) {
-                  <div 
-                    [class.border-rose-900/40]="issue.type === 'error'"
+                  <div [class.border-rose-900/40]="issue.type === 'error'"
                     [class.bg-rose-950/10]="issue.type === 'error'"
                     [class.border-amber-900/40]="issue.type === 'warning'"
                     [class.bg-amber-950/10]="issue.type === 'warning'"
                     class="p-3 border rounded-xl flex items-start gap-2.5 text-xs transition duration-150"
                   >
-                    <mat-icon 
-                      [class.text-rose-500]="issue.type === 'error'"
+                    <mat-icon [class.text-rose-500]="issue.type === 'error'"
                       [class.text-amber-500]="issue.type === 'warning'"
                       class="scale-90 shrink-0 mt-0.5"
                     >
@@ -305,8 +246,7 @@ interface ValidationIssue {
                     <div class="space-y-0.5 flex-1 p-0">
                       <div class="flex items-center gap-2 flex-wrap">
                         <span class="font-bold text-zinc-200 leading-tight">{{ issue.message }}</span>
-                        <span 
-                          [class.bg-rose-950/40]="issue.type === 'error'"
+                        <span [class.bg-rose-950/40]="issue.type === 'error'"
                           [class.text-rose-450]="issue.type === 'error'"
                           [class.bg-amber-950/40]="issue.type === 'warning'"
                           [class.text-amber-450]="issue.type === 'warning'"
@@ -328,43 +268,34 @@ interface ValidationIssue {
 
         <!-- COLUMN B (RIGHT SIDE - PREVIEW MODES) -->
         <div class="xl:col-span-6 space-y-6">
-          
           <!-- TAB SECTION 1: PLAYGROUND & VIEW DISPLAY -->
           @if (activeTab() === 'playground') {
             <div class="space-y-6">
-              
               <!-- Responsive devices bar & features -->
               <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 flex flex-wrap items-center justify-between gap-4">
-                
                 <!-- Screen profile modes selection -->
                 <div class="flex items-center bg-zinc-950 rounded-xl p-1 border border-zinc-800/80">
-                  <button 
-                    (click)="previewWidth.set('100%')"
+                  <button (click)="previewWidth.set('100%')"
                     [class.bg-zinc-800]="previewWidth() === '100%'"
                     [class.text-emerald-400]="previewWidth() === '100%'"
-                    class="px-3 py-1.5 text-xs font-mono font-bold rounded-lg text-zinc-400 hover:text-white transition-all flex items-center gap-1"
-                    title="Liquid width preview dashboard"
-                  >
+                    class="px-3 py-1.5 text-xs font-mono font-bold rounded-lg text-zinc-400 hover:text-white transition-all flex items-center gap-1 cursor-pointer"
+                    title="Liquid width preview dashboard">
                     <mat-icon class="scale-75">desktop_windows</mat-icon>
                     DESKTOP (100%)
                   </button>
-                  <button 
-                    (click)="previewWidth.set('768px')"
+                  <button (click)="previewWidth.set('768px')"
                     [class.bg-zinc-800]="previewWidth() === '768px'"
                     [class.text-indigo-400]="previewWidth() === '768px'"
-                    class="px-3 py-1.5 text-xs font-mono font-bold rounded-lg text-zinc-400 hover:text-white transition-all flex items-center gap-1"
-                    title="Simulate medium tablet view port"
-                  >
+                    class="px-3 py-1.5 text-xs font-mono font-bold rounded-lg text-zinc-400 hover:text-white transition-all flex items-center gap-1 cursor-pointer"
+                    title="Simulate medium tablet view port">
                     <mat-icon class="scale-75">tablet_mac</mat-icon>
                     TABLET (768px)
                   </button>
-                  <button 
-                    (click)="previewWidth.set('375px')"
+                  <button (click)="previewWidth.set('375px')"
                     [class.bg-zinc-800]="previewWidth() === '375px'"
                     [class.text-purple-400]="previewWidth() === '375px'"
-                    class="px-3 py-1.5 text-xs font-mono font-bold rounded-lg text-zinc-400 hover:text-white transition-all flex items-center gap-1"
-                    title="Simulate mobile device layout"
-                  >
+                    class="px-3 py-1.5 text-xs font-mono font-bold rounded-lg text-zinc-400 hover:text-white transition-all flex items-center gap-1 cursor-pointer"
+                    title="Simulate mobile device layout">
                     <mat-icon class="scale-75">phone_iphone</mat-icon>
                     MOBILE (375px)
                   </button>
@@ -373,55 +304,39 @@ interface ValidationIssue {
                 <!-- Sandbox switches -->
                 <div class="flex items-center gap-4 text-xs font-mono text-zinc-400 flex-wrap select-none">
                   <label class="flex items-center gap-1.5 cursor-pointer hover:text-zinc-200">
-                    <input 
-                      type="checkbox" 
-                      [checked]="enableScripts()"
-                      (change)="onScriptToggleChange($event)"
-                      class="rounded bg-zinc-950 border-zinc-800 text-emerald-500 focus:ring-0 cursor-pointer"
-                    />
+                    <input type="checkbox" [checked]="enableScripts()"(change)="onScriptToggleChange($event)"
+                      class="rounded bg-zinc-950 border-zinc-800 text-emerald-500 focus:ring-0 cursor-pointer"/>
                     <span>SCRIPTS (JS)</span>
                   </label>
                   <label class="flex items-center gap-1.5 cursor-pointer hover:text-zinc-200">
-                    <input 
-                      type="checkbox" 
-                      [checked]="enableCSSFrameworks()"
-                      (change)="enableCSSFrameworks.set(!enableCSSFrameworks())"
-                      class="rounded bg-zinc-950 border-zinc-800 text-emerald-500 focus:ring-0 cursor-pointer"
-                    />
+                    <input type="checkbox" [checked]="enableCSSFrameworks()" (change)="enableCSSFrameworks.set(!enableCSSFrameworks())"
+                      class="rounded bg-zinc-950 border-zinc-800 text-emerald-500 focus:ring-0 cursor-pointer"/>
                     <span>TAILWIND CDN</span>
                   </label>
                 </div>
               </div>
 
               <!-- Live Sandboxed Frame Container -->
-              <div 
-                [class]="isOutputFullScreen() ? 'fixed inset-4 z-[9999] bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden h-[calc(100vh-32px)] shadow-2xl flex flex-col' : 'flex flex-col bg-zinc-900 border border-zinc-800/80 rounded-2xl overflow-hidden h-[545px] shadow-lg relative'"
-              >
-                
+              <div [class]="isOutputFullScreen() ? 'fixed inset-4 z-[9999] bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden h-[calc(100vh-32px)] shadow-2xl flex flex-col' : 'flex flex-col bg-zinc-900 border border-zinc-800/80 rounded-2xl overflow-hidden h-[545px] shadow-lg relative'">
                 <!-- Render panel header -->
                 <div class="flex items-center justify-between px-4 py-3 bg-zinc-950 border-b border-zinc-800">
                   <div class="flex items-center gap-1.5">
                     <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
                     <span class="text-xs font-semibold text-zinc-400 font-mono">ISOLATED RENDER PREVIEW</span>
                   </div>
-                  
                   <div class="flex items-center gap-1">
-                    <button 
-                      (click)="isOutputFullScreen.set(!isOutputFullScreen())"
+                    <button (click)="isOutputFullScreen.set(!isOutputFullScreen())"
                       class="p-1 hover:bg-zinc-805 rounded-lg text-zinc-400 hover:text-white transition-all duration-150 font-mono text-[10px] flex items-center gap-1 cursor-pointer"
-                      [title]="isOutputFullScreen() ? 'Exit Full Screen' : 'Full Screen View'"
-                    >
+                      [title]="isOutputFullScreen() ? 'Exit Full Screen' : 'Full Screen View'">
                       <mat-icon class="scale-75">{{ isOutputFullScreen() ? 'fullscreen_exit' : 'fullscreen' }}</mat-icon>
                       {{ isOutputFullScreen() ? 'EXIT' : 'FULL' }}
                     </button>
                     <span class="px-2 py-0.5 text-[9px] bg-zinc-900 border border-zinc-800 text-zinc-400 font-mono rounded">
                       Viewport: {{ previewWidth() === '100%' ? 'Liquid (Full Width)' : previewWidth() }}
                     </span>
-                    <button 
-                      (click)="refreshIframe()"
-                      class="p-1 hover:bg-zinc-800 rounded-lg text-zinc-400 hover:text-white transition-all duration-150 font-mono text-[10px] flex items-center gap-1"
-                      title="Reload sandbox window"
-                    >
+                    <button (click)="refreshIframe()"
+                      class="p-1 hover:bg-zinc-800 rounded-lg text-zinc-400 hover:text-white transition-all duration-150 font-mono text-[10px] flex items-center gap-1 cursor-pointer"
+                      title="Reload sandbox window">
                       <mat-icon class="scale-75">sync</mat-icon>
                       REFRESH
                     </button>
@@ -430,16 +345,13 @@ interface ValidationIssue {
 
                 <!-- Resizable Device Body -->
                 <div class="flex-1 bg-zinc-950 flex justify-center items-center overflow-auto p-4 relative">
-                  
                   <!-- Responsive frame container simulation wrapper -->
-                  <div 
-                    [style.width]="previewWidth()" 
+                  <div [style.width]="previewWidth()"
                     [class.border]="previewWidth() !== '100%'"
                     [class.border-zinc-750]="previewWidth() !== '100%'"
                     [class.rounded-2xl]="previewWidth() !== '100%'"
                     [class.shadow-2xl]="previewWidth() !== '100%'"
-                    class="h-full bg-white transition-all duration-350 relative flex flex-col min-w-[320px] max-w-full"
-                  >
+                    class="h-full bg-white transition-all duration-350 relative flex flex-col min-w-[320px] max-w-full">
                     <!-- Device physical notch simulated top line -->
                     @if (previewWidth() !== '100%') {
                       <div class="w-full bg-zinc-900 py-1.5 border-b border-zinc-800 flex justify-center items-center gap-1 rounded-t-2xl shrink-0">
@@ -449,11 +361,9 @@ interface ValidationIssue {
                     }
 
                     <div class="flex-1 w-full relative bg-white">
-                      <iframe 
-                        #previewIframe
+                      <iframe #previewIframe
                         sandbox="allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-same-origin allow-downloads"
-                        class="absolute inset-0 w-full h-full bg-white border-none select-text"
-                      ></iframe>
+                        class="absolute inset-0 w-full h-full bg-white border-none select-text"></iframe>
                     </div>
 
                     <!-- Device physical bottom layout line -->
@@ -477,7 +387,6 @@ interface ValidationIssue {
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
-                  
                   <!-- Node Tree (Left 3 cols) -->
                   <div class="md:col-span-3 border border-zinc-800 rounded-xl p-3 bg-zinc-950 max-h-[220px] overflow-y-auto font-mono text-[11px] space-y-1">
                     @if (domTreeNodes().length === 0) {
@@ -505,27 +414,16 @@ interface ValidationIssue {
 
                     @if (selectedDOMNode()) {
                       <div class="space-y-3">
-                        
                         <!-- Attribute additions form inputs -->
                         <div class="space-y-2">
                           <p class="text-[10px] text-zinc-400 font-bold uppercase">Insert Attribute</p>
                           <div class="flex items-center gap-1.5 flex-wrap">
-                            <input 
-                              #attrNameInput
-                              type="text" 
-                              placeholder="Name" 
-                              class="bg-zinc-900 border border-zinc-800 px-2 py-1 text-[11px] rounded flex-1 min-w-[40px] text-zinc-200 outline-none"
-                            />
-                            <input 
-                              #attrValueInput
-                              type="text" 
-                              placeholder="Value" 
-                              class="bg-zinc-900 border border-zinc-800 px-2 py-1 text-[11px] rounded flex-1 min-w-[40px] text-zinc-200 outline-none"
-                            />
-                            <button 
-                              (click)="addNodeAttribute(selectedDOMNode()?.id || '', attrNameInput, attrValueInput)"
-                              class="px-2 py-1 bg-emerald-950 text-emerald-400 hover:bg-emerald-900 hover:text-white border border-emerald-900/40 rounded font-bold text-[10px]"
-                            >
+                            <input #attrNameInput type="text" placeholder="Name"
+                              class="bg-zinc-900 border border-zinc-800 px-2 py-1 text-[11px] rounded flex-1 min-w-[40px] text-zinc-200 outline-none"/>
+                            <input #attrValueInput type="text" placeholder="Value" 
+                              class="bg-zinc-900 border border-zinc-800 px-2 py-1 text-[11px] rounded flex-1 min-w-[40px] text-zinc-200 outline-none"/>
+                            <button (click)="addNodeAttribute(selectedDOMNode()?.id || '', attrNameInput, attrValueInput)"
+                              class="px-2 py-1 bg-emerald-950 text-emerald-400 hover:bg-emerald-900 hover:text-white border border-emerald-900/40 rounded font-bold text-[10px] cursor-pointer">
                               ADD
                             </button>
                           </div>
@@ -541,11 +439,9 @@ interface ValidationIssue {
                               @for (attr of selectedDOMNode()?.attributes; track attr.name) {
                                 <div class="flex items-center justify-between text-[11px] bg-zinc-900/60 p-1 px-2 rounded border border-zinc-850">
                                   <span class="text-zinc-350"><span class="text-indigo-400">{{ attr.name }}</span>="{{ attr.value }}"</span>
-                                  <button 
-                                    (click)="removeNodeAttribute(selectedDOMNode()?.id || '', attr.name)"
-                                    class="text-rose-500 hover:text-rose-450 p-0.5"
-                                    title="Strips attribute"
-                                  >
+                                  <button (click)="removeNodeAttribute(selectedDOMNode()?.id || '', attr.name)"
+                                    class="text-rose-500 hover:text-rose-450 p-0.5 cursor-pointer"
+                                    title="Strips attribute">
                                     <mat-icon class="text-xs scale-75 h-3.5 w-3.5">delete_outline</mat-icon>
                                   </button>
                                 </div>
@@ -570,7 +466,6 @@ interface ValidationIssue {
           <!-- TAB SECTION 2: EDITING & CONVERTERS -->
           @if (activeTab() === 'editor') {
             <div class="space-y-6">
-              
               <!-- Transpilers Panel with active actions -->
               <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 text-left space-y-4">
                 <span class="text-[10px] uppercase font-mono font-bold tracking-widest text-zinc-450 flex items-center gap-1">
@@ -580,8 +475,7 @@ interface ValidationIssue {
 
                 <!-- Converters choice triggers -->
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 border-b border-zinc-800 pb-4">
-                  <button 
-                    (click)="activeConversion.set('jsx')"
+                  <button (click)="activeConversion.set('jsx')"
                     [class.border-cyan-500]="activeConversion() === 'jsx'"
                     [class.bg-cyan-950/20]="activeConversion() === 'jsx'"
                     [class.text-cyan-400]="activeConversion() === 'jsx'"
@@ -589,58 +483,49 @@ interface ValidationIssue {
                   >
                     HTML TO JSX
                   </button>
-                  <button 
-                    (click)="activeConversion.set('angular')"
+                  <button (click)="activeConversion.set('angular')"
                     [class.border-rose-500]="activeConversion() === 'angular'"
                     [class.bg-rose-950/20]="activeConversion() === 'angular'"
                     [class.text-rose-450]="activeConversion() === 'angular'"
-                    class="p-2 border border-zinc-800 bg-zinc-950 rounded-xl text-center font-mono font-bold text-xs text-zinc-400 transition hover:text-white"
+                    class="p-2 border border-zinc-800 bg-zinc-950 rounded-xl text-center font-mono font-bold text-xs text-zinc-400 transition hover:text-white cursor-pointer"
                   >
                     TO ANGULAR
                   </button>
-                  <button 
-                    (click)="activeConversion.set('markdown')"
+                  <button (click)="activeConversion.set('markdown')"
                     [class.border-indigo-500]="activeConversion() === 'markdown'"
                     [class.bg-indigo-950/20]="activeConversion() === 'markdown'"
                     [class.text-indigo-400]="activeConversion() === 'markdown'"
-                    class="p-2 border border-zinc-800 bg-zinc-950 rounded-xl text-center font-mono font-bold text-xs text-zinc-400 transition hover:text-white"
+                    class="p-2 border border-zinc-800 bg-zinc-950 rounded-xl text-center font-mono font-bold text-xs text-zinc-400 transition hover:text-white cursor-pointer"
                   >
                     TO MARKDOWN
                   </button>
-                  <button 
-                    (click)="activeConversion.set('entity')"
+                  <button (click)="activeConversion.set('entity')"
                     [class.border-amber-500]="activeConversion() === 'entity'"
                     [class.bg-amber-950/20]="activeConversion() === 'entity'"
                     [class.text-amber-400]="activeConversion() === 'entity'"
-                    class="p-2 border border-zinc-800 bg-zinc-950 rounded-xl text-center font-mono font-bold text-xs text-zinc-400 transition hover:text-white"
+                    class="p-2 border border-zinc-800 bg-zinc-950 rounded-xl text-center font-mono font-bold text-xs text-zinc-400 transition hover:text-white cursor-pointer"
                   >
                     ENTITIES BOX
                   </button>
                 </div>
 
                 <!-- Live conversion output screen wrapper -->
-                <div 
-                  [class]="isConvertedFullScreen() ? 'fixed inset-4 z-[9999] bg-zinc-950 border border-zinc-850 rounded-2xl overflow-hidden h-[calc(100vh-32px)] shadow-2xl flex flex-col' : 'flex flex-col h-[400px] bg-zinc-950 border border-zinc-850 rounded-2xl overflow-hidden relative'"
-                >
+                <div [class]="isConvertedFullScreen() ? 'fixed inset-4 z-[9999] bg-zinc-950 border border-zinc-850 rounded-2xl overflow-hidden h-[calc(100vh-32px)] shadow-2xl flex flex-col' : 'flex flex-col h-[400px] bg-zinc-950 border border-zinc-850 rounded-2xl overflow-hidden relative'">
                   <div class="flex items-center justify-between px-4 py-3 bg-zinc-950/80 border-b border-zinc-850">
                     <span class="text-[10px] font-mono font-bold uppercase text-zinc-500 tracking-wider">
                       CONVERTED OUTLET: {{ activeConversion() | uppercase }}
                     </span>
                     <div class="flex items-center gap-2">
                       @if (convertedOutput()) {
-                        <button 
-                          (click)="copyConverted()"
-                          class="px-2.5 py-1 text-xs text-emerald-400 hover:text-emerald-300 hover:bg-emerald-950/35 border border-emerald-950 rounded transition font-mono flex items-center gap-1 cursor-pointer"
-                        >
+                        <button (click)="copyConverted()"
+                          class="px-2.5 py-1 text-xs text-emerald-400 hover:text-emerald-300 hover:bg-emerald-950/35 border border-emerald-950 rounded transition font-mono flex items-center gap-1 cursor-pointer">
                           <mat-icon class="scale-75">{{ copySuccessConverted() ? 'check' : 'content_copy' }}</mat-icon>
                           {{ copySuccessConverted() ? 'COPIED!' : 'COPY' }}
                         </button>
                       }
-                      <button 
-                        (click)="isConvertedFullScreen.set(!isConvertedFullScreen())"
+                      <button (click)="isConvertedFullScreen.set(!isConvertedFullScreen())"
                         class="px-2 py-1 text-xs text-zinc-400 hover:text-white hover:bg-zinc-805 rounded transition font-mono flex items-center gap-1 cursor-pointer"
-                        [title]="isConvertedFullScreen() ? 'Exit Full Screen' : 'Full Screen View'"
-                      >
+                        [title]="isConvertedFullScreen() ? 'Exit Full Screen' : 'Full Screen View'">
                         <mat-icon class="scale-75">{{ isConvertedFullScreen() ? 'fullscreen_exit' : 'fullscreen' }}</mat-icon>
                         {{ isConvertedFullScreen() ? 'EXIT' : 'FULL' }}
                       </button>
@@ -665,25 +550,19 @@ interface ValidationIssue {
                     COMPRESSION, COMPACTING & ENCODING OPERATIONS
                   </span>
                   <div class="flex flex-wrap items-center gap-3">
-                    <button 
-                      (click)="minifyHTML()"
-                      class="px-3 py-1.5 border border-zinc-800 hover:border-zinc-700 bg-zinc-900 hover:bg-zinc-800 text-xs font-mono font-semibold rounded-lg text-zinc-350 hover:text-white transition flex items-center gap-1.5"
-                      title="Collapse spaces, strip comments, compress markup structure"
-                    >
+                    <button (click)="minifyHTML()"
+                      class="px-3 py-1.5 border border-zinc-800 hover:border-zinc-700 bg-zinc-900 hover:bg-zinc-800 text-xs font-mono font-semibold rounded-lg text-zinc-350 hover:text-white transition flex items-center gap-1.5 cursor-pointer"
+                      title="Collapse spaces, strip comments, compress markup structure">
                       <mat-icon class="scale-75 text-zinc-400">zoom_in_map</mat-icon>
                       MINIFY MARKUP
                     </button>
-                    <button 
-                      (click)="encodeEntities()"
-                      class="px-3 py-1.5 border border-zinc-800 hover:border-zinc-700 bg-zinc-900 hover:bg-zinc-800 text-xs font-mono font-semibold rounded-lg text-zinc-350 hover:text-white transition flex items-center gap-1.5"
-                    >
+                    <button (click)="encodeEntities()"
+                      class="px-3 py-1.5 border border-zinc-800 hover:border-zinc-700 bg-zinc-900 hover:bg-zinc-800 text-xs font-mono font-semibold rounded-lg text-zinc-350 hover:text-white transition flex items-center gap-1.5 cursor-pointer">
                       <mat-icon class="scale-75 text-zinc-400">font_download</mat-icon>
                       ENCODE ALL ENTITIES
                     </button>
-                    <button 
-                      (click)="decodeEntities()"
-                      class="px-3 py-1.5 border border-zinc-800 hover:border-zinc-700 bg-zinc-900 hover:bg-zinc-800 text-xs font-mono font-semibold rounded-lg text-zinc-350 hover:text-white transition flex items-center gap-1.5"
-                    >
+                    <button (click)="decodeEntities()"
+                      class="px-3 py-1.5 border border-zinc-800 hover:border-zinc-700 bg-zinc-900 hover:bg-zinc-800 text-xs font-mono font-semibold rounded-lg text-zinc-350 hover:text-white transition flex items-center gap-1.5 cursor-pointer">
                       <mat-icon class="scale-75 text-zinc-400">text_fields</mat-icon>
                       DECODE ENTITIES
                     </button>
@@ -696,7 +575,6 @@ interface ValidationIssue {
           <!-- TAB SECTION 3: SEO PREVIEWS -->
           @if (activeTab() === 'seo-preview') {
             <div class="space-y-6">
-              
               <!-- Social Media card simulators -->
               <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 text-left space-y-5">
                 <span class="text-[10px] uppercase font-mono font-bold tracking-widest text-zinc-400 flex items-center gap-1">
@@ -772,9 +650,7 @@ interface ValidationIssue {
     <!-- Template helper node representation recursively rendering components -->
     <ng-template #nodeTemplate let-node let-depth="depth">
       <!-- Tag row header element line -->
-      <div 
-        role="button"
-        tabindex="0"
+      <div role="button" tabindex="0"
         (click)="selectNode(node); $event.stopPropagation()"
         (keydown.enter)="selectNode(node); $event.stopPropagation()"
         (mouseenter)="highlightInIframe(node.id)"
@@ -803,7 +679,6 @@ interface ValidationIssue {
             <!-- Opening chevron tag names colors -->
             <span class="text-zinc-600 font-normal leading-none">&lt;</span>
             <span class="text-emerald-400 font-bold leading-none">{{ node.tagName }}</span>
-            
             <!-- Quick ID/Class badging info -->
             @for (attr of node.attributes; track attr.name) {
               @if (attr.name === 'id') {
@@ -830,10 +705,8 @@ interface ValidationIssue {
         }
         <!-- Render ending tag footer alignment -->
         @if (node.tagName !== '#text') {
-          <div 
-            [style.padding-left.px]="(depth * 14) + 14"
-            class="text-zinc-650 leading-relaxed select-none pointer-events-none"
-          >
+          <div [style.padding-left.px]="(depth * 14) + 14"
+            class="text-zinc-650 leading-relaxed select-none pointer-events-none">
             &lt;/{{ node.tagName }}&gt;
           </div>
         }
@@ -863,15 +736,12 @@ export class HtmlViewerComponent implements AfterViewInit, OnChanges {
 
   // Interactive core source signals
   public htmlCode = signal<string>('');
-  
   // Full screen view toggles
   public isInputFullScreen = signal<boolean>(false);
   public isOutputFullScreen = signal<boolean>(false);
   public isConvertedFullScreen = signal<boolean>(false);
-  
   // Tab states layout
   public activeTab = signal<'playground' | 'editor' | 'seo-preview'>('playground');
-  
   // Custom Viewport parameters
   public previewWidth = signal<string>('100%');
   public enableScripts = signal<boolean>(false);

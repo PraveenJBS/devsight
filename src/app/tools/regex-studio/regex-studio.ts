@@ -18,13 +18,11 @@ interface HighlightMatch {
       <!-- Tab Headers -->
       <div class="flex border-b border-zinc-200 dark:border-zinc-800 overflow-x-auto scrollbar-none">
         @for (category of tabs; track category.id) {
-          <button
-            (click)="activeTab.set(category.id)"
+          <button (click)="activeTab.set(category.id)"
             [class.border-emerald-500]="activeTab() === category.id"
             [class.text-emerald-400]="activeTab() === category.id"
             [class.text-zinc-400]="activeTab() !== category.id"
-            class="cursor-pointer px-4 py-3 border-b-2 border-transparent font-mono text-xs font-bold uppercase transition shrink-0 hover:text-white"
-          >
+            class="cursor-pointer px-4 py-3 border-b-2 border-transparent font-mono text-xs font-bold uppercase transition shrink-0 hover:text-white cursor-pointer">
             {{ category.name }}
           </button>
         }
@@ -36,8 +34,7 @@ interface HighlightMatch {
           <span class="text-[10px] font-mono font-bold tracking-wider text-zinc-500 uppercase block select-none">REGEX STUDIOS</span>
           <div class="flex flex-wrap gap-2">
             @for (tool of activeCategoryTools(); track tool.id) {
-              <button
-                (click)="activeTool.set(tool.id)"
+              <button (click)="activeTool.set(tool.id)"
                 [class.bg-emerald-950/25]="activeTool() === tool.id"
                 [class.text-emerald-400]="activeTool() === tool.id"
                 [class.border-emerald-500/40]="activeTool() === tool.id"
@@ -45,8 +42,7 @@ interface HighlightMatch {
                 [class.text-zinc-500]="activeTool() !== tool.id"
                 [class.border-zinc-200]="activeTool() !== tool.id"
                 [class.dark:border-zinc-800]="activeTool() !== tool.id"
-                class="cursor-pointer w-auto text-left p-2 rounded-xl border font-sans text-xs font-semibold hover:border-emerald-600 transition flex items-center justify-between"
-              >
+                class="cursor-pointer w-auto text-left p-2 rounded-xl border font-sans text-xs font-semibold hover:border-emerald-600 transition flex items-center justify-between cursor-pointer">
                 <div class="flex items-center gap-2">
                   <mat-icon class="scale-75 align-middle text-emerald-500/80">{{ tool.icon }}</mat-icon>
                   <span class="truncate block max-w-[130px] pr-1">{{ tool.name }}</span>
@@ -69,10 +65,8 @@ interface HighlightMatch {
                   {{ getActiveToolDesc() }}
                 </p>
               </div>
-              <button
-                (click)="copyCode()"
-                class="px-2.5 py-1 text-xs text-emerald-400 hover:text-emerald-300 bg-emerald-950/20 hover:bg-emerald-950/30 border border-emerald-950 rounded-lg transition font-mono flex items-center gap-1.5"
-              >
+              <button (click)="copyCode()"
+                class="px-2.5 py-1 text-xs text-emerald-400 hover:text-emerald-300 bg-emerald-950/20 hover:bg-emerald-950/30 border border-emerald-950 rounded-lg transition font-mono flex items-center gap-1.5 cursor-pointer">
                 <mat-icon class="scale-50">{{ copied() ? 'check' : 'content_copy' }}</mat-icon>
                 {{ copied() ? 'COPIED!' : 'COPY PATTERN' }}
               </button>
@@ -204,10 +198,8 @@ interface HighlightMatch {
                   <span class="text-[10px] font-bold text-zinc-400 uppercase tracking-wider block font-mono">PATTERN PRESET CARDS</span>
                   <div class="grid grid-cols-2 gap-2 font-mono text-[11px]">
                     @for (card of patternPresets; track card.id) {
-                      <button
-                        (click)="loadPatternPreset(card)"
-                        class="p-2 border border-zinc-200 dark:border-zinc-800 hover:border-emerald-500 rounded bg-zinc-950/20 hover:bg-emerald-950/15 text-zinc-550 dark:text-zinc-400 hover:text-white transition truncate text-left block"
-                      >
+                      <button (click)="loadPatternPreset(card)"
+                        class="p-2 border border-zinc-200 dark:border-zinc-800 hover:border-emerald-500 rounded bg-zinc-950/20 hover:bg-emerald-950/15 text-zinc-550 dark:text-zinc-400 hover:text-white transition truncate text-left block cursor-pointer">
                         {{ card.name }}
                       </button>
                     }
@@ -264,28 +256,22 @@ interface HighlightMatch {
                 <div class="p-4 bg-zinc-100/40 dark:bg-zinc-950/20 border border-zinc-150 dark:border-zinc-850 rounded-xl space-y-4 text-left">
                   <span class="text-[10px] font-mono font-bold text-zinc-400 block">EXPORT LANGUAGE PRESETS</span>
                   <div class="space-y-2">
-                    <button
-                      (click)="selectedLanguage.set('javascript')"
+                    <button (click)="selectedLanguage.set('javascript')"
                       [class.bg-emerald-950/30]="selectedLanguage() === 'javascript'"
                       [class.text-emerald-400]="selectedLanguage() === 'javascript'"
-                      class="w-full text-left p-2 rounded border border-zinc-250 dark:border-zinc-800 hover:border-emerald-500 text-xs font-mono transition"
-                    >
+                      class="w-full text-left p-2 rounded border border-zinc-250 dark:border-zinc-800 hover:border-emerald-500 text-xs font-mono transition cursor-pointer">
                       JavaScript Exporter
                     </button>
-                    <button
-                      (click)="selectedLanguage.set('python')"
+                    <button (click)="selectedLanguage.set('python')"
                       [class.bg-emerald-950/30]="selectedLanguage() === 'python'"
                       [class.text-emerald-400]="selectedLanguage() === 'python'"
-                      class="w-full text-left p-2 rounded border border-zinc-250 dark:border-zinc-800 hover:border-emerald-500 text-xs font-mono transition"
-                    >
+                      class="w-full text-left p-2 rounded border border-zinc-250 dark:border-zinc-800 hover:border-emerald-500 text-xs font-mono transition cursor-pointer">
                       Python Exporter
                     </button>
-                    <button
-                      (click)="selectedLanguage.set('java')"
+                    <button (click)="selectedLanguage.set('java')"
                       [class.bg-emerald-950/30]="selectedLanguage() === 'java'"
                       [class.text-emerald-400]="selectedLanguage() === 'java'"
-                      class="w-full text-left p-2 rounded border border-zinc-250 dark:border-zinc-800 hover:border-emerald-500 text-xs font-mono transition"
-                    >
+                      class="w-full text-left p-2 rounded border border-zinc-250 dark:border-zinc-800 hover:border-emerald-500 text-xs font-mono transition cursor-pointer">
                       Java Class Matcher
                     </button>
                   </div>

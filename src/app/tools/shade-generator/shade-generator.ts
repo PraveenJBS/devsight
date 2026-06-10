@@ -20,7 +20,6 @@ export interface ShadeItem {
     <div class="space-y-6 max-w-5xl mx-auto text-left">
       <!-- Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
         <!-- Controls Column -->
         <div class="lg:col-span-1 p-6 bg-zinc-90 border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 rounded-2xl space-y-4">
           <span class="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400 block border-b dark:border-zinc-800 pb-2">SCALE COMPILER SEED</span>
@@ -40,33 +39,27 @@ export interface ShadeItem {
 
         <!-- Shade Scale Grid Sheets Column -->
         <div class="lg:col-span-2 space-y-6 text-left">
-          
           <div class="space-y-2">
             <span class="text-xs font-mono font-bold text-zinc-500 block">GENERATED TAILWIND 50–950 COMPILING SHEET</span>
-            
             <div class="space-y-1.5 font-mono">
               @for (item of compiledShades(); track item.shade) {
                 <div 
                   class="flex items-center justify-between p-3.5 rounded-xl border border-black/5 dark:border-white/5 relative shadow-sm transition"
                   [style.background-color]="item.hex"
-                  [style.color]="item.bestTextColor === 'white' ? '#ffffff' : '#09090b'"
-                >
+                  [style.color]="item.bestTextColor === 'white' ? '#ffffff' : '#09090b'">
                   <div class="flex items-center gap-4">
                     <span class="text-xs font-bold leading-none w-8 text-left">{{ item.shade }}</span>
                     <span class="text-xs font-extrabold tracking-wide uppercase select-all leading-none">{{ item.hex }}</span>
                   </div>
 
                   <div class="flex items-center gap-3">
-                    <span 
-                      class="text-[9px] px-2 py-0.5 rounded-md font-bold tracking-wider"
+                    <span class="text-[9px] px-2 py-0.5 rounded-md font-bold tracking-wider"
                       [style.background-color]="item.bestTextColor === 'white' ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.08)'"
                     >
                       Contrast: {{ item.bestTextColor === 'white' ? item.contrastWhite : item.contrastBlack }}:1
                     </span>
-                    <button 
-                      (click)="copyValue(item.hex)"
-                      class="p-1 hover:scale-105 active:scale-95 transition cursor-pointer flex items-center pr-1.5"
-                    >
+                    <button (click)="copyValue(item.hex)"
+                      class="p-1 hover:scale-105 active:scale-95 transition cursor-pointer flex items-center pr-1.5 cursor-pointer">
                       <mat-icon style="font-size: 15px; width: 15px; height: 15px;" class="flex items-center justify-center">content_copy</mat-icon>
                     </button>
                   </div>

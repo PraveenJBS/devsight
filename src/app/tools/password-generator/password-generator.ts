@@ -43,7 +43,6 @@ const WEAK_DICTIONARY = [
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="space-y-6 text-left select-text max-w-5xl mx-auto">
-      
       <!-- Upper Header & Interactive Navigation Tab Selector -->
       <div class="p-2 bg-zinc-950 border border-zinc-900 rounded-2xl flex flex-wrap gap-1">
         <button
@@ -52,8 +51,7 @@ const WEAK_DICTIONARY = [
           [class.text-emerald-400]="activeTab() === 'password-generator'"
           [class.border-emerald-500/20]="activeTab() === 'password-generator'"
           [class.text-zinc-400]="activeTab() !== 'password-generator'"
-          class="flex shadow-sm items-center gap-2 px-4 py-2.5 rounded-xl border border-transparent font-sans text-xs font-bold uppercase transition-all duration-200 flex-1 min-w-[150px] justify-center"
-        >
+          class="flex shadow-sm items-center gap-2 px-4 py-2.5 rounded-xl border border-transparent font-sans text-xs font-bold uppercase transition-all duration-200 flex-1 min-w-[150px] justify-center cursor-pointer">
           <mat-icon class="scale-90 select-none">lock</mat-icon>
           <span>Password Generator</span>
         </button>
@@ -64,8 +62,7 @@ const WEAK_DICTIONARY = [
           [class.text-emerald-400]="activeTab() === 'passphrase-generator'"
           [class.border-emerald-500/20]="activeTab() === 'passphrase-generator'"
           [class.text-zinc-400]="activeTab() !== 'passphrase-generator'"
-          class="flex shadow-sm items-center gap-2 px-4 py-2.5 rounded-xl border border-transparent font-sans text-xs font-bold uppercase transition-all duration-200 flex-1 min-w-[150px] justify-center"
-        >
+          class="flex shadow-sm items-center gap-2 px-4 py-2.5 rounded-xl border border-transparent font-sans text-xs font-bold uppercase transition-all duration-200 flex-1 min-w-[150px] justify-center cursor-pointer">
           <mat-icon class="scale-90 select-none">vpn_key</mat-icon>
           <span>Passphrase Mode</span>
         </button>
@@ -76,8 +73,7 @@ const WEAK_DICTIONARY = [
           [class.text-emerald-400]="activeTab() === 'password-strength-checker'"
           [class.border-emerald-500/20]="activeTab() === 'password-strength-checker'"
           [class.text-zinc-400]="activeTab() !== 'password-strength-checker'"
-          class="flex shadow-sm items-center gap-2 px-4 py-2.5 rounded-xl border border-transparent font-sans text-xs font-bold uppercase transition-all duration-200 flex-1 min-w-[150px] justify-center"
-        >
+          class="flex shadow-sm items-center gap-2 px-4 py-2.5 rounded-xl border border-transparent font-sans text-xs font-bold uppercase transition-all duration-200 flex-1 min-w-[150px] justify-center cursor-pointer">
           <mat-icon class="scale-90 select-none">security</mat-icon>
           <span>Policy & Strength Auditor</span>
         </button>
@@ -85,14 +81,11 @@ const WEAK_DICTIONARY = [
 
       <!-- MAIN TABS OUTER CONTROLLER -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
         <!-- Left 2 column parameters viewport -->
         <div class="lg:col-span-2 space-y-6">
-          
           <!-- TAB 1: ADVANCED PASSWORD GENERATOR PANEL -->
           @if (activeTab() === 'password-generator') {
             <div class="p-6 bg-zinc-900 border border-zinc-800 rounded-2xl space-y-6 animate-fadeIn transition-all">
-              
               <!-- Subtitle and Password Categories Selector -->
               <div class="space-y-3">
                 <span class="text-[10px] uppercase font-mono tracking-widest text-zinc-500 font-bold block">TEMPLATE TYPES</span>
@@ -112,8 +105,7 @@ const WEAK_DICTIONARY = [
                       [class.text-white]="passwordTemplateId() === t.id"
                       [class.border-zinc-800/60]="passwordTemplateId() !== t.id"
                       [class.text-zinc-400]="passwordTemplateId() !== t.id"
-                      class="px-3 py-2.5 rounded-xl border bg-zinc-950/20 hover:bg-zinc-950/50 hover:text-white transition flex items-center gap-2 text-xs font-mono font-bold text-left"
-                    >
+                      class="px-3 py-2.5 rounded-xl border bg-zinc-950/20 hover:bg-zinc-950/50 hover:text-white transition flex items-center gap-2 text-xs font-mono font-bold text-left cursor-pointer">
                       <mat-icon class="scale-75 text-emerald-400 select-none">{{ t.icon }}</mat-icon>
                       <span class="truncate leading-none">{{ t.name }}</span>
                     </button>
@@ -152,16 +144,14 @@ const WEAK_DICTIONARY = [
                     { id: 'developer', title: 'Escape-Safe CLI', desc: 'No complex bracket codes' },
                     { id: 'security', title: 'Military Shield', desc: 'Forced ultra density' }
                   ]; track m.id) {
-                    <button
-                      (click)="onSelectionModeChange(m.id)"
+                    <button (click)="onSelectionModeChange(m.id)"
                       [class.bg-emerald-500/10]="generationMode() === m.id"
                       [class.border-emerald-500/35]="generationMode() === m.id"
                       [class.text-emerald-400]="generationMode() === m.id"
                       [class.bg-zinc-950/20]="generationMode() !== m.id"
                       [class.border-zinc-805]="generationMode() !== m.id"
                       [class.text-zinc-450]="generationMode() !== m.id"
-                      class="p-3 border rounded-xl text-left hover:border-zinc-700 hover:bg-zinc-950/40 transition hover:text-white"
-                    >
+                      class="p-3 border rounded-xl text-left hover:border-zinc-700 hover:bg-zinc-950/40 transition hover:text-white cursor-pointer">
                       <p class="font-mono text-[10.5px] font-bold leading-none">{{ m.title }}</p>
                       <p class="text-[9px] text-zinc-500 font-sans mt-1 leading-normal capitalize">{{ m.desc }}</p>
                     </button>
@@ -173,15 +163,11 @@ const WEAK_DICTIONARY = [
               <div class="space-y-3">
                 <span class="text-[10px] uppercase font-mono tracking-widest text-zinc-500 font-bold block">CHARACTER INCLUSIONS</span>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  
                   <label [class.opacity-40]="isOptionDisabled('uppercase')" class="flex items-center gap-3 p-3 bg-zinc-950/50 border border-zinc-850 rounded-xl cursor-pointer hover:border-zinc-750 transition select-none">
-                    <input 
-                      type="checkbox" 
-                      [checked]="includeUppercase()"
+                    <input type="checkbox" [checked]="includeUppercase()"
                       [disabled]="isOptionDisabled('uppercase')"
                       (change)="includeUppercase.set(!includeUppercase())"
-                      class="w-4 h-4 rounded border-zinc-700 bg-zinc-900 text-emerald-500 accent-emerald-500 focus:ring-0 cursor-pointer"
-                    />
+                      class="w-4 h-4 rounded border-zinc-700 bg-zinc-900 text-emerald-500 accent-emerald-500 focus:ring-0 cursor-pointer"/>
                     <div class="font-mono text-xs">
                       <span class="font-bold text-zinc-300 block">A-Z UPPERCASE</span>
                       <span class="text-[9.5px] text-zinc-500">Capitalised alphabetical list</span>
@@ -189,13 +175,10 @@ const WEAK_DICTIONARY = [
                   </label>
 
                   <label [class.opacity-40]="isOptionDisabled('lowercase')" class="flex items-center gap-3 p-3 bg-zinc-950/50 border border-zinc-850 rounded-xl cursor-pointer hover:border-zinc-750 transition select-none">
-                    <input 
-                      type="checkbox" 
-                      [checked]="includeLowercase()"
+                    <input type="checkbox" [checked]="includeLowercase()"
                       [disabled]="isOptionDisabled('lowercase')"
                       (change)="includeLowercase.set(!includeLowercase())"
-                      class="w-4 h-4 rounded border-zinc-700 bg-zinc-900 text-emerald-500 accent-emerald-500 focus:ring-0 cursor-pointer"
-                    />
+                      class="w-4 h-4 rounded border-zinc-700 bg-zinc-900 text-emerald-500 accent-emerald-500 focus:ring-0 cursor-pointer"/>
                     <div class="font-mono text-xs">
                       <span class="font-bold text-zinc-300 block">a-z LOWERCASE</span>
                       <span class="text-[9.5px] text-zinc-500">Standard lower character pools</span>
@@ -203,13 +186,10 @@ const WEAK_DICTIONARY = [
                   </label>
 
                   <label [class.opacity-40]="isOptionDisabled('numbers')" class="flex items-center gap-3 p-3 bg-zinc-950/50 border border-zinc-850 rounded-xl cursor-pointer hover:border-zinc-750 transition select-none">
-                    <input 
-                      type="checkbox" 
-                      [checked]="includeNumbers()"
+                    <input type="checkbox" [checked]="includeNumbers()"
                       [disabled]="isOptionDisabled('numbers')"
                       (change)="includeNumbers.set(!includeNumbers())"
-                      class="w-4 h-4 rounded border-zinc-700 bg-zinc-900 text-emerald-500 accent-emerald-500 focus:ring-0 cursor-pointer"
-                    />
+                      class="w-4 h-4 rounded border-zinc-700 bg-zinc-900 text-emerald-500 accent-emerald-500 focus:ring-0 cursor-pointer"/>
                     <div class="font-mono text-xs">
                       <span class="font-bold text-zinc-300 block">0-9 NUMERALS</span>
                       <span class="text-[9.5px] text-zinc-500">Zero to nine sequence strings</span>
@@ -217,13 +197,10 @@ const WEAK_DICTIONARY = [
                   </label>
 
                   <label [class.opacity-40]="isOptionDisabled('symbols')" class="flex items-center gap-3 p-3 bg-zinc-950/50 border border-zinc-850 rounded-xl cursor-pointer hover:border-zinc-750 transition select-none">
-                    <input 
-                      type="checkbox" 
-                      [checked]="includeSymbols()"
+                    <input type="checkbox" [checked]="includeSymbols()"
                       [disabled]="isOptionDisabled('symbols')"
                       (change)="includeSymbols.set(!includeSymbols())"
-                      class="w-4 h-4 rounded border-zinc-700 bg-zinc-900 text-emerald-500 accent-emerald-500 focus:ring-0 cursor-pointer"
-                    />
+                      class="w-4 h-4 rounded border-zinc-700 bg-zinc-900 text-emerald-500 accent-emerald-500 focus:ring-0 cursor-pointer"/>
                     <div class="font-mono text-xs">
                       <span class="font-bold text-zinc-300 block">SPECIAL SYMBOLS</span>
                       <span class="text-[9.5px] text-zinc-500">Symbols (!, &#64;, #, $, %, etc...)</span>
@@ -235,35 +212,25 @@ const WEAK_DICTIONARY = [
               <!-- Exclusions parameters and Custom Pooling -->
               <div class="p-4 bg-zinc-950/20 border border-zinc-850 rounded-xl block space-y-4">
                 <span class="text-[10px] uppercase font-mono tracking-widest text-zinc-500 font-bold block">COMPLEXITY EXCLUSION GUARDS</span>
-                
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <label class="flex items-center gap-2 cursor-pointer text-zinc-400 hover:text-white select-none">
-                    <input 
-                      type="checkbox" 
-                      [checked]="excludeSimilar()" 
+                    <input type="checkbox" [checked]="excludeSimilar()"
                       (change)="excludeSimilar.set(!excludeSimilar())"
-                      class="rounded border-zinc-800 bg-zinc-950 text-emerald-500 focus:ring-0"
-                    />
+                      class="rounded border-zinc-800 bg-zinc-950 text-emerald-500 focus:ring-0"/>
                     <span class="font-mono text-[10.5px] font-bold">NO SIMILAR (i, l, 1, o, 0)</span>
                   </label>
 
                   <label class="flex items-center gap-2 cursor-pointer text-zinc-400 hover:text-white select-none">
-                    <input 
-                      type="checkbox" 
-                      [checked]="excludeAmbiguous()" 
+                    <input type="checkbox" [checked]="excludeAmbiguous()"
                       (change)="excludeAmbiguous.set(!excludeAmbiguous())"
-                      class="rounded border-zinc-800 bg-zinc-950 text-emerald-500 focus:ring-0"
-                    />
+                      class="rounded border-zinc-800 bg-zinc-950 text-emerald-500 focus:ring-0"/>
                     <span class="font-mono text-[10.5px] font-bold">NO AMBIGUOUS (brackets)</span>
                   </label>
 
                   <label class="flex items-center gap-2 cursor-pointer text-zinc-400 hover:text-white select-none">
-                    <input 
-                      type="checkbox" 
-                      [checked]="minRequirements()" 
+                    <input type="checkbox" [checked]="minRequirements()"
                       (change)="minRequirements.set(!minRequirements())"
-                      class="rounded border-zinc-800 bg-zinc-950 text-emerald-500 focus:ring-0"
-                    />
+                      class="rounded border-zinc-800 bg-zinc-950 text-emerald-500 focus:ring-0"/>
                     <span class="font-mono text-[10.5px] font-bold text-emerald-450">STRICT REQUIREMENT</span>
                   </label>
                 </div>
@@ -271,14 +238,9 @@ const WEAK_DICTIONARY = [
                 <!-- Custom characters pool overlay -->
                 <div class="space-y-2 pt-2 border-t border-zinc-850/60">
                   <span class="text-[10px] font-mono text-zinc-500 font-bold block uppercase">RESTRICT TO CUSTOM CHARACTER BUNDLE (OPTIONAL)</span>
-                  <input
-                    #customBundleInput
-                    type="text"
-                    [value]="customCharSet()"
-                    (input)="customCharSet.set(customBundleInput.value)"
+                  <input #customBundleInput type="text" [value]="customCharSet()" (input)="customCharSet.set(customBundleInput.value)"
                     placeholder="e.g. ABCDFGHJ123456$% (forces pooling from only this string value)"
-                    class="w-full px-3 py-2 bg-zinc-950 text-xs font-mono text-zinc-200 border border-zinc-800 rounded-xl focus:border-zinc-700 outline-none"
-                  />
+                    class="w-full px-3 py-2 bg-zinc-950 text-xs font-mono text-zinc-200 border border-zinc-800 rounded-xl focus:border-zinc-700 outline-none"/>
                 </div>
               </div>
 
@@ -298,20 +260,11 @@ const WEAK_DICTIONARY = [
                       <span>BATCH SIZE</span>
                       <span class="font-bold text-emerald-400">{{ bulkQuantity() }} Keys</span>
                     </div>
-                    <input 
-                      type="range" 
-                      min="5" 
-                      max="100" 
-                      step="5"
-                      [value]="bulkQuantity()" 
-                      (input)="onBulkQuantityChange($event)" 
-                      class="w-full h-1.5 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
-                    />
+                    <input type="range" min="5" max="100" step="5" [value]="bulkQuantity()" (input)="onBulkQuantityChange($event)"
+                      class="w-full h-1.5 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"/>
                   </div>
-                  <button 
-                    (click)="generateBulk()"
-                    class="py-2.5 px-4 bg-zinc-950 hover:bg-zinc-800/80 text-zinc-300 font-mono text-xs font-bold rounded-xl border border-zinc-800 transition active:scale-95 shrink-0 w-full sm:w-auto text-center"
-                  >
+                  <button (click)="generateBulk()"
+                    class="py-2.5 px-4 bg-zinc-950 hover:bg-zinc-800/80 text-zinc-300 font-mono text-xs font-bold rounded-xl border border-zinc-800 transition active:scale-95 shrink-0 w-full sm:w-auto text-center cursor-pointer">
                     COMPILE BATCH SET
                   </button>
                 </div>
@@ -325,16 +278,16 @@ const WEAK_DICTIONARY = [
                     </div>
 
                     <div class="flex flex-wrap gap-2">
-                      <button (click)="downloadBulk('txt')" class="px-3 py-1.5 border border-zinc-800 hover:bg-zinc-800/50 rounded-lg font-mono text-[10.5px] font-bold text-zinc-400 hover:text-white transition">
+                      <button (click)="downloadBulk('txt')" class="px-3 py-1.5 border border-zinc-800 hover:bg-zinc-800/50 rounded-lg font-mono text-[10.5px] font-bold text-zinc-400 hover:text-white transition cursor-pointer">
                         EXPORT .TXT RECORD
                       </button>
-                      <button (click)="downloadBulk('json')" class="px-3 py-1.5 border border-zinc-800 hover:bg-zinc-800/50 rounded-lg font-mono text-[10.5px] font-bold text-zinc-400 hover:text-white transition">
+                      <button (click)="downloadBulk('json')" class="px-3 py-1.5 border border-zinc-800 hover:bg-zinc-800/50 rounded-lg font-mono text-[10.5px] font-bold text-zinc-400 hover:text-white transition cursor-pointer">
                         EXPORT .JSON CONFIG
                       </button>
-                      <button (click)="downloadBulk('csv')" class="px-3 py-1.5 border border-zinc-800 hover:bg-zinc-800/50 rounded-lg font-mono text-[10.5px] font-bold text-zinc-400 hover:text-white transition">
+                      <button (click)="downloadBulk('csv')" class="px-3 py-1.5 border border-zinc-800 hover:bg-zinc-800/50 rounded-lg font-mono text-[10.5px] font-bold text-zinc-400 hover:text-white transition cursor-pointer">
                         EXPORT .CSV MATRIX
                       </button>
-                      <button (click)="clearBulk()" class="px-3 py-1.5 border border-rose-950 hover:bg-rose-950/20 rounded-lg font-mono text-[10.5px] font-bold text-rose-400 transition ml-auto">
+                      <button (click)="clearBulk()" class="px-3 py-1.5 border border-rose-950 hover:bg-rose-950/20 rounded-lg font-mono text-[10.5px] font-bold text-rose-400 transition ml-auto cursor-pointer">
                         CLOSE BATCH
                       </button>
                     </div>
@@ -349,16 +302,10 @@ const WEAK_DICTIONARY = [
                   FAVORITE PRESET CONFIGURATIONS
                 </span>
                 <div class="flex gap-2">
-                  <input
-                    #savePresetInput
-                    type="text"
-                    placeholder="Preset label (e.g. My Secure Database Setup)"
-                    class="flex-1 px-3 py-2 bg-zinc-950 text-xs font-mono text-zinc-300 border border-zinc-800 rounded-xl focus:border-zinc-700 outline-none"
-                  />
-                  <button 
-                    (click)="savePreset(savePresetInput.value); savePresetInput.value = ''"
-                    class="px-4 py-2 bg-emerald-950/20 text-emerald-400 hover:bg-emerald-950/30 border border-emerald-900 font-mono text-xs font-bold rounded-xl transition active:scale-95 text-center shrink-0"
-                  >
+                  <input #savePresetInput type="text" placeholder="Preset label (e.g. My Secure Database Setup)"
+                    class="flex-1 px-3 py-2 bg-zinc-950 text-xs font-mono text-zinc-300 border border-zinc-800 rounded-xl focus:border-zinc-700 outline-none"/>
+                  <button (click)="savePreset(savePresetInput.value); savePresetInput.value = ''"
+                    class="px-4 py-2 bg-emerald-950/20 text-emerald-400 hover:bg-emerald-950/30 border border-emerald-900 font-mono text-xs font-bold rounded-xl transition active:scale-95 text-center shrink-0 cursor-pointer">
                     SAVE PRESET
                   </button>
                 </div>
@@ -367,8 +314,8 @@ const WEAK_DICTIONARY = [
                   <div class="flex flex-wrap gap-1.5 pt-2">
                     @for (pr of presetsList(); track pr.name) {
                       <div class="px-2.5 py-1.5 bg-zinc-950 border border-zinc-850 rounded-lg flex items-center gap-2 text-xs font-mono text-zinc-400">
-                        <button (click)="applyPresetObject(pr)" class="hover:text-white font-bold leading-none select-none text-[10px]">{{ pr.name }}</button>
-                        <button (click)="deletePreset(pr.name)" class="text-zinc-650 hover:text-rose-400 transition" title="Delete Preset">
+                        <button (click)="applyPresetObject(pr)" class="hover:text-white font-bold leading-none select-none text-[10px] cursor-pointer">{{ pr.name }}</button>
+                        <button (click)="deletePreset(pr.name)" class="text-zinc-650 hover:text-rose-400 transition cursor-pointer" title="Delete Preset">
                           <mat-icon class="text-xs scale-75 select-none leading-none">close</mat-icon>
                         </button>
                       </div>
@@ -384,7 +331,6 @@ const WEAK_DICTIONARY = [
           <!-- TAB 2: CRYPTOGRAPHIC MEMORABLE PASSPHRASE GENERATOR -->
           @if (activeTab() === 'passphrase-generator') {
             <div class="p-6 bg-zinc-900 border border-zinc-800 rounded-2xl space-y-6 animate-fadeIn transition-all">
-              
               <!-- Parameters for Diceware passphrases -->
               <div class="space-y-4">
                 <div>
@@ -398,14 +344,8 @@ const WEAK_DICTIONARY = [
                     <span class="font-bold text-zinc-450 uppercase">NUMBER OF SHUFFLED WORDS</span>
                     <span class="text-sm font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-md border border-emerald-500/20">{{ passphraseWordCount() }} Words</span>
                   </div>
-                  <input
-                    type="range"
-                    min="3"
-                    max="10"
-                    [value]="passphraseWordCount()"
-                    (input)="onPassphraseWordCountChange($event)"
-                    class="w-full h-1.5 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
-                  />
+                  <input type="range" min="3" max="10" [value]="passphraseWordCount()" (input)="onPassphraseWordCountChange($event)"
+                    class="w-full h-1.5 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"/>
                   <div class="flex items-center justify-between text-[9px] font-mono text-zinc-500">
                     <span>3 Words (Basic)</span>
                     <span>5 Words (Strong)</span>
@@ -415,14 +355,10 @@ const WEAK_DICTIONARY = [
 
                 <!-- Word separations selections -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  
                   <div class="space-y-2">
                     <span class="text-[10px] uppercase font-mono tracking-widest text-zinc-500 font-bold block">WORD SEPARATOR</span>
-                    <select 
-                      #sepSelect
-                      (change)="passphraseSeparator.set(sepSelect.value)"
-                      class="w-full p-2.5 bg-zinc-950 border border-zinc-800 rounded-xl font-mono text-xs text-zinc-200 outline-none focus:border-zinc-700"
-                    >
+                    <select #sepSelect (change)="passphraseSeparator.set(sepSelect.value)"
+                      class="w-full p-2.5 bg-zinc-950 border border-zinc-800 rounded-xl font-mono text-xs text-zinc-200 outline-none focus:border-zinc-700">
                       <option value="-" selected>Hyphen ( - )</option>
                       <option value="_">Underscore ( _ )</option>
                       <option value=".">Period ( . )</option>
@@ -436,25 +372,16 @@ const WEAK_DICTIONARY = [
                   @if (passphraseSeparator() === 'custom') {
                     <div class="space-y-2 animate-fadeIn">
                       <span class="text-[10px] uppercase font-mono tracking-widest text-zinc-500 font-bold block">ENTER CUSTOM SEPARATOR</span>
-                      <input
-                        #customSepInput
-                        type="text"
-                        [value]="passphraseSeparatorCustom()"
-                        (input)="passphraseSeparatorCustom.set(customSepInput.value)"
-                        maxlength="4"
-                        placeholder="e.g. * or #"
-                        class="w-full px-3 py-2 bg-zinc-950 text-xs font-mono text-zinc-200 border border-zinc-800 rounded-xl focus:border-zinc-700 outline-none"
-                      />
+                      <input #customSepInput type="text" [value]="passphraseSeparatorCustom()" (input)="passphraseSeparatorCustom.set(customSepInput.value)"
+                        maxlength="4" placeholder="e.g. * or #"
+                        class="w-full px-3 py-2 bg-zinc-950 text-xs font-mono text-zinc-200 border border-zinc-800 rounded-xl focus:border-zinc-700 outline-none"/>
                     </div>
                   }
 
                   <div class="space-y-2">
                     <span class="text-[10px] uppercase font-mono tracking-widest text-zinc-500 font-bold block">CAPITALIZATION MATRIX</span>
-                    <select 
-                      #caseSelect
-                      (change)="passphraseCapitalization.set(caseSelect.value)"
-                      class="w-full p-2.5 bg-zinc-950 border border-zinc-800 rounded-xl font-mono text-xs text-zinc-200 outline-none focus:border-zinc-700"
-                    >
+                    <select #caseSelect (change)="passphraseCapitalization.set(caseSelect.value)"
+                      class="w-full p-2.5 bg-zinc-950 border border-zinc-800 rounded-xl font-mono text-xs text-zinc-200 outline-none focus:border-zinc-700">
                       <option value="title" selected>Title Case (VelvetCastle)</option>
                       <option value="lower">Lowercase (velvetcastle)</option>
                       <option value="upper">Uppercase (VELVETCASTLE)</option>
@@ -466,9 +393,7 @@ const WEAK_DICTIONARY = [
                 <!-- Custom variations (digits appending or prepending) -->
                 <div class="p-4 bg-zinc-950/20 border border-zinc-850 rounded-xl space-y-4">
                   <span class="text-[10px] uppercase font-mono tracking-widest text-zinc-500 font-bold block">DIGIT & SYMBOL REQUIREMENTS</span>
-                  
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    
                     <div class="space-y-1.5">
                       <span class="text-[9px] font-mono text-zinc-550 block font-bold">DIGITS ARRANGEMENTS</span>
                       <select 
@@ -504,7 +429,6 @@ const WEAK_DICTIONARY = [
           <!-- TAB 3: PASSWORD STRENGTH AUDITOR & POLICY CHECKER -->
           @if (activeTab() === 'password-strength-checker') {
             <div class="p-6 bg-zinc-900 border border-zinc-800 rounded-2xl space-y-6 animate-fadeIn transition-all">
-              
               <!-- Large input field workspace -->
               <div class="space-y-2">
                 <span class="text-[10px] uppercase font-mono tracking-widest text-zinc-500 font-bold block">DIAGNOSTIC WORKSPACE INPUT PANEL</span>
@@ -518,19 +442,15 @@ const WEAK_DICTIONARY = [
                     class="w-full py-4 px-4 bg-transparent text-sm font-mono text-zinc-100 outline-none tracking-wider select-all"
                   />
                   <div class="flex items-center gap-1.5 shrink-0">
-                    <button
-                      (click)="showTypedPassword.set(!showTypedPassword())"
-                      class="p-2 text-zinc-400 hover:text-white hover:bg-zinc-900 rounded-xl transition"
-                      title="Toggle Visibility"
-                    >
+                    <button (click)="showTypedPassword.set(!showTypedPassword())"
+                      class="p-2 text-zinc-400 hover:text-white hover:bg-zinc-900 rounded-xl transition cursor-pointer"
+                      title="Toggle Visibility">
                       <mat-icon class="scale-90 select-none">{{ showTypedPassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
                     </button>
                     @if (typedPassword()) {
-                      <button
-                        (click)="typedPassword.set('')"
-                        class="p-2 text-rose-500 hover:bg-rose-950/20 rounded-xl transition"
-                        title="Clear Input"
-                      >
+                      <button (click)="typedPassword.set('')"
+                        class="p-2 text-rose-500 hover:bg-rose-950/20 rounded-xl transition cursor-pointer"
+                        title="Clear Input">
                         <mat-icon class="scale-90 select-none">clear</mat-icon>
                       </button>
                     }
@@ -552,11 +472,9 @@ const WEAK_DICTIONARY = [
                   <p class="text-xs text-zinc-450 leading-relaxed flex-1">
                     Check if this password exists in public credential leaks securely. We process the SHA-1 locally, and transmit ONLY the first 5 bytes of the hash prefix. 
                   </p>
-                  <button
-                    [disabled]="!typedPassword() || breachStatus() === 'checking'"
+                  <button [disabled]="!typedPassword() || breachStatus() === 'checking'"
                     (click)="checkPwnedLeaks(typedPassword())"
-                    class="px-4 py-2.5 disabled:opacity-40 bg-zinc-950 text-zinc-300 hover:text-white font-mono text-xs font-bold rounded-xl border border-zinc-800 transition active:scale-95 shrink-0 w-full sm:w-auto text-center"
-                  >
+                    class="px-4 py-2.5 disabled:opacity-40 bg-zinc-950 text-zinc-300 hover:text-white font-mono text-xs font-bold rounded-xl border border-zinc-800 transition active:scale-95 shrink-0 w-full sm:w-auto text-center cursor-pointer">
                     @if (breachStatus() === 'checking') {
                       <span>QUERYING CANALS...</span>
                     } @else {
@@ -608,7 +526,6 @@ const WEAK_DICTIONARY = [
               <!-- Enterprise Password Policies Validator Board -->
               <div class="p-5 bg-zinc-950/30 border border-zinc-850 rounded-2xl block space-y-4">
                 <span class="text-[10px] uppercase font-mono tracking-widest text-zinc-400 font-bold block">ENTERPRISE POLICY COMPLIANCE</span>
-                
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
                   @for (rule of policyRules(); track rule.name) {
                     <div class="flex items-center justify-between p-2.5 bg-zinc-950/50 border border-zinc-850 rounded-xl">
@@ -655,11 +572,9 @@ const WEAK_DICTIONARY = [
 
         <!-- Sidebar layout: Right column of Dashboard metrics -->
         <div class="col-span-1 space-y-6">
-          
           <!-- Master Panel output presentation -->
           <div class="p-6 bg-zinc-900 border border-zinc-800 rounded-2xl block space-y-4">
             <span class="text-[10px] uppercase font-mono font-bold tracking-widest text-zinc-500 block">ACTIVE SELECTION OUTCOME</span>
-            
             <div class="p-4 bg-zinc-950 border border-zinc-850 rounded-xl block relative overflow-visible group text-left space-y-3">
               <div class="min-h-[44px] flex flex-col justify-center">
                 @if (displayedSecret()) {
@@ -690,21 +605,16 @@ const WEAK_DICTIONARY = [
                   </div>
 
                   <div class="flex items-center gap-1.5">
-                    <button
-                      (click)="copyActivePassword()"
-                      class="px-2.5 py-1.5 bg-emerald-950/20 hover:bg-emerald-950/30 border border-emerald-900 text-emerald-400 rounded-lg flex items-center justify-center transition active:scale-95 text-xs font-mono font-bold gap-1"
-                      title="Secure Copy to Memory"
-                    >
+                    <button (click)="copyActivePassword()"
+                      class="px-2.5 py-1.5 bg-emerald-950/20 hover:bg-emerald-950/30 border border-emerald-900 text-emerald-400 rounded-lg flex items-center justify-center transition active:scale-95 text-xs font-mono font-bold gap-1 cursor-pointer"
+                      title="Secure Copy to Memory">
                       <mat-icon class="scale-75 select-none">{{ copySuccess() ? 'check' : 'content_copy' }}</mat-icon>
                       <span>{{ copySuccess() ? 'COPIED' : 'COPY' }}</span>
                     </button>
-                    
                     @if (activeTab() !== 'password-strength-checker') {
-                      <button
-                        (click)="regenerate()"
-                        class="p-1.5 bg-zinc-800 hover:bg-zinc-750 text-white rounded-lg flex items-center justify-center transition active:scale-95"
-                        title="Instantly generate new candidate sequence"
-                      >
+                      <button (click)="regenerate()"
+                        class="p-1.5 bg-zinc-800 hover:bg-zinc-750 text-white rounded-lg flex items-center justify-center transition active:scale-95 cursor-pointer"
+                        title="Instantly generate new candidate sequence">
                         <mat-icon class="scale-90 select-none">refresh</mat-icon>
                       </button>
                     }
@@ -759,7 +669,6 @@ const WEAK_DICTIONARY = [
 
             <!-- Hash outputs list -->
             <div class="space-y-3 font-mono text-[10px] text-zinc-400 leading-normal">
-              
               <div class="space-y-1 block text-left">
                 <span class="text-[9px] text-zinc-550 font-bold block select-none border-b border-zinc-850/45 pb-1 uppercase">SHA-256 SUM</span>
                 <div class="bg-zinc-950 border border-zinc-905 p-2 rounded-lg text-zinc-300 select-all font-mono text-[9px] break-all leading-normal">
@@ -784,7 +693,7 @@ const WEAK_DICTIONARY = [
               <div class="space-y-1 block text-left pt-1 border-t border-zinc-850/40">
                 <div class="flex justify-between items-center text-[9px] text-zinc-550 font-bold select-none pb-1 uppercase">
                   <span>ENVIRONMENT CONFIG SYNTAX</span>
-                  <button (click)="copyText('SECRET_KEY=' + displayedSecret())" class="hover:text-white transition">COPY KEY=VAL</button>
+                  <button (click)="copyText('SECRET_KEY=' + displayedSecret())" class="hover:text-white transition cursor-pointer">COPY KEY=VAL</button>
                 </div>
                 <div class="bg-zinc-950 border border-zinc-905 p-2 rounded-lg text-zinc-300 select-all font-mono text-[9px] break-all">
                   API_SECURITY_SECRET_TOKEN="{{ displayedSecret() }}"
@@ -795,12 +704,11 @@ const WEAK_DICTIONARY = [
             <!-- Cryptographic salt generator utilities border -->
             <div class="p-3 bg-zinc-950/40 border border-zinc-850 rounded-xl space-y-2 text-left">
               <span class="text-[9px] font-mono font-bold text-zinc-500 block uppercase">SECURE PSEUDORANDOM CRYPTO SALT BUNDLER</span>
-              
               <div class="flex gap-2">
-                <button (click)="generateSalt(16)" class="p-1 px-2.5 border border-zinc-800 hover:bg-zinc-900 rounded font-mono text-[9px] font-bold text-zinc-400 hover:text-white transition flex-1 text-center">
+                <button (click)="generateSalt(16)" class="p-1 px-2.5 border border-zinc-800 hover:bg-zinc-900 rounded font-mono text-[9px] font-bold text-zinc-400 hover:text-white transition flex-1 text-center cursor-pointer">
                   HEX SALT (16b)
                 </button>
-                <button (click)="generateSalt(32)" class="p-1 px-2.5 border border-zinc-800 hover:bg-zinc-900 rounded font-mono text-[9px] font-bold text-zinc-400 hover:text-white transition flex-1 text-center">
+                <button (click)="generateSalt(32)" class="p-1 px-2.5 border border-zinc-800 hover:bg-zinc-900 rounded font-mono text-[9px] font-bold text-zinc-400 hover:text-white transition flex-1 text-center cursor-pointer">
                   HEX SALT (32b)
                 </button>
               </div>
@@ -821,10 +729,8 @@ const WEAK_DICTIONARY = [
                 SESSION COPY HISTORIES LOG
               </span>
               @if (historyList().length > 0) {
-                <button 
-                  (click)="clearHistory()" 
-                  class="text-[9px] font-mono text-rose-455 hover:text-rose-400 font-bold select-none border-b border-transparent hover:border-rose-400 leading-none pb-0.5"
-                >
+                <button (click)="clearHistory()"
+                  class="text-[9px] font-mono text-rose-455 hover:text-rose-400 font-bold select-none border-b border-transparent hover:border-rose-400 leading-none pb-0.5 cursor-pointer">
                   CLEAR
                 </button>
               }
@@ -840,7 +746,7 @@ const WEAK_DICTIONARY = [
                   <pre class="text-xs font-mono text-zinc-200 select-all break-all leading-normal whitespace-pre-wrap select-all block">{{ h.password }}</pre>
                   <div class="pt-1.5 border-t border-zinc-905/60 flex justify-between items-center font-mono text-[9px] text-zinc-500">
                     <span class="truncate pr-2 leading-none font-bold uppercase select-none">{{ h.type }} • {{ h.entropy }} BITS</span>
-                    <button (click)="copyText(h.password)" class="text-emerald-450 hover:text-emerald-400 transition font-extrabold flex items-center gap-0.5">
+                    <button (click)="copyText(h.password)" class="text-emerald-450 hover:text-emerald-400 transition font-extrabold flex items-center gap-0.5 cursor-pointer">
                       <mat-icon class="text-[10px] scale-75 select-none leading-none">content_copy</mat-icon> COPY
                     </button>
                   </div>
@@ -851,7 +757,6 @@ const WEAK_DICTIONARY = [
                 </div>
               }
             </div>
-            
             <span class="text-[9.5px] italic text-zinc-500 font-mono leading-relaxed block select-none leading-normal">
               Note: History logs persist securely in browser local sandbox storage for security.
             </span>

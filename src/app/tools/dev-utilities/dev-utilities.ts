@@ -12,8 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
       <!-- Top Tabs Selection -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 border-b dark:border-zinc-800 pb-4">
         @for (tab of toolsTabs; track tab.id) {
-          <button 
-            (click)="activeTabId.set(tab.id)"
+          <button (click)="activeTabId.set(tab.id)"
             [class.bg-emerald-500/10]="activeTabId() === tab.id"
             [class.text-emerald-500]="activeTabId() === tab.id"
             [class.border-emerald-500/25]="activeTabId() === tab.id"
@@ -27,12 +26,10 @@ import { MatIconModule } from '@angular/material/icon';
 
       <!-- Main Panel based on selected sub-tool -->
       <div class="p-6 bg-zinc-90 border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 rounded-2xl space-y-4">
-        
         <!-- Tab 1: CSS Formatter / Beautifier -->
         @if (activeTabId() === 'css') {
           <div class="space-y-4">
             <span class="text-xs font-mono font-bold text-zinc-500 block border-b dark:border-zinc-805 pb-1">CSS FORMATTER / BEAUTIFIER</span>
-            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div class="space-y-1 font-mono text-xs">
                 <span class="text-zinc-[450] font-bold">RAW CSS INPUT String</span>
@@ -59,14 +56,10 @@ import { MatIconModule } from '@angular/material/icon';
         @if (activeTabId() === 'json') {
           <div class="space-y-4">
             <span class="text-xs font-mono font-bold text-zinc-500 block border-b dark:border-zinc-855 pb-1">JSON PRETTIFIER & FORMATTER</span>
-            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div class="space-y-1 font-mono text-xs">
                 <span class="text-zinc-[450] font-bold">COMPACT JSON INPUT BODY</span>
-                <textarea 
-                  [value]="jsonInput()"
-                  (input)="onJsonInput($event)"
-                  placeholder='{"name":"devsight","pwa":true}'
+                <textarea [value]="jsonInput()" (input)="onJsonInput($event)" placeholder='{"name":"devsight","pwa":true}'
                   class="w-full h-44 bg-zinc-50 dark:bg-zinc-950 p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-850 focus:outline-none"
                 ></textarea>
               </div>
@@ -86,14 +79,10 @@ import { MatIconModule } from '@angular/material/icon';
         @if (activeTabId() === 'svg') {
           <div class="space-y-4">
             <span class="text-xs font-mono font-bold text-zinc-500 block border-b dark:border-zinc-855 pb-1">SVG OPTIMIZER & TO JSX CONVERTER</span>
-            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div class="space-y-1 font-mono text-xs">
                 <span class="text-zinc-[450] font-bold">RAW SVG CODE INPUT</span>
-                <textarea 
-                  [value]="svgInput()"
-                  (input)="onSvgInput($event)"
-                  placeholder='<svg xmlns="http://www.w3.org/2000/svg" stroke-width="2"><path d="M0 0h10v10H0z"/></svg>'
+                <textarea [value]="svgInput()" (input)="onSvgInput($event)" placeholder='<svg xmlns="http://www.w3.org/2000/svg" stroke-width="2"><path d="M0 0h10v10H0z"/></svg>'
                   class="w-full h-44 bg-zinc-50 dark:bg-zinc-950 p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-855 focus:outline-none"
                 ></textarea>
               </div>
@@ -101,13 +90,15 @@ import { MatIconModule } from '@angular/material/icon';
               <div class="space-y-2.5 font-mono text-xs">
                 <!-- Cleaned SVG output -->
                 <div>
-                  <div class="flex justify-between items-center text-zinc-[450] font-bold"><span>OPTIMIZED COMPLEMENT</span><button (click)="copyValue(optimizedSvg())" class="text-emerald-500 hover:underline cursor-pointer">COPY</button></div>
+                  <div class="flex justify-between items-center text-zinc-[450] font-bold"><span>OPTIMIZED COMPLEMENT</span>
+                  <button (click)="copyValue(optimizedSvg())" class="text-emerald-500 hover:underline cursor-pointer">COPY</button></div>
                   <pre class="bg-zinc-900 text-[9px] p-2 rounded-lg text-zinc-300 overflow-auto max-h-[80px] break-all">{{ optimizedSvg() }}</pre>
                 </div>
 
                 <!-- React JSX output -->
                 <div>
-                  <div class="flex justify-between items-center text-zinc-[450] font-bold"><span>REACT JSX FORMAT</span><button (click)="copyValue(svgToJsx())" class="text-emerald-400 hover:underline cursor-pointer">COPY</button></div>
+                  <div class="flex justify-between items-center text-zinc-[450] font-bold"><span>REACT JSX FORMAT</span>
+                  <button (click)="copyValue(svgToJsx())" class="text-emerald-400 hover:underline cursor-pointer">COPY</button></div>
                   <pre class="bg-zinc-900 text-[9px] p-2 rounded-lg text-zinc-300 overflow-auto max-h-[80px] break-all">{{ svgToJsx() }}</pre>
                 </div>
               </div>
@@ -119,13 +110,11 @@ import { MatIconModule } from '@angular/material/icon';
         @if (activeTabId() === 'misc') {
           <div class="space-y-6">
             <span class="text-xs font-mono font-bold text-zinc-500 block border-b dark:border-zinc-855 pb-1">BASE64, REGEX, UUID, AND JWT UTILITY WORKBENCH</span>
-            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 font-mono text-xs text-left">
               <!-- Base64 panel -->
               <div class="p-4 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 rounded-xl space-y-2">
                 <span class="text-[10px] font-bold text-zinc-400 block border-b dark:border-zinc-800 pb-1">BASE64 CONVERTER</span>
                 <input type="text" [value]="b64Text()" (input)="onB64TextInput($event)" placeholder="Text to Encode" class="w-full bg-zinc-100 dark:bg-zinc-900 border-none p-2 rounded" />
-                
                 <div class="pt-1.5 flex justify-between items-center bg-zinc-100 dark:bg-zinc-900 rounded p-2 text-[10px] text-zinc-600 dark:text-zinc-350 select-all font-bold">
                   <span>OUT: {{ compiledBase64() }}</span>
                   <button (click)="copyValue(compiledBase64())" class="text-xs text-emerald-500 hover:scale-105 active:scale-95 cursor-pointer"><mat-icon style="font-size:12px;">content_copy</mat-icon></button>

@@ -90,8 +90,8 @@ import { MatIconModule } from '@angular/material/icon';
 
               <!-- Button actions and micro-tags -->
               <div class="flex flex-wrap gap-2 pt-2 justify-end border-t dark:border-zinc-820">
-                <button class="px-3.5 py-1.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 text-[10px] rounded-lg font-mono font-bold text-zinc-700 dark:text-zinc-300">DISMISS</button>
-                <button class="px-3.5 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-[10px] rounded-lg font-mono">COMPLETE CHECK</button>
+                <button class="px-3.5 py-1.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 text-[10px] rounded-lg font-mono font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer">DISMISS</button>
+                <button class="px-3.5 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-[10px] rounded-lg font-mono cursor-pointer">COMPLETE CHECK</button>
               </div>
             </div>
           </div>
