@@ -43,89 +43,33 @@ export interface JsonPatchOp {
   imports: [CommonModule, MatIconModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div [class]="isCompareFullScreen() ? 'fixed inset-0 z-[9999] bg-zinc-950 p-6 md:p-8 flex flex-col overflow-y-auto space-y-4 select-text text-left animate-fade-in h-screen w-screen' : 'space-y-6 text-left select-text'">
+    <div [class]="isCompareFullScreen() ? 'fixed inset-0 z-[9999] bg-zinc-950 p-6 md:p-8 flex flex-col overflow-y-auto space-y-4 select-text text-left animate-fade-in h-screen w-screen' : 'space-y-4 text-left select-text'">
       <!-- Controls Panel / Main Settings Toolbar -->
-      <div class="p-5 bg-zinc-950 border border-zinc-900 rounded-2xl block space-y-4">
-        <div class="flex flex-wrap items-center justify-between gap-4">
-          <div class="flex items-center gap-3">
-            <div class="p-2 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-emerald-400">
-              <mat-icon class="align-middle">compare</mat-icon>
-            </div>
-            <div>
-              <h2 class="text-base font-bold text-white tracking-tight">JSON Structural Compare & Diff</h2>
-              <p class="text-[11px] text-zinc-455">Analyze, resolve conflicts, and merge schemas locally with 100% security.</p>
-            </div>
-          </div>
-
-          <!-- Comparison Mode / View Choices -->
-          <div class="flex flex-wrap items-center gap-2">
-            <div class="flex flex-wrap bg-zinc-900 p-1 rounded-xl border border-zinc-800 gap-1 animate-fade-in">
-              @for (mode of ['split', 'unified', 'tree', 'text']; track mode) {
-                <button
-                  (click)="activeView.set(mode)"
-                  [class.bg-zinc-800]="activeView() === mode"
-                  [class.text-white]="activeView() === mode"
-                  [class.text-zinc-500]="activeView() !== mode"
-                  class="px-3 py-1.5 text-[11px] font-mono font-bold uppercase rounded-lg transition cursor-pointer"
-                >
-                  {{ mode === 'text' ? 'Raw Text Diff' : mode + ' View' }}
-                </button>
-              }
-            </div>
-
-            <button 
-              (click)="isCompareFullScreen.set(!isCompareFullScreen())"
-              class="px-3 py-1.5 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 hover:text-white text-zinc-400 text-[11px] font-mono font-bold uppercase rounded-xl transition flex items-center gap-1 cursor-pointer"
-              [title]="isCompareFullScreen() ? 'Exit Full Screen' : 'Full Screen View'"
-            >
-              <mat-icon class="text-xs scale-75">{{ isCompareFullScreen() ? 'fullscreen_exit' : 'fullscreen' }}</mat-icon>
-              {{ isCompareFullScreen() ? 'EXIT' : 'FULL' }}
-            </button>
-          </div>
-        </div>
-
-        <div class="h-px bg-zinc-900"></div>
-
+      <div class="p-2 bg-zinc-950 border border-zinc-900 rounded-2xl block space-y-2">
         <!-- Matching Parameter Guards (Ignore rules) -->
         <div class="flex flex-wrap items-center justify-between gap-4">
           <div class="flex flex-wrap gap-4 text-xs">
             <label class="flex items-center gap-2 cursor-pointer text-zinc-350 hover:text-white select-none">
-              <input 
-                type="checkbox" 
-                [checked]="ignoreWhitespace()" 
-                (change)="toggleIgnoreWhitespace()"
-                class="rounded border-zinc-800 bg-zinc-950 text-emerald-500 focus:ring-emerald-500"
-              />
+              <input type="checkbox" [checked]="ignoreWhitespace()" (change)="toggleIgnoreWhitespace()"
+                class="rounded border-zinc-800 bg-zinc-950 text-emerald-500 focus:ring-emerald-500"/>
               <span class="font-mono text-[10.5px] font-bold">IGNORE WHITESPACE</span>
             </label>
 
             <label class="flex items-center gap-2 cursor-pointer text-zinc-350 hover:text-white select-none">
-              <input 
-                type="checkbox" 
-                [checked]="ignoreKeyOrder()" 
-                (change)="toggleIgnoreKeyOrder()"
-                class="rounded border-zinc-800 bg-zinc-950 text-emerald-500 focus:ring-emerald-500"
-              />
+              <input type="checkbox" [checked]="ignoreKeyOrder()" (change)="toggleIgnoreKeyOrder()"
+                class="rounded border-zinc-800 bg-zinc-950 text-emerald-500 focus:ring-emerald-500"/>
               <span class="font-mono text-[10.5px] font-bold">IGNORE KEY ORDER</span>
             </label>
 
             <label class="flex items-center gap-2 cursor-pointer text-zinc-350 hover:text-white select-none">
-              <input 
-                type="checkbox" 
-                [checked]="ignoreCase()" 
-                (change)="toggleIgnoreCase()"
-                class="rounded border-zinc-800 bg-zinc-950 text-emerald-500 focus:ring-emerald-500"
-              />
+              <input type="checkbox" [checked]="ignoreCase()" (change)="toggleIgnoreCase()"
+                class="rounded border-zinc-800 bg-zinc-950 text-emerald-500 focus:ring-emerald-500"/>
               <span class="font-mono text-[10.5px] font-bold">IGNORE CASE</span>
             </label>
 
             <label class="flex items-center gap-2 cursor-pointer text-zinc-350 hover:text-white select-none">
-              <input 
-                type="checkbox" 
-                [checked]="showOnlyDifferences()" 
-                (change)="toggleShowOnlyDifferences()"
-                class="rounded border-zinc-800 bg-zinc-950 text-emerald-500 focus:ring-emerald-500"
-              />
+              <input type="checkbox" [checked]="showOnlyDifferences()" (change)="toggleShowOnlyDifferences()"
+                class="rounded border-zinc-800 bg-zinc-950 text-emerald-500 focus:ring-emerald-500"/>
               <span class="font-mono text-[10.5px] font-bold text-amber-450">DIFFERENCES ONLY</span>
             </label>
           </div>
@@ -138,6 +82,14 @@ export interface JsonPatchOp {
             <button (click)="clearInputs()" class="px-3 py-1.5 border border-rose-950 hover:bg-rose-955/20 text-[10.5px] font-mono font-bold text-rose-400 rounded-lg transition cursor-pointer">
               RESET ALL
             </button>
+            <!-- Comparison Mode / View Choices -->
+            <button
+              (click)="isCompareFullScreen.set(!isCompareFullScreen())"
+              class="gap-2 px-2 py-0.5 flex items-center border border-zinc-800 hover:border-zinc-700 bg-zinc-900 text-[10.5px] font-mono font-bold text-zinc-400 hover:text-white rounded-lg transition cursor-pointer"
+              [title]="isCompareFullScreen() ? 'Exit Full Screen' : 'Full Screen View'">
+              <mat-icon class="text-xs scale-75">{{ isCompareFullScreen() ? 'fullscreen_exit' : 'fullscreen' }}</mat-icon>
+              {{ isCompareFullScreen() ? 'EXIT' : 'FULL' }}
+            </button>
           </div>
         </div>
       </div>
@@ -146,73 +98,57 @@ export interface JsonPatchOp {
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <!-- Input Left Node -->
         <div class="p-4 bg-zinc-900 border border-zinc-800 rounded-2xl block space-y-2 relative">
-          <div class="flex items-center justify-between flex-wrap gap-2">
-            <span class="text-[10px] font-mono tracking-wider font-bold text-zinc-500">SOURCE JSON A (LEFT / ORIGINAL)</span>
-            <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-[10px] font-mono tracking-wider font-bold text-zinc-500">SOURCE JSON A (LEFT / ORIGINAL)</span>
               <!-- Formatting & Expansion Controls -->
-              <div class="flex flex-wrap items-center bg-zinc-950 px-1.5 py-0.5 rounded-lg border border-zinc-800 gap-1 select-none scale-90 origin-right">
+            <div class="flex flex-wrap justify-between items-center bg-zinc-950 px-1.5 py-0.5 my-2 rounded-lg border border-zinc-800 select-none">
+              <div class="flex flex-wrap">
                 <button (click)="setAllExpandedState(true)"
                   class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-white transition flex items-center gap-0.5 cursor-pointer bg-transparent border-none outline-none cursor-pointer"
-                  title="Expand All Differences Nodes"
-                >
+                  title="Expand All Differences Nodes">
                   <mat-icon class="text-[13px] w-3 h-3 flex items-center justify-center">unfold_more</mat-icon> EXPAND
                 </button>
                 <button (click)="setAllExpandedState(false)"
                   class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-white transition flex items-center gap-0.5 cursor-pointer bg-transparent border-none outline-none cursor-pointer"
-                  title="Collapse All Differences Nodes"
-                >
+                  title="Collapse All Differences Nodes">
                   <mat-icon class="text-[13px] w-3 h-3 flex items-center justify-center">unfold_less</mat-icon> COLLAPSE
                 </button>
                 <div class="w-px h-3 bg-zinc-805 mx-0.5"></div>
                 <button (click)="formatLeft()" [disabled]="!leftParsed()"
                   class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-emerald-400 hover:disabled:text-zinc-400 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none outline-none cursor-pointer"
-                  title="Format JSON A with proper indentation and new lines"
-                >
+                  title="Format JSON A with proper indentation and new lines">
                   <mat-icon class="text-[13px] w-3 h-3 flex items-center justify-center">format_align_left</mat-icon> FORMAT
                 </button>
                 <button (click)="smartFormatLeft()" [disabled]="!leftParsed()"
                   class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-blue-400 hover:disabled:text-zinc-400 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none outline-none cursor-pointer"
-                  title="Smart Format JSON A (inline simple arrays/objects)"
-                >
+                  title="Smart Format JSON A (inline simple arrays/objects)">
                   <mat-icon class="text-[13px] w-3 h-3 flex items-center justify-center">auto_awesome</mat-icon> SMART
                 </button>
                 <button (click)="compactLeft()" [disabled]="!leftParsed()"
                   class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-amber-400 hover:disabled:text-zinc-400 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none outline-none cursor-pointer"
-                  title="Compact JSON A (minify)"
-                >
+                  title="Compact JSON A (minify)">
                   <mat-icon class="text-[13px] w-3 h-3 flex items-center justify-center">compress</mat-icon> COMPACT
                 </button>
               </div>
-
-              <button (click)="leftFileInput.click()" class="p-1 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-lg transition cursor-pointer bg-transparent border-none outline-none cursor-pointer" title="Upload JSON A">
-                <mat-icon class="text-sm">upload_file</mat-icon>
-              </button>
-              <input #leftFileInput type="file" (change)="onLeftFileSelected($event)" accept=".json" class="hidden" />
-              <button (click)="copyText(leftText())" class="p-1 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-lg transition cursor-pointer bg-transparent border-none outline-none cursor-pointer" title="Copy Text">
-                <mat-icon class="text-sm">content_copy</mat-icon>
-              </button>
+              <div class="flex flex-wrap">
+                <button (click)="leftFileInput.click()" class="p-1 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-lg transition cursor-pointer bg-transparent border-none outline-none cursor-pointer" title="Upload JSON A">
+                  <mat-icon class="text-sm">upload_file</mat-icon>
+                </button>
+                <input #leftFileInput type="file" (change)="onLeftFileSelected($event)" accept=".json" class="hidden" />
+                <button (click)="copyText(leftText())" class="p-1 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-lg transition cursor-pointer bg-transparent border-none outline-none cursor-pointer" title="Copy Text">
+                  <mat-icon class="text-sm">content_copy</mat-icon>
+                </button>
+              </div>
             </div>
-          </div>
-          <div 
-            (dragover)="onDragOver($event)"
-            (dragleave)="onDragLeave($event)"
-            (drop)="onFileDropped($event, 'left')"
-            class="relative border border-zinc-850 bg-zinc-950/30 rounded-xl overflow-hidden flex"
-          >
+          <div (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" (drop)="onFileDropped($event, 'left')"
+            class="relative border border-zinc-850 bg-zinc-950/30 rounded-xl overflow-hidden flex">
             <!-- Left gutter indexing -->
             <div class="w-10 bg-zinc-950 text-right pr-2 pl-1 py-3 text-[10px] font-mono select-none text-zinc-650 flex flex-col border-r border-zinc-850/80 leading-relaxed font-semibold overflow-y-hidden" #leftGutter>
               @for (num of getLeftLineNumbers(); track num) {
                 <div>{{ num }}</div>
               }
             </div>
-            <textarea
-              #leftEl
-              [value]="leftText()"
-              (input)="onLeftTextChange(leftEl.value)"
-              (scroll)="leftGutter.scrollTop = leftEl.scrollTop"
+            <textarea #leftEl [value]="leftText()" (input)="onLeftTextChange(leftEl.value)" (scroll)="leftGutter.scrollTop = leftEl.scrollTop"
               placeholder="Paste or drop baseline JSON here..."
-              [class.h-44]="!isCompareFullScreen()"
-              [class.h-80]="isCompareFullScreen()"
               class="flex-grow p-3 bg-transparent text-xs font-mono text-zinc-200 outline-none border-none resize-none overflow-y-auto leading-relaxed select-text focus:ring-0 font-medium"
             ></textarea>
 
@@ -226,75 +162,61 @@ export interface JsonPatchOp {
 
         <!-- Input Right Node -->
         <div class="p-4 bg-zinc-900 border border-zinc-800 rounded-2xl block space-y-2 relative animate-fade-in">
-          <div class="flex items-center justify-between flex-wrap gap-2">
-            <span class="text-[10px] font-mono tracking-wider font-bold text-zinc-500">TARGET JSON B (RIGHT / MODIFIED)</span>
-            <div class="flex items-center gap-2 flex-wrap">
-              <!-- Formatting & Expansion Controls -->
-              <div class="flex flex-wrap items-center bg-zinc-950 px-1.5 py-0.5 rounded-lg border border-zinc-800 gap-1 select-none scale-90 origin-right">
+          <span class="text-[10px] font-mono tracking-wider font-bold text-zinc-500">TARGET JSON B (RIGHT / MODIFIED)</span>
+            <!-- Formatting & Expansion Controls -->
+            <div class="flex flex-wrap justify-between items-center bg-zinc-950 px-1.5 py-0.5 my-2 rounded-lg border border-zinc-800 select-none">
+              <div class="flex flex-wrap">
                 <button (click)="setAllExpandedState(true)"
                   class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-white transition flex items-center gap-0.5 cursor-pointer bg-transparent border-none outline-none cursor-pointer"
-                  title="Expand All Differences Nodes"
-                >
+                  title="Expand All Differences Nodes">
                   <mat-icon class="text-[13px] w-3 h-3 flex items-center justify-center">unfold_more</mat-icon> EXPAND
                 </button>
                 <button (click)="setAllExpandedState(false)"
                   class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-white transition flex items-center gap-0.5 cursor-pointer bg-transparent border-none outline-none cursor-pointer"
-                  title="Collapse All Differences Nodes"
-                >
+                  title="Collapse All Differences Nodes">
                   <mat-icon class="text-[13px] w-3 h-3 flex items-center justify-center">unfold_less</mat-icon> COLLAPSE
                 </button>
                 <div class="w-px h-3 bg-zinc-805 mx-0.5"></div>
                 <button (click)="formatRight()"
                   [disabled]="!rightParsed()"
                   class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-emerald-400 hover:disabled:text-zinc-400 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none outline-none cursor-pointer"
-                  title="Format JSON B with proper indentation and new lines"
-                >
+                  title="Format JSON B with proper indentation and new lines">
                   <mat-icon class="text-[13px] w-3 h-3 flex items-center justify-center">format_align_left</mat-icon> FORMAT
                 </button>
                 <button (click)="smartFormatRight()" [disabled]="!rightParsed()"
                   class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-blue-400 hover:disabled:text-zinc-400 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none outline-none cursor-pointer"
-                  title="Smart Format JSON B (inline simple arrays/objects)"
-                >
+                  title="Smart Format JSON B (inline simple arrays/objects)">
                   <mat-icon class="text-[13px] w-3 h-3 flex items-center justify-center">auto_awesome</mat-icon> SMART
                 </button>
                 <button (click)="compactRight()" [disabled]="!rightParsed()"
                   class="px-1.5 py-0.5 text-[9px] font-mono font-bold text-zinc-400 hover:text-amber-400 hover:disabled:text-zinc-400 transition flex items-center gap-0.5 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed bg-transparent border-none outline-none cursor-pointer"
-                  title="Compact JSON B (minify)"
-                >
+                  title="Compact JSON B (minify)">
                   <mat-icon class="text-[13px] w-3 h-3 flex items-center justify-center">compress</mat-icon> COMPACT
                 </button>
               </div>
-
-              <button (click)="rightFileInput.click()" class="p-1 hover:bg-zinc-800 text-zinc-450 hover:text-white rounded-lg transition cursor-pointer bg-transparent border-none outline-none cursor-pointer" title="Upload JSON B">
-                <mat-icon class="text-sm">upload_file</mat-icon>
-              </button>
-              <input #rightFileInput type="file" (change)="onRightFileSelected($event)" accept=".json" class="hidden" />
-              <button (click)="copyText(rightText())" class="p-1 hover:bg-zinc-800 text-zinc-455 hover:text-white rounded-lg transition cursor-pointer bg-transparent border-none outline-none cursor-pointer" title="Copy Text">
-                <mat-icon class="text-sm">content_copy</mat-icon>
-              </button>
+              <div class="flex flex-wrap">
+                <button (click)="rightFileInput.click()" class="p-1 hover:bg-zinc-800 text-zinc-450 hover:text-white rounded-lg transition cursor-pointer bg-transparent border-none outline-none cursor-pointer" title="Upload JSON B">
+                  <mat-icon class="text-sm">upload_file</mat-icon>
+                </button>
+                <input #rightFileInput type="file" (change)="onRightFileSelected($event)" accept=".json" class="hidden" />
+                <button (click)="copyText(rightText())" class="p-1 hover:bg-zinc-800 text-zinc-455 hover:text-white rounded-lg transition cursor-pointer bg-transparent border-none outline-none cursor-pointer" title="Copy Text">
+                  <mat-icon class="text-sm">content_copy</mat-icon>
+                </button>
+              </div>
             </div>
-          </div>
-
-          <div 
-            (dragover)="onDragOver($event)"
+          <div (dragover)="onDragOver($event)"
             (dragleave)="onDragLeave($event)"
             (drop)="onFileDropped($event, 'right')"
-            class="relative border border-zinc-850 bg-zinc-950/30 rounded-xl overflow-hidden flex"
-          >
+            class="relative border border-zinc-850 bg-zinc-950/30 rounded-xl overflow-hidden flex">
             <!-- Right gutter indexing -->
             <div class="w-10 bg-zinc-950 text-right pr-2 pl-1 py-3 text-[10px] font-mono select-none text-zinc-650 flex flex-col border-r border-zinc-850/80 leading-relaxed font-semibold overflow-y-hidden" #rightGutter>
               @for (num of getRightLineNumbers(); track num) {
                 <div>{{ num }}</div>
               }
             </div>
-            <textarea
-              #rightEl
-              [value]="rightText()"
-              (input)="onRightTextChange(rightEl.value)"
+            <textarea #rightEl [value]="rightText()" (input)="onRightTextChange(rightEl.value)"
               (scroll)="rightGutter.scrollTop = rightEl.scrollTop"
               placeholder="Paste or drop modified JSON here..."
-              [class.h-44]="!isCompareFullScreen()"
-              [class.h-80]="isCompareFullScreen()"
               class="flex-grow p-3 bg-transparent text-xs font-mono text-zinc-200 outline-none border-none resize-none overflow-y-auto leading-relaxed select-text focus:ring-0 font-medium"
             ></textarea>
 
@@ -338,6 +260,19 @@ export interface JsonPatchOp {
               </div>
               <span>{{ summary().compatibilityScore }}%</span>
             </div>
+          </div>
+          <div class="flex flex-wrap bg-zinc-900 p-1 rounded-xl border border-zinc-800 gap-1 animate-fade-in">
+              @for (mode of ['split', 'unified', 'tree', 'text']; track mode) {
+                <button
+                  (click)="activeView.set(mode)"
+                  [class.bg-zinc-800]="activeView() === mode"
+                  [class.text-white]="activeView() === mode"
+                  [class.text-zinc-500]="activeView() !== mode"
+                  class="px-3 py-1.5 text-[11px] font-mono font-bold uppercase rounded-lg transition cursor-pointer"
+                >
+                  {{ mode === 'text' ? 'Raw Text Diff' : mode + ' View' }}
+                </button>
+              }
           </div>
         </div>
 
@@ -446,8 +381,8 @@ export interface JsonPatchOp {
               <span class="text-[9px] text-zinc-550 italic uppercase">Changes stacked chronologically</span>
             </div>
             <div 
-              [class.max-h-[550px]]="!isCompareFullScreen()"
-              [class.h-[65vh]]="isCompareFullScreen()"
+              [class.max-h-[500px]]="!isCompareFullScreen()"
+              [class.h-[60vh]]="isCompareFullScreen()"
               class="p-4 overflow-auto font-mono text-xs space-y-0.5 leading-relaxed bg-zinc-950/10 flex-grow"
             >
               @for (line of unifiedDiffLines(); track $index) {
@@ -555,9 +490,9 @@ export interface JsonPatchOp {
       </div>
 
       <!-- MERGE OUTPUT & EXPORTS PLATFORM (Only displays when there are actual conflicts/modifications) -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-1 gap-6">
         <!-- Interactive Code Compiler / Merge pane -->
-        <div class="lg:col-span-2 p-5 border border-zinc-800 bg-zinc-900 rounded-2xl flex flex-col justify-between">
+        <div class="lg:col-span-1 p-5 border border-zinc-800 bg-zinc-900 rounded-2xl flex flex-col justify-between">
           <div class="space-y-2">
             <div class="flex flex-wrap items-center justify-between">
               <div class="flex items-center gap-1.5 text-white font-bold text-sm">

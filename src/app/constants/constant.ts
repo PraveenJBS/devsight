@@ -982,114 +982,6 @@ export const TOOLS: ToolMetadata[] = [
     `
   },
   {
-    id: 'html-viewer',
-    slug: 'html-viewer',
-    name: 'Interactive HTML Sandbox Viewer & DOM Inspector',
-    shortDescription: 'A fully safe, isolated sandboxed playground for real-time HTML/CSS/JS rendering. Features dual split side-by-side viewports, element inspection, dynamic nested DOM parsing, and accessibility warnings.',
-    metaTitle: 'HTML Viewer & Sandbox - Isolated DOM Inspector - devsight',
-    metaDescription: 'Test and render markup sequences inside secure iframe containers. Highlight nested elements in real-time, audit structure for accessibility issues, and toggle scripts dynamically.',
-    categoryId: 'css-ui-tools',
-    icon: 'preview',
-    tags: ['html', 'viewer', 'playground', 'dom-inspector', 'sandbox', 'validation'],
-    relatedTools: ['html-editor', 'html-preview', 'regex-studio'],
-    faqs: [
-      {
-        question: 'How is the HTML rendered securely?',
-        answer: 'We utilize sandboxed iframe variables with strict secure CSP flags (allow-popups-to-escape-sandbox, allow-forms, etc.) which mathematically isolates the execution layer from the main workspace. This protects the reader from cross-site scripting (XSS) risks while running local CSS and script layers.'
-      },
-      {
-        question: 'Can I inspect the active DOM node elements?',
-        answer: 'Yes, our interactive DOM Inspector builds a live virtual tree of your code markup, allowing you to highlight single element coordinates, modify attributes or style class listings on the fly, and trace nesting integrity.'
-      },
-      {
-        question: 'How do the Accessibility warnings operate?',
-        answer: `The viewer analyzes attributes inside your standard components in real-time: it flags images missing 'alt' attributes, form fields lacking corresponding 'label' ties, and tags with bad semantic usage, helping you implement WCAG compliant designs.`
-      }
-    ],
-    detailedGuide: `
-      <h2>Operational Workspace: Real-Time HTML Isolated Canvas</h2>
-      <p>This sandbox provides an immersive workspace for examining layout strings, design structures, or testing script components offline without server overhead.</p>
-      <h3>Core Diagnostic Features</h3>
-      <ul>
-        <li><strong>DOM Inspector:</strong> Map deep nodes within visual drawer panels, highlighting targets, and adjusting attributes or inline style definitions instantly.</li>
-        <li><strong>Script Handshakes:</strong> Toggle JavaScript performance permissions or import popular libraries directly from official public CDNs (Tailwind, FontAwesome, Bootstrap) to accelerate mock layouts.</li>
-        <li><strong>Real-Time Auditing:</strong> Identify unclosed matching tags, nested tags errors, and accessibility missing indicators automatically as you type.</li>
-      </ul>
-    `
-  },
-  {
-    id: 'html-editor',
-    slug: 'html-editor',
-    name: 'HTML Pro-Code Editor, Beautifier & Transpiler',
-    shortDescription: 'Develop polished templates using a robust editing system with automatic tag closing, formatting (pretty print or minification), entity encoders, and output conversions (JSX, Markdown, Angular).',
-    metaTitle: 'HTML Pro Editor & Formatter - JSX & Markdown Transpiler - devsight',
-    metaDescription: 'Format markup with custom indentation grids or compact minification. Convert code instantly to React JSX, Angular Standalone templates, or plain Markdown structures.',
-    categoryId: 'css-ui-tools',
-    icon: 'code',
-    tags: ['html', 'editor', 'formatter', 'beautifier', 'jsx-transpiler', 'markdown'],
-    relatedTools: ['html-viewer', 'html-preview', 'typescript-workspace'],
-    faqs: [
-      {
-        question: 'How do the code formatting levels work?',
-        answer: 'The Beautifier processes your code string into structured indentation columns (2, 4, or space rules) while sorting tag stacks cleanly. The Minifier strips trailing whitespaces, structural line comments, and redundant spaces to minimize production bandwidth sizes.'
-      },
-      {
-        question: 'What conversions are supported in the workspace?',
-        answer: `We support: 1. HTML to JSX (converts 'class' to 'className', closes empty nodes, standardizes inline style brackets); 2. HTML to Angular Template (reconditions parameters to standard bindings); 3. HTML to Markdown (converts typography layers, bolding, lists into readable Markdown text).`
-      },
-      {
-        question: 'Are there keyboard shortcuts?',
-        answer: `Yes. Use popular editor bindings such as Ctrl+S for formatting, Ctrl+Z/Y for active undo/redo parameters, and Alt+F for rapid replace queries.`
-      }
-    ],
-    detailedGuide: `
-      <h2>Developer Toolbox: Pro-Code Formatting & Transpilation</h2>
-      <p>Accelerate file processing by leveraging our parsing algorithms. This offline utility replaces separate beautifying sites with high-density transpiler options.</p>
-      <h3>Conversion Framework</h3>
-      <ol>
-        <li><strong>JSX Converter:</strong> Essential for copying markup definitions into React or Next.js components without manual property corrections.</li>
-        <li><strong>Angular Engine:</strong> Maps elements to conform nicely with clean Standalone angular compiler requirements.</li>
-        <li><strong>Entities Encoder:</strong> Escape special character brackets safely (e.g., &amp;lt;, &amp;gt;) to include XML/HTML examples directly in website logs.</li>
-      </ol>
-    `
-  },
-  {
-    id: 'html-preview',
-    slug: 'html-preview',
-    name: 'Device Responsive Viewport & Meta Cards Previewer',
-    shortDescription: 'Simulate template behavior across diverse display profiles including Desktop, Tablet, and Mobile. Inspect raw header meta tags, Open Graph declarations, and search engine layouts.',
-    metaTitle: 'Device Responsive HTML Preview - SEO Metadata Simulator - devsight',
-    metaDescription: 'Simulate rendering on mobile, tablet, and widescreen layouts. Audit Open Graph social tags, inspect meta parameters, and check structured JSON-LD schemas.',
-    categoryId: 'css-ui-tools',
-    icon: 'devices',
-    tags: ['html', 'preview', 'responsive-devices', 'seo-simulator', 'open-graph', 'metadata'],
-    relatedTools: ['html-viewer', 'html-editor'],
-    faqs: [
-      {
-        question: 'Can I test different responsive breakpoints?',
-        answer: 'Absolutely. Choose between realistic pre-configured viewports: Widescreen Desktop (1280px), Medium Tablet (768px), or Mobile Phone (375px) with responsive frame animations to confirm fluid scaling.'
-      },
-      {
-        question: 'How is the SEO snippet simulated?',
-        answer: 'Our parser crawls the head properties on your HTML to extract title, description, robots declarations, canonical links, and schema tags. It then draws an accurate preview of how search engines like Google render your snippet on mobile/desktop dashboards.'
-      },
-      {
-        question: 'Does the Open Graph card preview reflect social shares?',
-        answer: `Yes. It extracts standard 'og:title', 'og:description', 'og:image' (or corresponding 'twitter:card' assets) to simulate real-world layout shares on Facebook, X (Twitter), or LinkedIn channels.`
-      }
-    ],
-    detailedGuide: `
-      <h2>Layout Calibration Guide: Mobile First SEO Optimization</h2>
-      <p>A web design is only as strong as its search indexing metadata. This simulator parses header strings directly in memory to optimize search appearance before deployment.</p>
-      <h3>Evaluation Procedures</h3>
-      <ul>
-        <li><strong>Viewport Responsiveness:</strong> Test fluid resizing on smaller screens to detect overflow bugs, margin collisions, or misaligned button coordinates.</li>
-        <li><strong>Social Card Verification:</strong> Confirm that when links of your site are shared, the descriptive sentences and brand images match exactly what was intended.</li>
-        <li><strong>JSON-LD Structured Data:</strong> Extract and validate schema markup elements to check product descriptions, FAQ structures, or breadcrumb parameters.</li>
-      </ul>
-    `
-  },
-  {
     id: 'text-formatter',
     slug: 'text-formatter',
     name: 'Text Formatter & Mini-Beautifier',
@@ -1829,7 +1721,7 @@ export const TOOLS: ToolMetadata[] = [
     metaTitle: 'Cubic Bezier Generator - Easing timing curve visualizer',
     metaDescription: 'Design custom transition-timing-function structures visually. Drag bezier tangents, preview real animations, and copy CSS codes.',
     categoryId: 'css-ui-tools',
-    icon: 'vector_activity',
+    icon: 'av_timer',
     tags: ['cubic-bezier', 'animation', 'transitions', 'timing-function', 'motion', 'svg-animation'],
     relatedTools: ['border-radius-generator', 'ui-preview-studio', 'theme-builder'],
     faqs: [
@@ -1896,6 +1788,114 @@ export const TOOLS: ToolMetadata[] = [
       }
     ],
     detailedGuide: '<h2>Responsive Interactive UI Preview Studio</h2><p>Calibrate landing designs. Tweak active font families, check alignments, simulate outdoor glare or dark mode toggles, and export pristine, accessible mockup code.</p>'
+  },
+  {
+    id: 'html-viewer',
+    slug: 'html-viewer',
+    name: 'Interactive HTML Sandbox Viewer & DOM Inspector',
+    shortDescription: 'A fully safe, isolated sandboxed playground for real-time HTML/CSS/JS rendering. Features dual split side-by-side viewports, element inspection, dynamic nested DOM parsing, and accessibility warnings.',
+    metaTitle: 'HTML Viewer & Sandbox - Isolated DOM Inspector - devsight',
+    metaDescription: 'Test and render markup sequences inside secure iframe containers. Highlight nested elements in real-time, audit structure for accessibility issues, and toggle scripts dynamically.',
+    categoryId: 'css-ui-tools',
+    icon: 'preview',
+    tags: ['html', 'viewer', 'playground', 'dom-inspector', 'sandbox', 'validation'],
+    relatedTools: ['html-editor', 'html-preview', 'regex-studio'],
+    faqs: [
+      {
+        question: 'How is the HTML rendered securely?',
+        answer: 'We utilize sandboxed iframe variables with strict secure CSP flags (allow-popups-to-escape-sandbox, allow-forms, etc.) which mathematically isolates the execution layer from the main workspace. This protects the reader from cross-site scripting (XSS) risks while running local CSS and script layers.'
+      },
+      {
+        question: 'Can I inspect the active DOM node elements?',
+        answer: 'Yes, our interactive DOM Inspector builds a live virtual tree of your code markup, allowing you to highlight single element coordinates, modify attributes or style class listings on the fly, and trace nesting integrity.'
+      },
+      {
+        question: 'How do the Accessibility warnings operate?',
+        answer: `The viewer analyzes attributes inside your standard components in real-time: it flags images missing 'alt' attributes, form fields lacking corresponding 'label' ties, and tags with bad semantic usage, helping you implement WCAG compliant designs.`
+      }
+    ],
+    detailedGuide: `
+      <h2>Operational Workspace: Real-Time HTML Isolated Canvas</h2>
+      <p>This sandbox provides an immersive workspace for examining layout strings, design structures, or testing script components offline without server overhead.</p>
+      <h3>Core Diagnostic Features</h3>
+      <ul>
+        <li><strong>DOM Inspector:</strong> Map deep nodes within visual drawer panels, highlighting targets, and adjusting attributes or inline style definitions instantly.</li>
+        <li><strong>Script Handshakes:</strong> Toggle JavaScript performance permissions or import popular libraries directly from official public CDNs (Tailwind, FontAwesome, Bootstrap) to accelerate mock layouts.</li>
+        <li><strong>Real-Time Auditing:</strong> Identify unclosed matching tags, nested tags errors, and accessibility missing indicators automatically as you type.</li>
+      </ul>
+    `
+  },
+  {
+    id: 'html-editor',
+    slug: 'html-editor',
+    name: 'HTML Pro-Code Editor, Beautifier & Transpiler',
+    shortDescription: 'Develop polished templates using a robust editing system with automatic tag closing, formatting (pretty print or minification), entity encoders, and output conversions (JSX, Markdown, Angular).',
+    metaTitle: 'HTML Pro Editor & Formatter - JSX & Markdown Transpiler - devsight',
+    metaDescription: 'Format markup with custom indentation grids or compact minification. Convert code instantly to React JSX, Angular Standalone templates, or plain Markdown structures.',
+    categoryId: 'css-ui-tools',
+    icon: 'code',
+    tags: ['html', 'editor', 'formatter', 'beautifier', 'jsx-transpiler', 'markdown'],
+    relatedTools: ['html-viewer', 'html-preview', 'typescript-workspace'],
+    faqs: [
+      {
+        question: 'How do the code formatting levels work?',
+        answer: 'The Beautifier processes your code string into structured indentation columns (2, 4, or space rules) while sorting tag stacks cleanly. The Minifier strips trailing whitespaces, structural line comments, and redundant spaces to minimize production bandwidth sizes.'
+      },
+      {
+        question: 'What conversions are supported in the workspace?',
+        answer: `We support: 1. HTML to JSX (converts 'class' to 'className', closes empty nodes, standardizes inline style brackets); 2. HTML to Angular Template (reconditions parameters to standard bindings); 3. HTML to Markdown (converts typography layers, bolding, lists into readable Markdown text).`
+      },
+      {
+        question: 'Are there keyboard shortcuts?',
+        answer: `Yes. Use popular editor bindings such as Ctrl+S for formatting, Ctrl+Z/Y for active undo/redo parameters, and Alt+F for rapid replace queries.`
+      }
+    ],
+    detailedGuide: `
+      <h2>Developer Toolbox: Pro-Code Formatting & Transpilation</h2>
+      <p>Accelerate file processing by leveraging our parsing algorithms. This offline utility replaces separate beautifying sites with high-density transpiler options.</p>
+      <h3>Conversion Framework</h3>
+      <ol>
+        <li><strong>JSX Converter:</strong> Essential for copying markup definitions into React or Next.js components without manual property corrections.</li>
+        <li><strong>Angular Engine:</strong> Maps elements to conform nicely with clean Standalone angular compiler requirements.</li>
+        <li><strong>Entities Encoder:</strong> Escape special character brackets safely (e.g., &amp;lt;, &amp;gt;) to include XML/HTML examples directly in website logs.</li>
+      </ol>
+    `
+  },
+  {
+    id: 'html-preview',
+    slug: 'html-preview',
+    name: 'Device Responsive Viewport & Meta Cards Previewer',
+    shortDescription: 'Simulate template behavior across diverse display profiles including Desktop, Tablet, and Mobile. Inspect raw header meta tags, Open Graph declarations, and search engine layouts.',
+    metaTitle: 'Device Responsive HTML Preview - SEO Metadata Simulator - devsight',
+    metaDescription: 'Simulate rendering on mobile, tablet, and widescreen layouts. Audit Open Graph social tags, inspect meta parameters, and check structured JSON-LD schemas.',
+    categoryId: 'css-ui-tools',
+    icon: 'devices',
+    tags: ['html', 'preview', 'responsive-devices', 'seo-simulator', 'open-graph', 'metadata'],
+    relatedTools: ['html-viewer', 'html-editor'],
+    faqs: [
+      {
+        question: 'Can I test different responsive breakpoints?',
+        answer: 'Absolutely. Choose between realistic pre-configured viewports: Widescreen Desktop (1280px), Medium Tablet (768px), or Mobile Phone (375px) with responsive frame animations to confirm fluid scaling.'
+      },
+      {
+        question: 'How is the SEO snippet simulated?',
+        answer: 'Our parser crawls the head properties on your HTML to extract title, description, robots declarations, canonical links, and schema tags. It then draws an accurate preview of how search engines like Google render your snippet on mobile/desktop dashboards.'
+      },
+      {
+        question: 'Does the Open Graph card preview reflect social shares?',
+        answer: `Yes. It extracts standard 'og:title', 'og:description', 'og:image' (or corresponding 'twitter:card' assets) to simulate real-world layout shares on Facebook, X (Twitter), or LinkedIn channels.`
+      }
+    ],
+    detailedGuide: `
+      <h2>Layout Calibration Guide: Mobile First SEO Optimization</h2>
+      <p>A web design is only as strong as its search indexing metadata. This simulator parses header strings directly in memory to optimize search appearance before deployment.</p>
+      <h3>Evaluation Procedures</h3>
+      <ul>
+        <li><strong>Viewport Responsiveness:</strong> Test fluid resizing on smaller screens to detect overflow bugs, margin collisions, or misaligned button coordinates.</li>
+        <li><strong>Social Card Verification:</strong> Confirm that when links of your site are shared, the descriptive sentences and brand images match exactly what was intended.</li>
+        <li><strong>JSON-LD Structured Data:</strong> Extract and validate schema markup elements to check product descriptions, FAQ structures, or breadcrumb parameters.</li>
+      </ul>
+    `
   }
 ];
 

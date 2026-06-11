@@ -107,34 +107,6 @@ import { UiPreviewStudioComponent } from '../../tools/ui-preview-studio/ui-previ
               <span class="text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-150 dark:border-emerald-500/30 px-2 py-0.5 rounded-md font-bold">TOOL: {{ currentTool()?.name | uppercase }}</span>
             </nav>
 
-            <!-- Tool Headers -->
-            <div class="p-3 md:p-2 mb-3 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 rounded-2xl text-left space-y-3 relative overflow-hidden select-text shadow-sm">
-              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div class="space-y-1.5 flex-1 p-0">
-                  <h1 class="text-2xl md:text-3xl font-extrabold text-zinc-900 dark:text-white leading-tight flex items-center gap-2">
-                    <mat-icon class="text-emerald-600 dark:text-emerald-400 align-middle">{{ currentTool()?.icon }}</mat-icon>
-                    {{ currentTool()?.name }}
-                  </h1>
-                  <p class="text-xs md:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed select-text">
-                    {{ currentTool()?.shortDescription }}
-                  </p>
-                </div>
-
-                <!-- Header buttons -->
-                <div class="flex items-center gap-2 self-start sm:self-center shrink-0">
-                  <button 
-                    (click)="toggleFavorite()"
-                    class="px-3.5 py-1.5 border border-zinc-250 dark:border-zinc-800 hover:border-zinc-350 dark:hover:border-zinc-700 bg-zinc-50 dark:bg-zinc-950 text-xs font-mono font-bold rounded-xl text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition flex items-center gap-1.5 select-none"
-                  >
-                    <mat-icon class="scale-75 text-amber-500">
-                      {{ isBookmarked() ? 'star' : 'star_border' }}
-                    </mat-icon>
-                    {{ isBookmarked() ? 'BOOKMARKED' : 'BOOKMARK' }}
-                  </button>
-                </div>
-              </div>
-            </div>
-
             <!-- Collapsible Sidebar: All tools in selected category -->
             <aside
               class="relative w-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden shadow-sm transition-all duration-300 mb-3"
@@ -160,6 +132,31 @@ import { UiPreviewStudioComponent } from '../../tools/ui-preview-studio/ui-previ
                 </div>
 
                 <div class="p-2 space-y-1">
+                  <!-- Tool Headers -->
+                  <div class="p-3 md:p-2 mb-3 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 rounded-2xl text-left space-y-3 relative overflow-hidden select-text shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                      <div class="space-y-1.5 flex-1 p-0">
+                        <h1 class="text-2xl md:text-3xl font-extrabold text-zinc-900 dark:text-white leading-tight flex items-center gap-2">
+                          <mat-icon class="text-emerald-600 dark:text-emerald-400 align-middle">{{ currentTool()?.icon }}</mat-icon>
+                          {{ currentTool()?.name }}
+                        </h1>
+                        <p class="text-xs md:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed select-text">
+                          {{ currentTool()?.shortDescription }}
+                        </p>
+                      </div>
+
+                      <!-- Header buttons -->
+                      <div class="flex items-center gap-2 self-start sm:self-center shrink-0">
+                        <button (click)="toggleFavorite()"
+                          class="px-3.5 py-1.5 border border-zinc-250 dark:border-zinc-800 hover:border-zinc-350 dark:hover:border-zinc-700 bg-zinc-50 dark:bg-zinc-950 text-xs font-mono font-bold rounded-xl text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition flex items-center gap-1.5 select-none cursor-pointer">
+                          <mat-icon class="scale-75 text-amber-500">
+                            {{ isBookmarked() ? 'star' : 'star_border' }}
+                          </mat-icon>
+                          {{ isBookmarked() ? 'BOOKMARKED' : 'BOOKMARK' }}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                   @for (tool of categoryAllTools(); track tool.id) {
                     <a
                       [routerLink]="[
@@ -190,27 +187,21 @@ import { UiPreviewStudioComponent } from '../../tools/ui-preview-studio/ui-previ
                 <!-- Collapsed State -->
                 <div class="flex items-center gap-2 p-2 pr-12 overflow-x-auto scrollbar-thin">
                   @for (tool of categoryAllTools(); track tool.id) {
-                    <a
-                      [routerLink]="[
-                        tool.categoryId === 'seo-tools' ? '/seo' : '/tools',
-                        tool.slug
-                      ]"
-                      [class]="
-                        tool.id === currentTool()?.id
-                          ? 'bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 border border-emerald-150 dark:border-emerald-500/20'
-                          : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 border border-transparent hover:border-zinc-100 dark:hover:border-zinc-800'
-                      "
+                    <a [routerLink]="[tool.categoryId === 'seo-tools' ? '/seo' : '/tools', tool.slug]"
+                      [class]="tool.id === currentTool()?.id ? 'bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 border border-emerald-150 dark:border-emerald-500/20' : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 border border-transparent hover:border-zinc-100 dark:hover:border-zinc-800'"
                       class="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 transition-all duration-150"
-                      [title]="tool.name"
-                    >
-                      <mat-icon
-                        style="font-size:14px;width:14px;height:14px;"
-                        class="leading-none"
-                      >
+                      [title]="tool.name">
+                      <mat-icon style="font-size:14px;width:14px;height:14px;" class="leading-none">
                         {{ tool.icon }}
                       </mat-icon>
                     </a>
                   }
+                  <button (click)="toggleFavorite()"
+                      class="px-2 py-1 border border-zinc-250 dark:border-zinc-800 hover:border-zinc-350 dark:hover:border-zinc-700 bg-zinc-50 dark:bg-zinc-950 text-xs font-mono font-bold rounded-xl text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition flex items-center gap-1.5 select-none cursor-pointer">
+                      <mat-icon class="scale-75 text-amber-500">
+                        {{ isBookmarked() ? 'star' : 'star_border' }}
+                      </mat-icon>
+                  </button>
                 </div>
               }
             </aside>

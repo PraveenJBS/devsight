@@ -106,10 +106,10 @@ const SCHEMA_PRESETS: Record<string, Record<string, unknown>> = {
             <mat-icon class="text-xs scale-75">compress</mat-icon> MINIFY
           </button>
           <div class="flex bg-zinc-900 p-0.5 rounded-xl border border-zinc-800">
-            <button (click)="sortTreeKeys(true)" title="Sort Keys Ascending" class="p-1.5 text-zinc-400 hover:text-white rounded-lg transition cursor-pointer">
+            <button (click)="sortTreeKeys(true)" title="Sort Keys Ascending" style="line-height: 20px;" class="px-1 py-0.5 text-zinc-400 hover:text-white rounded-lg transition cursor-pointer">
               <mat-icon class="text-xs scale-75">sort_by_alpha</mat-icon>
             </button>
-            <button (click)="sortTreeKeys(false)" title="Sort Keys Descending" class="p-1.5 text-zinc-400 hover:text-white rounded-lg transition cursor-pointer">
+            <button (click)="sortTreeKeys(false)" title="Sort Keys Descending" style="line-height: 20px;" class="px-1 py-0.5 text-zinc-400 hover:text-white rounded-lg transition cursor-pointer">
               <mat-icon class="text-xs scale-75" style="transform: scaleY(-1)">sort_by_alpha</mat-icon>
             </button>
           </div>

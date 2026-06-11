@@ -9,41 +9,8 @@ import { MatIconModule } from '@angular/material/icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="space-y-4">
-      <!-- Quick Helpers Control Bar -->
-      <div class="flex flex-wrap items-center justify-between gap-4 p-2 bg-zinc-950/40 border border-zinc-800 rounded-xl">
-        <div class="flex flex-wrap items-center gap-3">
-          <span class="text-xs text-zinc-500 font-mono">CONTROLS:</span>
-          <div class="flex items-center bg-zinc-900 rounded p-0.5 border border-zinc-800">
-            <button (click)="indentSize.set(2)" [class.bg-zinc-800]="indentSize() === 2"
-              class="px-2.5 py-1 text-xs text-zinc-400 hover:text-white rounded transition font-mono cursor-pointer">
-              2 Spaces
-            </button>
-            <button (click)="indentSize.set(4)" [class.bg-zinc-800]="indentSize() === 4"
-              class="px-2.5 py-1 text-xs text-zinc-400 hover:text-white rounded transition font-mono cursor-pointer">
-              4 Spaces
-            </button>
-            <button (click)="indentSize.set(0)" [class.bg-zinc-800]="indentSize() === 0"
-              class="px-2.5 py-1 text-xs text-zinc-400 hover:text-white rounded transition font-mono cursor-pointer">
-              Minify
-            </button>
-          </div>
-        </div>
-
-        <div class="flex items-center gap-2">
-          <!-- Status Banner -->
-          @if (rawInput() && !validationError()) {
-            <span class="px-2.5 py-1 text-xs border border-emerald-950 bg-emerald-950/20 text-emerald-400 rounded-md font-mono flex items-center gap-1">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> VALID JSON
-            </span>
-          } @else if (rawInput() && validationError()) {
-            <span class="px-2.5 py-1 text-xs border border-rose-950 bg-rose-950/20 text-rose-400 rounded-md font-mono flex items-center gap-1">
-              INVALID FORMAT
-            </span>
-          }
-        </div>
-      </div>
       <!-- Input and Controls -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 gap-6">
         <!-- Raw Input Section -->
         <div 
           [class]="isInputFullScreen() ? 'fixed inset-0 z-[9999] bg-zinc-900 p-4 md:p-6 w-full h-full shadow-2xl flex flex-col animate-fade-in' : 'flex flex-col h-[500px] bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden'"
@@ -135,12 +102,9 @@ import { MatIconModule } from '@angular/material/icon';
             </div>
           </div>
         </div>
-
         <!-- Output Viewer Section -->
-        <div 
-          [class]="isOutputFullScreen() ? 'fixed inset-0 z-[9999] bg-zinc-900 p-4 md:p-6 w-full h-full shadow-2xl flex flex-col animate-fade-in' : 'flex flex-col h-[500px] bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden'"
-        >
-          <div class="flex items-center justify-between px-4 py-3 bg-zinc-950 border-b border-zinc-800">
+        <div [class]="isOutputFullScreen() ? 'fixed inset-0 z-[9999] bg-zinc-900 p-4 md:p-6 w-full h-full shadow-2xl flex flex-col animate-fade-in' : 'flex flex-col h-[500px] bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden'">
+          <div class="flex flex-wrap items-center justify-between px-4 py-3 bg-zinc-950 border-b border-zinc-800">
             <div class="flex items-center gap-4">
               <span class="text-xs font-semibold text-zinc-400 font-mono">OUTPUT PROCESSED</span>
               <!-- View Modes -->
@@ -155,6 +119,23 @@ import { MatIconModule } from '@angular/material/icon';
                     {{ mode }}
                   </button>
                 }
+              </div>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+              <span class="text-xs text-zinc-500 font-mono">CONTROLS:</span>
+              <div class="flex items-center bg-zinc-900 rounded p-0.5 border border-zinc-800">
+                <button (click)="indentSize.set(2)" [class.bg-zinc-800]="indentSize() === 2"
+                  class="px-2.5 py-1 text-xs text-zinc-400 hover:text-white rounded transition font-mono cursor-pointer">
+                  2 Spaces
+                </button>
+                <button (click)="indentSize.set(4)" [class.bg-zinc-800]="indentSize() === 4"
+                  class="px-2.5 py-1 text-xs text-zinc-400 hover:text-white rounded transition font-mono cursor-pointer">
+                  4 Spaces
+                </button>
+                <button (click)="indentSize.set(0)" [class.bg-zinc-800]="indentSize() === 0"
+                  class="px-2.5 py-1 text-xs text-zinc-400 hover:text-white rounded transition font-mono cursor-pointer">
+                  Minify
+                </button>
               </div>
             </div>
             <div class="flex items-center gap-2">

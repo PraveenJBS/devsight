@@ -18,569 +18,576 @@ interface DiffLine {
     <div class="space-y-6 font-sans text-left">
       <!-- Main Workspace Section (Two or Three Columns split based on diff/editor mode) -->
       <div class="grid grid-cols-1 lg:grid-cols-1 gap-4 items-start">
-        <!-- Workbench Controls Panel Left column -->
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-start">
-          <!-- Tool Configuration Drawer -->
-          <div class="md:col-span-3 bg-white dark:bg-zinc-900/60 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800/80 shadow-sm text-left relative overflow-hidden block">
-            <span class="text-[10px] uppercase font-mono tracking-widest text-[#10b981] font-extrabold block mb-4">WIDGET PARAMETERS</span>
-            <!-- Tool 1: Text Formatter -->
-            @if (toolId() === 'text-formatter') {
-              <div class="space-y-4">
-                <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Formatting Options</span>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-mono">
-                  <button (click)="formatNormalizeWhitespace()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:border-zinc-300 dark:hover:border-emerald-600 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer hover:bg-zinc-100 transition truncate-none">
-                    Normalize Spaces
-                  </button>
-                  <button (click)="formatRemoveExtraSpaces()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:border-zinc-300 dark:hover:border-emerald-600 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer hover:bg-zinc-100 transition truncate-none">
-                    Remove Extra Spaces
-                  </button>
-                  <button (click)="formatRemoveEmptyLines()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:border-zinc-300 dark:hover:border-emerald-600 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer hover:bg-zinc-100 transition truncate-none">
-                    Remove Empty Lines
-                  </button>
-                  <button (click)="formatTrim()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:border-zinc-300 dark:hover:border-emerald-600 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer hover:bg-zinc-100 transition truncate-none">
-                    Trim All Lines
-                  </button>
-                  <button (click)="formatBeautify()" class="text-left px-3 py-2 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 rounded-xl font-bold text-emerald-600 dark:text-emerald-400 cursor-pointer transition truncate-none">
-                    Beautify Whitespace
-                  </button>
-                  <button (click)="formatMinify()" class="text-left px-3 py-2 bg-orange-500/10 hover:bg-orange-500/20 border border-orange-500/20 rounded-xl font-bold text-orange-600 dark:text-orange-400 cursor-pointer transition truncate-none">
-                    Minify Text
-                  </button>
-                </div>
+        <aside class="relative w-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden shadow-sm transition-all duration-300">
+              <!-- Toggle Button -->
+              <button (click)="toggleSidebar()" type="button" tabindex="0"
+                class="absolute top-2 cursor-pointer right-3 z-20 p-1.5 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 rounded-lg flex items-center justify-center transition"
+                [title]="sidebarExpanded() ? 'Collapse tools' : 'Expand tools'">
+                <mat-icon style="font-size:18px;width:18px;height:18px;">
+                  {{ sidebarExpanded() ? 'expand_circle_up' : 'expand_circle_down' }}
+                </mat-icon>
+              </button>
+              @if (sidebarExpanded()) {
+                <!-- Expanded State -->
+                 <div class="p-4">
+                  <!-- Tool Configuration Drawer -->
+                    <div class="md:col-span-3 bg-white dark:bg-zinc-900/60 shadow-sm text-left relative overflow-hidden block">
+                      <!-- Tool 1: Text Formatter -->
+                      @if (toolId() === 'text-formatter') {
+                        <div class="space-y-4">
+                          <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Formatting Options</span>
+                          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-mono">
+                            <button (click)="formatNormalizeWhitespace()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:border-zinc-300 dark:hover:border-emerald-600 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer hover:bg-zinc-100 transition truncate-none">
+                              Normalize Spaces
+                            </button>
+                            <button (click)="formatRemoveExtraSpaces()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:border-zinc-300 dark:hover:border-emerald-600 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer hover:bg-zinc-100 transition truncate-none">
+                              Remove Extra Spaces
+                            </button>
+                            <button (click)="formatRemoveEmptyLines()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:border-zinc-300 dark:hover:border-emerald-600 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer hover:bg-zinc-100 transition truncate-none">
+                              Remove Empty Lines
+                            </button>
+                            <button (click)="formatTrim()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:border-zinc-300 dark:hover:border-emerald-600 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer hover:bg-zinc-100 transition truncate-none">
+                              Trim All Lines
+                            </button>
+                            <button (click)="formatBeautify()" class="text-left px-3 py-2 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 rounded-xl font-bold text-emerald-600 dark:text-emerald-400 cursor-pointer transition truncate-none">
+                              Beautify Whitespace
+                            </button>
+                            <button (click)="formatMinify()" class="text-left px-3 py-2 bg-orange-500/10 hover:bg-orange-500/20 border border-orange-500/20 rounded-xl font-bold text-orange-600 dark:text-orange-400 cursor-pointer transition truncate-none">
+                              Minify Text
+                            </button>
+                          </div>
 
-                <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block pt-2 border-b border-zinc-150 dark:border-zinc-850 pb-2">Line Manipulation</span>
-                <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-xs font-mono">
-                  <button (click)="lineSortAsc()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:border-zinc-300 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
-                    Sort Lines Asc
-                  </button>
-                  <button (click)="lineSortDesc()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:border-zinc-300 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
-                    Sort Lines Desc
-                  </button>
-                  <button (click)="lineReverse()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:border-zinc-300 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
-                    Reverse Lines
-                  </button>
-                  <button (click)="lineShuffle()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:border-zinc-300 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
-                    Shuffle Lines
-                  </button>
-                </div>
+                          <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block pt-2 border-b border-zinc-150 dark:border-zinc-850 pb-2">Line Manipulation</span>
+                          <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-xs font-mono">
+                            <button (click)="lineSortAsc()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:border-zinc-300 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
+                              Sort Lines Asc
+                            </button>
+                            <button (click)="lineSortDesc()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:border-zinc-300 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
+                              Sort Lines Desc
+                            </button>
+                            <button (click)="lineReverse()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:border-zinc-300 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
+                              Reverse Lines
+                            </button>
+                            <button (click)="lineShuffle()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:border-zinc-300 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
+                              Shuffle Lines
+                            </button>
+                          </div>
 
-                <div class="space-y-4 pt-2 border-t border-zinc-150 dark:border-zinc-850">
-                  <span class="block text-xs font-semibold text-zinc-500 dark:text-zinc-400">Indent / Outdent Control</span>
-                  <div class="flex items-center gap-2">
-                    <button (click)="indentText(2)" class="flex-grow py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-mono text-[11px] font-bold text-zinc-600 dark:text-zinc-300 cursor-pointer transition">
-                      + 2 Spaces
-                    </button>
-                    <button (click)="indentText(4)" class="flex-grow py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-mono text-[11px] font-bold text-zinc-600 dark:text-zinc-300 cursor-pointer transition">
-                      + 4 Spaces
-                    </button>
-                    <button (click)="outdentText()" class="flex-grow py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-mono text-[11px] font-bold text-zinc-650 dark:text-zinc-300 cursor-pointer transition">
-                      Outdent
-                    </button>
-                  </div>
-                </div>
-              </div>
-            }
+                          <div class="space-y-4 pt-2 border-t border-zinc-150 dark:border-zinc-850">
+                            <span class="block text-xs font-semibold text-zinc-500 dark:text-zinc-400">Indent / Outdent Control</span>
+                            <div class="flex items-center gap-2">
+                              <button (click)="indentText(2)" class="flex-grow py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-mono text-[11px] font-bold text-zinc-600 dark:text-zinc-300 cursor-pointer transition">
+                                + 2 Spaces
+                              </button>
+                              <button (click)="indentText(4)" class="flex-grow py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-mono text-[11px] font-bold text-zinc-600 dark:text-zinc-300 cursor-pointer transition">
+                                + 4 Spaces
+                              </button>
+                              <button (click)="outdentText()" class="flex-grow py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-mono text-[11px] font-bold text-zinc-650 dark:text-zinc-300 cursor-pointer transition">
+                                Outdent
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      }
 
-            <!-- Tool 2: Diff Checker -->
-            @if (toolId() === 'text-diff-checker') {
-              <div class="space-y-4">
-                <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Diff Configuration</span>
-                <div class="space-y-3">
-                  <label class="flex items-center gap-2.5 text-xs text-zinc-600 dark:text-zinc-300 cursor-pointer select-none font-semibold">
-                    <input type="checkbox" [checked]="diffIgnoreWhitespace()"
-                      (change)="diffIgnoreWhitespace.set($any($event.target).checked); computeDiff()" 
-                      class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
-                    />
-                    Ignore line-padding whitespace
-                  </label>
+                      <!-- Tool 2: Diff Checker -->
+                      @if (toolId() === 'text-diff-checker') {
+                        <div class="space-y-4">
+                          <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Diff Configuration</span>
+                          <div class="space-y-3">
+                            <label class="flex items-center gap-2.5 text-xs text-zinc-600 dark:text-zinc-300 cursor-pointer select-none font-semibold">
+                              <input type="checkbox" [checked]="diffIgnoreWhitespace()"
+                                (change)="diffIgnoreWhitespace.set($any($event.target).checked); computeDiff()" 
+                                class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
+                              />
+                              Ignore line-padding whitespace
+                            </label>
 
-                  <div class="space-y-1.5">
-                    <span class="block text-xs font-semibold text-zinc-500 dark:text-zinc-400 select-none">View Arrangement</span>
-                    <div class="grid grid-cols-2 gap-1 bg-zinc-50 dark:bg-zinc-950 p-1 rounded-xl border border-zinc-150 dark:border-zinc-850">
-                      <button
-                        (click)="diffViewMode.set('split')"
-                        [class.bg-white]="diffViewMode() === 'split'"
-                        [class.dark:bg-zinc-900]="diffViewMode() === 'split'"
-                        [class.text-zinc-900]="diffViewMode() === 'split'"
-                        [class.dark:text-white]="diffViewMode() === 'split'"
-                        [class.text-zinc-500]="diffViewMode() !== 'split'"
-                        class="py-1.5 text-[10px] font-bold uppercase rounded-lg transition-all cursor-pointer font-mono"
-                      >
-                        Split View
-                      </button>
-                      <button
-                        (click)="diffViewMode.set('inline')"
-                        [class.bg-white]="diffViewMode() === 'inline'"
-                        [class.dark:bg-zinc-900]="diffViewMode() === 'inline'"
-                        [class.text-zinc-900]="diffViewMode() === 'inline'"
-                        [class.dark:text-white]="diffViewMode() === 'inline'"
-                        [class.text-zinc-500]="diffViewMode() !== 'inline'"
-                        class="py-1.5 text-[10px] font-bold uppercase rounded-lg transition-all cursor-pointer font-mono"
-                      >
-                        Inline View
-                      </button>
+                            <div class="space-y-1.5">
+                              <span class="block text-xs font-semibold text-zinc-500 dark:text-zinc-400 select-none">View Arrangement</span>
+                              <div class="grid grid-cols-2 gap-1 bg-zinc-50 dark:bg-zinc-950 p-1 rounded-xl border border-zinc-150 dark:border-zinc-850">
+                                <button
+                                  (click)="diffViewMode.set('split')"
+                                  [class.bg-white]="diffViewMode() === 'split'"
+                                  [class.dark:bg-zinc-900]="diffViewMode() === 'split'"
+                                  [class.text-zinc-900]="diffViewMode() === 'split'"
+                                  [class.dark:text-white]="diffViewMode() === 'split'"
+                                  [class.text-zinc-500]="diffViewMode() !== 'split'"
+                                  class="py-1.5 text-[10px] font-bold uppercase rounded-lg transition-all cursor-pointer font-mono"
+                                >
+                                  Split View
+                                </button>
+                                <button
+                                  (click)="diffViewMode.set('inline')"
+                                  [class.bg-white]="diffViewMode() === 'inline'"
+                                  [class.dark:bg-zinc-900]="diffViewMode() === 'inline'"
+                                  [class.text-zinc-900]="diffViewMode() === 'inline'"
+                                  [class.dark:text-white]="diffViewMode() === 'inline'"
+                                  [class.text-zinc-500]="diffViewMode() !== 'inline'"
+                                  class="py-1.5 text-[10px] font-bold uppercase rounded-lg transition-all cursor-pointer font-mono"
+                                >
+                                  Inline View
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="p-3 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 rounded-xl text-[11px] leading-relaxed text-zinc-500 font-medium">
+                            Add target baseline text into the <strong class="text-zinc-700 dark:text-zinc-300">A Panel</strong>, modified changes in <strong class="text-zinc-700 dark:text-zinc-300">B Panel</strong> on the right. Diffs are compiled in absolute real-time.
+                          </div>
+                        </div>
+                      }
+
+                      <!-- Tool 3: Case Converter -->
+                      @if (toolId() === 'case-converter') {
+                        <div class="space-y-4">
+                          <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Standard Casings</span>
+                          <div class="grid grid-cols-1 md:grid-cols-4 gap-2 text-xs font-mono">
+                            <button (click)="convertCase('camel')" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
+                              camelCase
+                            </button>
+                            <button (click)="convertCase('pascal')" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
+                              PascalCase
+                            </button>
+                            <button (click)="convertCase('snake')" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
+                              snake_case
+                            </button>
+                            <button (click)="convertCase('kebab')" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
+                              kebab-case
+                            </button>
+                            <button (click)="convertCase('constant')" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
+                              CONSTANT_CASE
+                            </button>
+                            <button (click)="convertCase('upper')" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
+                              UPPER CASE
+                            </button>
+                            <button (click)="convertCase('lower')" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
+                              lower case
+                            </button>
+                            <button (click)="convertCase('sentence')" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
+                              Sentence case
+                            </button>
+                          </div>
+
+                          <div class="space-y-4 pt-4 border-t border-zinc-150 dark:border-zinc-850">
+                            <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block">Productivity Builders</span>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                              <button (click)="formatFilename()" class="w-full text-left px-3 py-2 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/20 rounded-xl font-mono font-bold text-blue-600 dark:text-blue-400 text-xs cursor-pointer transition flex items-center justify-between">
+                                <span>Clean Filename Formatter</span>
+                                <mat-icon class="text-sm scale-95">insert_drive_file</mat-icon>
+                              </button>
+                              <button (click)="generateVariable()" class="w-full text-left px-3 py-2 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 rounded-xl font-mono font-bold text-emerald-600 dark:text-emerald-400 text-xs cursor-pointer transition flex items-center justify-between">
+                                <span>Variable Name Generator</span>
+                                <mat-icon class="text-sm scale-95">terminal</mat-icon>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      }
+
+                      <!-- Tool 4: Slug Generator -->
+                      @if (toolId() === 'slug-generator') {
+                        <div class="space-y-4">
+                          <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Slug Modifiers</span>
+                          <div class="space-y-3">
+                            <div class="space-y-1.5">
+                              <span class="block text-xs text-zinc-500 dark:text-zinc-400 font-semibold select-none">Separator Character</span>
+                              <select [ngModel]="slugSeparator()" (ngModelChange)="slugSeparator.set($event); triggerSlugGeneration()"
+                                class="w-full p-2.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-850 rounded-xl text-xs font-mono outline-none focus:ring-1 focus:ring-emerald-500 text-zinc-700 dark:text-zinc-300"
+                              >
+                                <option value="-">Hyphen (-)</option>
+                                <option value="_">Underscore (_)</option>
+                                <option value="/">Forward Slash (/)</option>
+                                <option value="">None (Concatenated)</option>
+                              </select>
+                            </div>
+
+                            <label class="flex items-center gap-2.5 text-xs text-zinc-650 dark:text-zinc-300 cursor-pointer select-none py-1 font-semibold">
+                              <input 
+                                type="checkbox" 
+                                [checked]="slugRemoveStopwords()" 
+                                (change)="slugRemoveStopwords.set($any($event.target).checked); triggerSlugGeneration()" 
+                                class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
+                              />
+                              Strip English Stop Words (the, and, a)
+                            </label>
+
+                            <label class="flex items-center gap-2.5 text-xs text-zinc-650 dark:text-zinc-300 cursor-pointer select-none py-1 font-semibold">
+                              <input 
+                                type="checkbox" 
+                                [checked]="slugStripNumbers()" 
+                                (change)="slugStripNumbers.set($any($event.target).checked); triggerSlugGeneration()" 
+                                class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
+                              />
+                              Strip numeric digits
+                            </label>
+
+                            <label class="flex items-center gap-2.5 text-xs text-zinc-650 dark:text-zinc-300 cursor-pointer select-none py-1 font-semibold">
+                              <input 
+                                type="checkbox" 
+                                [checked]="slugKeepUppercase()" 
+                                (change)="slugKeepUppercase.set($any($event.target).checked); triggerSlugGeneration()" 
+                                class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
+                              />
+                              Keep upper casing structure
+                            </label>
+                          </div>
+                        </div>
+                      }
+
+                      <!-- Tool 5: Markdown Preview -->
+                      @if (toolId() === 'markdown-preview' || toolId() === 'markdown-tools') {
+                        <div class="space-y-4">
+                          <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Markdown Utilities</span>
+                          @if (toolId() === 'markdown-tools') {
+                            <div class="space-y-4 text-xs">
+                              <span class="text-xs font-bold text-zinc-550 dark:text-zinc-400 uppercase tracking-wide block">Insert elements</span>
+                              <div class="grid grid-cols-3 gap-1.5 font-mono text-[10px]">
+                                <button (click)="markdownInsert('bold')" class="py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 rounded-lg hover:border-zinc-300 font-bold text-zinc-650 dark:text-zinc-300 cursor-pointer">
+                                  Bold (**)
+                                </button>
+                                <button (click)="markdownInsert('italic')" class="py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 rounded-lg hover:border-zinc-300 font-bold text-zinc-650 dark:text-zinc-300 cursor-pointer">
+                                  Italic (*)
+                                </button>
+                                <button (click)="markdownInsert('link')" class="py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 rounded-lg hover:border-zinc-300 font-bold text-zinc-650 dark:text-zinc-300 cursor-pointer">
+                                  Link ([])
+                                </button>
+                                <button (click)="markdownInsert('quote')" class="py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 rounded-lg hover:border-zinc-300 font-bold text-zinc-650 dark:text-zinc-300 cursor-pointer">
+                                  Quote (>)
+                                </button>
+                                <button (click)="markdownInsert('table')" class="py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 rounded-lg hover:border-zinc-300 font-bold text-zinc-650 dark:text-zinc-300 cursor-pointer">
+                                  Checklist
+                                </button>
+                                <button (click)="markdownInsert('code')" class="py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 rounded-lg hover:border-zinc-300 font-bold text-zinc-650 dark:text-zinc-300 cursor-pointer">
+                                  Code (\`\`)
+                                </button>
+                              </div>
+
+                              <!-- Visual table generator module -->
+                              <div class="space-y-2 border-t border-zinc-150 dark:border-zinc-850 pt-3">
+                                <span class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block font-mono">Visual Table Creator</span>
+                                <div class="flex items-center gap-2 text-xs font-mono">
+                                  <div class="flex-1">
+                                    <span class="block text-[9px] text-zinc-500 font-semibold mb-0.5">ROWS</span>
+                                    <input type="number" [(ngModel)]="mdTableRows" class="w-full text-center p-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-850 rounded-lg text-zinc-700 dark:text-zinc-300 outline-none" min="1" max="15"/>
+                                  </div>
+                                  <div class="flex-1">
+                                    <span class="block text-[9px] text-zinc-500 font-semibold mb-0.5">COLUMNS</span>
+                                    <input type="number" [(ngModel)]="mdTableCols" class="w-full text-center p-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-850 rounded-lg text-zinc-700 dark:text-zinc-300 outline-none" min="1" max="15"/>
+                                  </div>
+                                  <div class="flex-1">
+                                    <span class="block text-[9px] text-zinc-500 font-semibold mb-0.5">INSERT</span>
+                                    <button (click)="markdownInsertTable()" class="w-full py-1.5 bg-emerald-500/10 hover:bg-emerald-500/15 border border-emerald-500/20 font-bold rounded-lg text-emerald-600 dark:text-emerald-400 font-mono text-[10px] cursor-pointer text-center block">
+                                      INSERT TABLE SYNTX
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          }
+
+                          <div class="space-y-2 pt-2 border-t border-zinc-150 dark:border-zinc-850 font-semibold">
+                            <span class="block text-xs text-zinc-500">Live Preview Output View</span>
+                            <div class="grid grid-cols-2 gap-1 bg-zinc-50 dark:bg-zinc-950 p-1 rounded-xl border border-zinc-150 dark:border-zinc-850 text-xs">
+                              <button
+                                (click)="mdPreviewMode.set('rendered')"
+                                [class.bg-white]="mdPreviewMode() === 'rendered'"
+                                [class.dark:bg-zinc-900]="mdPreviewMode() === 'rendered'"
+                                [class.text-zinc-900]="mdPreviewMode() === 'rendered'"
+                                [class.dark:text-white]="mdPreviewMode() === 'rendered'"
+                                [class.text-zinc-500]="mdPreviewMode() !== 'rendered'"
+                                class="py-1 font-bold rounded-lg transition-all cursor-pointer font-mono text-[10px]"
+                              >
+                                RENDERED HTML
+                              </button>
+                              <button
+                                (click)="mdPreviewMode.set('raw')"
+                                [class.bg-white]="mdPreviewMode() === 'raw'"
+                                [class.dark:bg-zinc-900]="mdPreviewMode() === 'raw'"
+                                [class.text-zinc-900]="mdPreviewMode() === 'raw'"
+                                [class.dark:text-white]="mdPreviewMode() === 'raw'"
+                                [class.text-zinc-500]="mdPreviewMode() !== 'raw'"
+                                class="py-1 font-bold rounded-lg transition-all cursor-pointer font-mono text-[10px]"
+                              >
+                                RAW HTML CODE
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      }
+
+                      <!-- Tool 6: Character Counter -->
+                      @if (toolId() === 'character-counter') {
+                        <div class="space-y-4 select-all text-xs font-mono">
+                          <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Readability Metrics</span>
+                          <div class="space-y-2 text-zinc-600 dark:text-zinc-400">
+                            <div class="flex justify-between py-1 border-b border-zinc-100 dark:border-zinc-850/50">
+                              <span class="font-bold">Reading Speed:</span>
+                              <span class="text-zinc-900 dark:text-zinc-200 font-semibold">{{ readabilityReadingTime() }}</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-zinc-100 dark:border-zinc-850/50">
+                              <span class="font-bold">Speaking Speed:</span>
+                              <span class="text-zinc-900 dark:text-zinc-200 font-semibold">{{ readabilitySpeakingTime() }}</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-zinc-100 dark:border-zinc-850/50">
+                              <span class="font-bold">Sentences count:</span>
+                              <span class="text-zinc-900 dark:text-zinc-200 font-bold">{{ readabilitySentences() }}</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-zinc-100 dark:border-zinc-850/50">
+                              <span class="font-bold">Paragraphs count:</span>
+                              <span class="text-zinc-900 dark:text-zinc-200 font-bold">{{ readabilityParagraphs() }}</span>
+                            </div>
+                            <div class="flex justify-between py-1">
+                              <span class="font-bold">Avg Word Length:</span>
+                              <span class="text-zinc-900 dark:text-zinc-200 font-bold">{{ readabilityAvgWordLen() }} chars</span>
+                            </div>
+                          </div>
+
+                          <div class="pt-4 border-t border-zinc-150 dark:border-zinc-850 space-y-3">
+                            <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block">Keyword Density (Top 5)</span>
+                            <div class="space-y-1">
+                              @for (item of keywordDensityList(); track item.word) {
+                                <div class="flex items-center justify-between text-[11px] py-1 border-b border-zinc-50 dark:border-zinc-900/60 font-mono">
+                                  <span class="text-zinc-700 dark:text-zinc-300 font-bold select-text">"{{ item.word }}"</span>
+                                  <span class="px-1.5 py-0.5 bg-zinc-100 dark:bg-zinc-950 text-zinc-550 border border-zinc-200 dark:border-zinc-900 rounded font-semibold">{{ item.count }}x ({{ item.percent }}%)</span>
+                                </div>
+                              } @empty {
+                                <span class="text-zinc-500 block italic leading-relaxed">Awaiting input content to run analytics index...</span>
+                              }
+                            </div>
+                          </div>
+                        </div>
+                      }
+
+                      <!-- Tool 7: Remove Duplicate Lines -->
+                      @if (toolId() === 'remove-duplicate-lines') {
+                        <div class="space-y-4">
+                          <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Deduplication Rules</span>
+                          <div class="space-y-3">
+                            <label class="flex items-center gap-2.5 text-xs text-zinc-650 dark:text-zinc-300 cursor-pointer select-none font-semibold">
+                              <input type="checkbox" [checked]="dupCaseInsensitive()"
+                                (change)="dupCaseInsensitive.set($any($event.target).checked); dedupLines()" 
+                                class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
+                              />
+                              Case-Insensitive Deduplication
+                            </label>
+
+                            <label class="flex items-center gap-2.5 text-xs text-zinc-650 dark:text-zinc-300 cursor-pointer select-none font-semibold">
+                              <input type="checkbox" [checked]="dupStripWhitespace()" (change)="dupStripWhitespace.set($any($event.target).checked); dedupLines()" 
+                                class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
+                              />
+                              Strip spacing before checks
+                            </label>
+
+                            <div class="space-y-1.5">
+                              <span class="block text-xs text-zinc-500 dark:text-zinc-400 font-semibold select-none">Preservation Strategy</span>
+                              <select [ngModel]="dupPreserveMode()" (ngModelChange)="dupPreserveMode.set($event); dedupLines()"
+                                class="w-full p-2.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-850 rounded-xl text-xs font-mono outline-none focus:ring-1 focus:ring-emerald-500 text-zinc-700 dark:text-zinc-300"
+                              >
+                                <option value="first">Preserve FIRST instance</option>
+                                <option value="last">Preserve LAST instance</option>
+                                <option value="unique-only">Extract ONLY unique items</option>
+                              </select>
+                            </div>
+
+                            <div class="space-y-2 border-t border-zinc-150 dark:border-zinc-850 pt-4">
+                              <button (click)="dedupWordsInline()" class="w-full text-left px-3 py-2 bg-emerald-500/10 hover:bg-emerald-500/15 border border-emerald-500/20 rounded-xl font-mono font-bold text-emerald-600 dark:text-emerald-400 text-xs cursor-pointer transition flex items-center justify-between">
+                                <span>Deduplicate Words Inline</span>
+                                <mat-icon class="text-sm scale-95">text_fields</mat-icon>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      }
+
+                      <!-- Tool 8: Text Cleaner -->
+                      @if (toolId() === 'text-cleaner') {
+                        <div class="space-y-4">
+                          <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Cleaning Sub-functions</span>
+                          <div class="space-y-3 font-semibold text-xs text-zinc-650 dark:text-zinc-300">
+                            <label class="flex items-center gap-2.5 cursor-pointer select-none">
+                              <input type="checkbox" [(ngModel)]="cleanHTML" (change)="executeCleaning()"
+                                class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
+                              />
+                              Strip HTML & XML Tags
+                            </label>
+
+                            <label class="flex items-center gap-2.5 cursor-pointer select-none">
+                              <input 
+                                type="checkbox" 
+                                [(ngModel)]="cleanSpecialChars"
+                                (change)="executeCleaning()"
+                                class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
+                              />
+                              Strip Special Characters
+                            </label>
+
+                            <label class="flex items-center gap-2.5 cursor-pointer select-none">
+                              <input type="checkbox" [(ngModel)]="cleanEmojis" (change)="executeCleaning()"
+                                class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
+                              />
+                              Strip Graphic Emojis
+                            </label>
+
+                            <label class="flex items-center gap-2.5 cursor-pointer select-none">
+                              <input type="checkbox" [(ngModel)]="cleanUnicode" (change)="executeCleaning()"
+                                class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
+                              />
+                              Strip Non-ASCII Unicode Symbols
+                            </label>
+
+                            <label class="flex items-center gap-2.5 cursor-pointer select-none">
+                              <input type="checkbox" [(ngModel)]="cleanSpaces"
+                                (change)="executeCleaning()"
+                                class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
+                              />
+                              Strip Redundant Multi-spaces
+                            </label>
+
+                            <label class="flex items-center gap-2.5 cursor-pointer select-none">
+                              <input type="checkbox" [(ngModel)]="cleanSpacesAll"
+                                (change)="executeCleaning()"
+                                class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
+                              />
+                              Stirp absolutely all spacebars
+                            </label>
+                          </div>
+                        </div>
+                      }
+
+                      <!-- Tool 9: HTML Escape / String Tools -->
+                      @if (toolId() === 'html-escape') {
+                        <div class="space-y-4">
+                          <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Encoding Matrices</span>
+                          <div class="grid grid-cols-1 gap-1.5 text-xs font-mono">
+                            <div class="flex items-center gap-1">
+                              <button (click)="escapeHtml(true)" class="flex-1 px-2.5 py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-850 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-lg text-zinc-700 dark:text-zinc-300 cursor-pointer font-bold transition">
+                                HTML Escape
+                              </button>
+                              <button (click)="escapeHtml(false)" class="flex-1 px-2.5 py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-850 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-lg text-zinc-700 dark:text-zinc-300 cursor-pointer font-bold transition">
+                                HTML Unescape
+                              </button>
+                            </div>
+
+                            <div class="flex items-center gap-1">
+                              <button (click)="escapeJson(true)" class="flex-1 px-2.5 py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-850 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-lg text-zinc-700 dark:text-zinc-300 cursor-pointer font-bold transition">
+                                JSON Escape
+                              </button>
+                              <button (click)="escapeJson(false)" class="flex-1 px-2.5 py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-850 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-lg text-zinc-700 dark:text-zinc-300 cursor-pointer font-bold transition">
+                                JSON Unescape
+                              </button>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-2 text-xs font-mono">
+                              <button (click)="escapeJS()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
+                                JavaScript String Escaper
+                              </button>
+                              <button (click)="escapeSql()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
+                                SQL String Sanitize Escape
+                              </button>
+                              <button (click)="escapeRegex()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
+                                RegExp Safe Escaper
+                              </button>
+                            </div>
+                            <div class="flex items-center gap-1 border-t border-zinc-150 dark:border-zinc-850 pt-3 flex-wrap">
+                              <button (click)="convertBinary('to')" class="flex-1 px-2.5 py-1.5 bg-emerald-500/10 hover:bg-emerald-500/15 border border-emerald-500/20 rounded-lg text-emerald-600 dark:text-emerald-400 cursor-pointer font-bold transition">
+                                ASCII &rarr; BIN
+                              </button>
+                              <button (click)="convertBinary('from')" class="flex-1 px-2.5 py-1.5 bg-emerald-500/10 hover:bg-emerald-500/15 border border-emerald-500/20 rounded-lg text-emerald-600 dark:text-emerald-400 cursor-pointer font-bold transition">
+                                BIN &rarr; ASCII
+                              </button>
+                            </div>
+
+                            <div class="flex items-center gap-1 flex-wrap">
+                              <button (click)="convertHex('to')" class="flex-1 px-2.5 py-1.5 bg-blue-500/10 hover:bg-blue-500/15 border border-blue-500/20 rounded-lg text-blue-600 dark:text-blue-400 cursor-pointer font-bold transition">
+                                ASCII &rarr; HEX
+                              </button>
+                              <button (click)="convertHex('from')" class="flex-1 px-2.5 py-1.5 bg-blue-500/10 hover:bg-blue-500/15 border border-blue-500/20 rounded-lg text-blue-600 dark:text-blue-400 cursor-pointer font-bold transition">
+                                HEX &rarr; ASCII
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      }
                     </div>
-                  </div>
                 </div>
-
-                <div class="p-3 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 rounded-xl text-[11px] leading-relaxed text-zinc-500 font-medium">
-                  Add target baseline text into the <strong class="text-zinc-700 dark:text-zinc-300">A Panel</strong>, modified changes in <strong class="text-zinc-700 dark:text-zinc-300">B Panel</strong> on the right. Diffs are compiled in absolute real-time.
+              } @else {
+                <!-- Collapsed State -->
+                <div class="flex items-center gap-2 p-2 pr-12 overflow-x-auto scrollbar-thin">
+                  <span class="text-xs font-mono px-2 py-0.5 bg-emerald-500/10 dark:bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold border border-emerald-150 dark:border-emerald-500/30 rounded-lg">
+                    {{ toolName() | uppercase }}
+                  </span>
+                  <span class="w-px h-6 bg-zinc-200 dark:bg-zinc-800 mx-1"></span>
+                  <span class="text-xs font-mono px-2 py-0.5 bg-emerald-500/10 dark:bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold border border-emerald-150 dark:border-emerald-500/30 rounded-lg">WIDGET PARAMETERS</span>
                 </div>
-              </div>
-            }
-
-            <!-- Tool 3: Case Converter -->
-            @if (toolId() === 'case-converter') {
-              <div class="space-y-4">
-                <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Standard Casings</span>
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-2 text-xs font-mono">
-                  <button (click)="convertCase('camel')" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
-                    camelCase
-                  </button>
-                  <button (click)="convertCase('pascal')" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
-                    PascalCase
-                  </button>
-                  <button (click)="convertCase('snake')" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
-                    snake_case
-                  </button>
-                  <button (click)="convertCase('kebab')" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
-                    kebab-case
-                  </button>
-                  <button (click)="convertCase('constant')" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
-                    CONSTANT_CASE
-                  </button>
-                  <button (click)="convertCase('upper')" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
-                    UPPER CASE
-                  </button>
-                  <button (click)="convertCase('lower')" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
-                    lower case
-                  </button>
-                  <button (click)="convertCase('sentence')" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
-                    Sentence case
-                  </button>
-                </div>
-
-                <div class="space-y-4 pt-4 border-t border-zinc-150 dark:border-zinc-850">
-                  <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block">Productivity Builders</span>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                    <button (click)="formatFilename()" class="w-full text-left px-3 py-2 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/20 rounded-xl font-mono font-bold text-blue-600 dark:text-blue-400 text-xs cursor-pointer transition flex items-center justify-between">
-                      <span>Clean Filename Formatter</span>
-                      <mat-icon class="text-sm scale-95">insert_drive_file</mat-icon>
-                    </button>
-                    <button (click)="generateVariable()" class="w-full text-left px-3 py-2 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 rounded-xl font-mono font-bold text-emerald-600 dark:text-emerald-400 text-xs cursor-pointer transition flex items-center justify-between">
-                      <span>Variable Name Generator</span>
-                      <mat-icon class="text-sm scale-95">terminal</mat-icon>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            }
-
-            <!-- Tool 4: Slug Generator -->
-            @if (toolId() === 'slug-generator') {
-              <div class="space-y-4">
-                <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Slug Modifiers</span>
-                <div class="space-y-3">
-                  <div class="space-y-1.5">
-                    <span class="block text-xs text-zinc-500 dark:text-zinc-400 font-semibold select-none">Separator Character</span>
-                    <select [ngModel]="slugSeparator()" (ngModelChange)="slugSeparator.set($event); triggerSlugGeneration()"
-                      class="w-full p-2.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-850 rounded-xl text-xs font-mono outline-none focus:ring-1 focus:ring-emerald-500 text-zinc-700 dark:text-zinc-300"
-                    >
-                      <option value="-">Hyphen (-)</option>
-                      <option value="_">Underscore (_)</option>
-                      <option value="/">Forward Slash (/)</option>
-                      <option value="">None (Concatenated)</option>
-                    </select>
-                  </div>
-
-                  <label class="flex items-center gap-2.5 text-xs text-zinc-650 dark:text-zinc-300 cursor-pointer select-none py-1 font-semibold">
-                    <input 
-                      type="checkbox" 
-                      [checked]="slugRemoveStopwords()" 
-                      (change)="slugRemoveStopwords.set($any($event.target).checked); triggerSlugGeneration()" 
-                      class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
-                    />
-                    Strip English Stop Words (the, and, a)
-                  </label>
-
-                  <label class="flex items-center gap-2.5 text-xs text-zinc-650 dark:text-zinc-300 cursor-pointer select-none py-1 font-semibold">
-                    <input 
-                      type="checkbox" 
-                      [checked]="slugStripNumbers()" 
-                      (change)="slugStripNumbers.set($any($event.target).checked); triggerSlugGeneration()" 
-                      class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
-                    />
-                    Strip numeric digits
-                  </label>
-
-                  <label class="flex items-center gap-2.5 text-xs text-zinc-650 dark:text-zinc-300 cursor-pointer select-none py-1 font-semibold">
-                    <input 
-                      type="checkbox" 
-                      [checked]="slugKeepUppercase()" 
-                      (change)="slugKeepUppercase.set($any($event.target).checked); triggerSlugGeneration()" 
-                      class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
-                    />
-                    Keep upper casing structure
-                  </label>
-                </div>
-              </div>
-            }
-
-            <!-- Tool 5: Markdown Preview -->
-            @if (toolId() === 'markdown-preview' || toolId() === 'markdown-tools') {
-              <div class="space-y-4">
-                <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Markdown Utilities</span>
-                @if (toolId() === 'markdown-tools') {
-                  <div class="space-y-4 text-xs">
-                    <span class="text-xs font-bold text-zinc-550 dark:text-zinc-400 uppercase tracking-wide block">Insert elements</span>
-                    <div class="grid grid-cols-3 gap-1.5 font-mono text-[10px]">
-                      <button (click)="markdownInsert('bold')" class="py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 rounded-lg hover:border-zinc-300 font-bold text-zinc-650 dark:text-zinc-300 cursor-pointer">
-                        Bold (**)
-                      </button>
-                      <button (click)="markdownInsert('italic')" class="py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 rounded-lg hover:border-zinc-300 font-bold text-zinc-650 dark:text-zinc-300 cursor-pointer">
-                        Italic (*)
-                      </button>
-                      <button (click)="markdownInsert('link')" class="py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 rounded-lg hover:border-zinc-300 font-bold text-zinc-650 dark:text-zinc-300 cursor-pointer">
-                        Link ([])
-                      </button>
-                      <button (click)="markdownInsert('quote')" class="py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 rounded-lg hover:border-zinc-300 font-bold text-zinc-650 dark:text-zinc-300 cursor-pointer">
-                        Quote (>)
-                      </button>
-                      <button (click)="markdownInsert('table')" class="py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 rounded-lg hover:border-zinc-300 font-bold text-zinc-650 dark:text-zinc-300 cursor-pointer">
-                        Checklist
-                      </button>
-                      <button (click)="markdownInsert('code')" class="py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 rounded-lg hover:border-zinc-300 font-bold text-zinc-650 dark:text-zinc-300 cursor-pointer">
-                        Code (\`\`)
-                      </button>
-                    </div>
-
-                    <!-- Visual table generator module -->
-                    <div class="space-y-2 border-t border-zinc-150 dark:border-zinc-850 pt-3">
-                      <span class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block font-mono">Visual Table Creator</span>
-                      <div class="flex items-center gap-2 text-xs font-mono">
-                        <div class="flex-1">
-                          <span class="block text-[9px] text-zinc-500 font-semibold mb-0.5">ROWS</span>
-                          <input type="number" [(ngModel)]="mdTableRows" class="w-full text-center p-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-850 rounded-lg text-zinc-700 dark:text-zinc-300 outline-none" min="1" max="15"/>
-                        </div>
-                        <div class="flex-1">
-                          <span class="block text-[9px] text-zinc-500 font-semibold mb-0.5">COLUMNS</span>
-                          <input type="number" [(ngModel)]="mdTableCols" class="w-full text-center p-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-850 rounded-lg text-zinc-700 dark:text-zinc-300 outline-none" min="1" max="15"/>
-                        </div>
-                        <div class="flex-1">
-                          <span class="block text-[9px] text-zinc-500 font-semibold mb-0.5">INSERT</span>
-                          <button (click)="markdownInsertTable()" class="w-full py-1.5 bg-emerald-500/10 hover:bg-emerald-500/15 border border-emerald-500/20 font-bold rounded-lg text-emerald-600 dark:text-emerald-400 font-mono text-[10px] cursor-pointer text-center block">
-                            INSERT TABLE SYNTX
-                          </button>
-                        </div>
+              }
+        </aside>
+        <aside class="relative w-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden shadow-sm transition-all duration-300">
+          <!-- Toggle Button -->
+            <button (click)="toggleMatrix()" type="button" tabindex="0"
+              class="absolute top-2 cursor-pointer right-3 z-20 p-1.5 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 rounded-lg flex items-center justify-center transition"
+              [title]="matrixExpanded() ? 'Collapse tools' : 'Expand tools'">
+              <mat-icon style="font-size:18px;width:18px;height:18px;">
+                {{ matrixExpanded() ? 'expand_circle_up' : 'expand_circle_down' }}
+              </mat-icon>
+            </button>
+            @if (matrixExpanded()) {
+              <!-- Expanded State -->
+              <div class="p-4">
+                <!-- Workbench Controls Panel Left column -->
+                <div class="grid grid-cols-1 md:grid-cols-1 gap-4 items-start">
+                  <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">METRIC INDEX STATS</span>
+                  <!-- Live Input Inline Counters Widgets -->
+                  <div class="md:col-span-2 bg-zinc-950 p-5 rounded-2xl block space-y-3 text-left border border-zinc-850 shadow-md">
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-3 text-center">
+                      <div class="p-3 bg-zinc-900 border border-zinc-850 rounded-xl space-y-0.5">
+                        <span class="block text-[10px] font-mono font-bold text-zinc-500 uppercase tracking-wide">Characters</span>
+                        <span class="block text-lg font-bold text-white font-mono">{{ charCount() }}</span>
+                      </div>
+                      <div class="p-3 bg-zinc-900 border border-zinc-850 rounded-xl space-y-0.5">
+                        <span class="block text-[10px] font-mono font-bold text-zinc-500 uppercase tracking-wide">Words</span>
+                        <span class="block text-lg font-bold text-white font-mono">{{ wordCount() }}</span>
+                      </div>
+                      <div class="p-3 bg-zinc-900 border border-zinc-850 rounded-xl space-y-0.5">
+                        <span class="block text-[10px] font-mono font-bold text-zinc-500 uppercase tracking-wide">Lines</span>
+                        <span class="block text-lg font-bold text-white font-mono">{{ lineCount() }}</span>
+                      </div>
+                      <div class="p-3 bg-zinc-900 border border-zinc-850 rounded-xl space-y-0.5">
+                        <span class="block text-[10px] font-mono font-bold text-zinc-500 uppercase tracking-wide">Paragraphs</span>
+                        <span class="block text-lg font-bold text-white font-mono">{{ paragraphCount() }}</span>
+                      </div>
+                      <div class="p-3 bg-zinc-900 border border-zinc-850 rounded-xl space-y-0.5">
+                        <span class="block text-[10px] font-mono font-bold text-zinc-500 uppercase tracking-wide">Sentences</span>
+                        <span class="block text-lg font-bold text-white font-mono">{{ sentenceCount() }}</span>
+                      </div>
+                      <div class="p-3 bg-zinc-900 border border-zinc-850 rounded-xl space-y-0.5 col-span-full">
+                      <span class="text-xs font-mono font-bold text-zinc-500 uppercase tracking-widest block select-none">Quick Generators</span>
+                      <div class="grid grid-cols-1 md:grid-cols-3 gap-1.5 text-[10px] font-mono">
+                        <button (click)="generateLorem()" class="px-2.5 py-1.5 text-left bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 rounded-lg text-zinc-650 dark:text-zinc-400 font-bold transition cursor-pointer flex items-center justify-between border border-zinc-150 dark:border-zinc-850">
+                          <span>Lorem Ipsum Standard</span>
+                          <mat-icon class="text-xs scale-75 text-zinc-400">text_snippet</mat-icon>
+                        </button>
+                        <button (click)="generateRandomName()" class="px-2.5 py-1.5 text-left bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 rounded-lg text-zinc-650 dark:text-zinc-400 font-bold transition cursor-pointer flex items-center justify-between border border-zinc-150 dark:border-zinc-850">
+                          <span>Random Name Generator</span>
+                          <mat-icon class="text-xs scale-75 text-zinc-400">person</mat-icon>
+                        </button>
+                        <button (click)="generateUsername()" class="px-2.5 py-1.5 text-left bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 rounded-lg text-zinc-650 dark:text-zinc-400 font-bold transition cursor-pointer flex items-center justify-between border border-zinc-150 dark:border-zinc-850">
+                          <span>Random Username/ID</span>
+                          <mat-icon class="text-xs scale-75 text-zinc-400">badge</mat-icon>
+                        </button>
                       </div>
                     </div>
-                  </div>
-                }
-
-                <div class="space-y-2 pt-2 border-t border-zinc-150 dark:border-zinc-850 font-semibold">
-                  <span class="block text-xs text-zinc-500">Live Preview Output View</span>
-                  <div class="grid grid-cols-2 gap-1 bg-zinc-50 dark:bg-zinc-950 p-1 rounded-xl border border-zinc-150 dark:border-zinc-850 text-xs">
-                    <button
-                      (click)="mdPreviewMode.set('rendered')"
-                      [class.bg-white]="mdPreviewMode() === 'rendered'"
-                      [class.dark:bg-zinc-900]="mdPreviewMode() === 'rendered'"
-                      [class.text-zinc-900]="mdPreviewMode() === 'rendered'"
-                      [class.dark:text-white]="mdPreviewMode() === 'rendered'"
-                      [class.text-zinc-500]="mdPreviewMode() !== 'rendered'"
-                      class="py-1 font-bold rounded-lg transition-all cursor-pointer font-mono text-[10px]"
-                    >
-                      RENDERED HTML
-                    </button>
-                    <button
-                      (click)="mdPreviewMode.set('raw')"
-                      [class.bg-white]="mdPreviewMode() === 'raw'"
-                      [class.dark:bg-zinc-900]="mdPreviewMode() === 'raw'"
-                      [class.text-zinc-900]="mdPreviewMode() === 'raw'"
-                      [class.dark:text-white]="mdPreviewMode() === 'raw'"
-                      [class.text-zinc-500]="mdPreviewMode() !== 'raw'"
-                      class="py-1 font-bold rounded-lg transition-all cursor-pointer font-mono text-[10px]"
-                    >
-                      RAW HTML CODE
-                    </button>
+                    </div>
                   </div>
                 </div>
+              </div>
+            } @else {
+              <!-- Collapsed State -->
+              <div class="flex items-center gap-2 p-2 pr-12 overflow-x-auto scrollbar-thin">
+                <span class="text-xs font-mono px-2 py-0.5 bg-emerald-500/10 dark:bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold border border-emerald-150 dark:border-emerald-500/30 rounded-lg">METRIC INDEX STATS</span>
               </div>
             }
-
-            <!-- Tool 6: Character Counter -->
-            @if (toolId() === 'character-counter') {
-              <div class="space-y-4 select-all text-xs font-mono">
-                <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Readability Metrics</span>
-                <div class="space-y-2 text-zinc-600 dark:text-zinc-400">
-                  <div class="flex justify-between py-1 border-b border-zinc-100 dark:border-zinc-850/50">
-                    <span class="font-bold">Reading Speed:</span>
-                    <span class="text-zinc-900 dark:text-zinc-200 font-semibold">{{ readabilityReadingTime() }}</span>
-                  </div>
-                  <div class="flex justify-between py-1 border-b border-zinc-100 dark:border-zinc-850/50">
-                    <span class="font-bold">Speaking Speed:</span>
-                    <span class="text-zinc-900 dark:text-zinc-200 font-semibold">{{ readabilitySpeakingTime() }}</span>
-                  </div>
-                  <div class="flex justify-between py-1 border-b border-zinc-100 dark:border-zinc-850/50">
-                    <span class="font-bold">Sentences count:</span>
-                    <span class="text-zinc-900 dark:text-zinc-200 font-bold">{{ readabilitySentences() }}</span>
-                  </div>
-                  <div class="flex justify-between py-1 border-b border-zinc-100 dark:border-zinc-850/50">
-                    <span class="font-bold">Paragraphs count:</span>
-                    <span class="text-zinc-900 dark:text-zinc-200 font-bold">{{ readabilityParagraphs() }}</span>
-                  </div>
-                  <div class="flex justify-between py-1">
-                    <span class="font-bold">Avg Word Length:</span>
-                    <span class="text-zinc-900 dark:text-zinc-200 font-bold">{{ readabilityAvgWordLen() }} chars</span>
-                  </div>
-                </div>
-
-                <div class="pt-4 border-t border-zinc-150 dark:border-zinc-850 space-y-3">
-                  <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block">Keyword Density (Top 5)</span>
-                  <div class="space-y-1">
-                    @for (item of keywordDensityList(); track item.word) {
-                      <div class="flex items-center justify-between text-[11px] py-1 border-b border-zinc-50 dark:border-zinc-900/60 font-mono">
-                        <span class="text-zinc-700 dark:text-zinc-300 font-bold select-text">"{{ item.word }}"</span>
-                        <span class="px-1.5 py-0.5 bg-zinc-100 dark:bg-zinc-950 text-zinc-550 border border-zinc-200 dark:border-zinc-900 rounded font-semibold">{{ item.count }}x ({{ item.percent }}%)</span>
-                      </div>
-                    } @empty {
-                      <span class="text-zinc-500 block italic leading-relaxed">Awaiting input content to run analytics index...</span>
-                    }
-                  </div>
-                </div>
-              </div>
-            }
-
-            <!-- Tool 7: Remove Duplicate Lines -->
-            @if (toolId() === 'remove-duplicate-lines') {
-              <div class="space-y-4">
-                <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Deduplication Rules</span>
-                <div class="space-y-3">
-                  <label class="flex items-center gap-2.5 text-xs text-zinc-650 dark:text-zinc-300 cursor-pointer select-none font-semibold">
-                    <input type="checkbox" [checked]="dupCaseInsensitive()"
-                      (change)="dupCaseInsensitive.set($any($event.target).checked); dedupLines()" 
-                      class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
-                    />
-                    Case-Insensitive Deduplication
-                  </label>
-
-                  <label class="flex items-center gap-2.5 text-xs text-zinc-650 dark:text-zinc-300 cursor-pointer select-none font-semibold">
-                    <input type="checkbox" [checked]="dupStripWhitespace()" (change)="dupStripWhitespace.set($any($event.target).checked); dedupLines()" 
-                      class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
-                    />
-                    Strip spacing before checks
-                  </label>
-
-                  <div class="space-y-1.5">
-                    <span class="block text-xs text-zinc-500 dark:text-zinc-400 font-semibold select-none">Preservation Strategy</span>
-                    <select [ngModel]="dupPreserveMode()" (ngModelChange)="dupPreserveMode.set($event); dedupLines()"
-                      class="w-full p-2.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-850 rounded-xl text-xs font-mono outline-none focus:ring-1 focus:ring-emerald-500 text-zinc-700 dark:text-zinc-300"
-                    >
-                      <option value="first">Preserve FIRST instance</option>
-                      <option value="last">Preserve LAST instance</option>
-                      <option value="unique-only">Extract ONLY unique items</option>
-                    </select>
-                  </div>
-
-                  <div class="space-y-2 border-t border-zinc-150 dark:border-zinc-850 pt-4">
-                    <button (click)="dedupWordsInline()" class="w-full text-left px-3 py-2 bg-emerald-500/10 hover:bg-emerald-500/15 border border-emerald-500/20 rounded-xl font-mono font-bold text-emerald-600 dark:text-emerald-400 text-xs cursor-pointer transition flex items-center justify-between">
-                      <span>Deduplicate Words Inline</span>
-                      <mat-icon class="text-sm scale-95">text_fields</mat-icon>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            }
-
-            <!-- Tool 8: Text Cleaner -->
-            @if (toolId() === 'text-cleaner') {
-              <div class="space-y-4">
-                <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Cleaning Sub-functions</span>
-                <div class="space-y-3 font-semibold text-xs text-zinc-650 dark:text-zinc-300">
-                  <label class="flex items-center gap-2.5 cursor-pointer select-none">
-                    <input type="checkbox" [(ngModel)]="cleanHTML" (change)="executeCleaning()"
-                      class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
-                    />
-                    Strip HTML & XML Tags
-                  </label>
-
-                  <label class="flex items-center gap-2.5 cursor-pointer select-none">
-                    <input 
-                      type="checkbox" 
-                      [(ngModel)]="cleanSpecialChars"
-                      (change)="executeCleaning()"
-                      class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
-                    />
-                    Strip Special Characters
-                  </label>
-
-                  <label class="flex items-center gap-2.5 cursor-pointer select-none">
-                    <input type="checkbox" [(ngModel)]="cleanEmojis" (change)="executeCleaning()"
-                      class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
-                    />
-                    Strip Graphic Emojis
-                  </label>
-
-                  <label class="flex items-center gap-2.5 cursor-pointer select-none">
-                    <input type="checkbox" [(ngModel)]="cleanUnicode" (change)="executeCleaning()"
-                      class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
-                    />
-                    Strip Non-ASCII Unicode Symbols
-                  </label>
-
-                  <label class="flex items-center gap-2.5 cursor-pointer select-none">
-                    <input type="checkbox" [(ngModel)]="cleanSpaces"
-                      (change)="executeCleaning()"
-                      class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
-                    />
-                    Strip Redundant Multi-spaces
-                  </label>
-
-                  <label class="flex items-center gap-2.5 cursor-pointer select-none">
-                    <input type="checkbox" [(ngModel)]="cleanSpacesAll"
-                      (change)="executeCleaning()"
-                      class="rounded bg-zinc-100 dark:bg-zinc-950 border-zinc-300 dark:border-zinc-850 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
-                    />
-                    Stirp absolutely all spacebars
-                  </label>
-                </div>
-              </div>
-            }
-
-            <!-- Tool 9: HTML Escape / String Tools -->
-            @if (toolId() === 'html-escape') {
-              <div class="space-y-4">
-                <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide block border-b border-zinc-150 dark:border-zinc-850 pb-2">Encoding Matrices</span>
-                <div class="grid grid-cols-1 gap-1.5 text-xs font-mono">
-                  <div class="flex items-center gap-1">
-                    <button (click)="escapeHtml(true)" class="flex-1 px-2.5 py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-850 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-lg text-zinc-700 dark:text-zinc-300 cursor-pointer font-bold transition">
-                      HTML Escape
-                    </button>
-                    <button (click)="escapeHtml(false)" class="flex-1 px-2.5 py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-850 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-lg text-zinc-700 dark:text-zinc-300 cursor-pointer font-bold transition">
-                      HTML Unescape
-                    </button>
-                  </div>
-
-                  <div class="flex items-center gap-1">
-                    <button (click)="escapeJson(true)" class="flex-1 px-2.5 py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-850 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-lg text-zinc-700 dark:text-zinc-300 cursor-pointer font-bold transition">
-                      JSON Escape
-                    </button>
-                    <button (click)="escapeJson(false)" class="flex-1 px-2.5 py-1.5 bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-850 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-lg text-zinc-700 dark:text-zinc-300 cursor-pointer font-bold transition">
-                      JSON Unescape
-                    </button>
-                  </div>
-
-                  <div class="grid grid-cols-1 md:grid-cols-3 gap-2 text-xs font-mono">
-                    <button (click)="escapeJS()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
-                      JavaScript String Escaper
-                    </button>
-                    <button (click)="escapeSql()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
-                      SQL String Sanitize Escape
-                    </button>
-                    <button (click)="escapeRegex()" class="text-left px-3 py-2 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 hover:bg-zinc-100 rounded-xl font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer transition">
-                      RegExp Safe Escaper
-                    </button>
-                  </div>
-                  <div class="flex items-center gap-1 border-t border-zinc-150 dark:border-zinc-850 pt-3 flex-wrap">
-                    <button (click)="convertBinary('to')" class="flex-1 px-2.5 py-1.5 bg-emerald-500/10 hover:bg-emerald-500/15 border border-emerald-500/20 rounded-lg text-emerald-600 dark:text-emerald-400 cursor-pointer font-bold transition">
-                      ASCII &rarr; BIN
-                    </button>
-                    <button (click)="convertBinary('from')" class="flex-1 px-2.5 py-1.5 bg-emerald-500/10 hover:bg-emerald-500/15 border border-emerald-500/20 rounded-lg text-emerald-600 dark:text-emerald-400 cursor-pointer font-bold transition">
-                      BIN &rarr; ASCII
-                    </button>
-                  </div>
-
-                  <div class="flex items-center gap-1 flex-wrap">
-                    <button (click)="convertHex('to')" class="flex-1 px-2.5 py-1.5 bg-blue-500/10 hover:bg-blue-500/15 border border-blue-500/20 rounded-lg text-blue-600 dark:text-blue-400 cursor-pointer font-bold transition">
-                      ASCII &rarr; HEX
-                    </button>
-                    <button (click)="convertHex('from')" class="flex-1 px-2.5 py-1.5 bg-blue-500/10 hover:bg-blue-500/15 border border-blue-500/20 rounded-lg text-blue-600 dark:text-blue-400 cursor-pointer font-bold transition">
-                      HEX &rarr; ASCII
-                    </button>
-                  </div>
-                </div>
-              </div>
-            }
-          </div>
-
-          <!-- Live Input Inline Counters Widgets -->
-          <div class="md:col-span-2 bg-zinc-950 p-5 rounded-2xl block space-y-3 text-left border border-zinc-850 shadow-md">
-            <span class="text-[9px] uppercase font-mono tracking-widest text-[#10b981] font-bold block select-none">METRIC INDEX STATS</span>
-            <div class="grid grid-cols-2 gap-3 text-center">
-              <div class="p-3 bg-zinc-900 border border-zinc-850 rounded-xl space-y-0.5">
-                <span class="block text-[10px] font-mono font-bold text-zinc-500 uppercase tracking-wide">Characters</span>
-                <span class="block text-lg font-bold text-white font-mono">{{ charCount() }}</span>
-              </div>
-              <div class="p-3 bg-zinc-900 border border-zinc-850 rounded-xl space-y-0.5">
-                <span class="block text-[10px] font-mono font-bold text-zinc-500 uppercase tracking-wide">Words</span>
-                <span class="block text-lg font-bold text-white font-mono">{{ wordCount() }}</span>
-              </div>
-              <div class="p-3 bg-zinc-900 border border-zinc-850 rounded-xl space-y-0.5">
-                <span class="block text-[10px] font-mono font-bold text-zinc-500 uppercase tracking-wide">Lines count</span>
-                <span class="block text-lg font-bold text-white font-mono">{{ lineCount() }}</span>
-              </div>
-              <div class="p-3 bg-zinc-900 border border-zinc-850 rounded-xl space-y-0.5">
-                <span class="block text-[10px] font-mono font-bold text-zinc-500 uppercase tracking-wide">Paragraph count</span>
-                <span class="block text-lg font-bold text-white font-mono">{{ lineCount() }}</span>
-              </div>
-              <div class="p-3 bg-zinc-900 border border-zinc-850 rounded-xl space-y-0.5 col-span-2">
-              <span class="text-xs font-mono font-bold text-zinc-500 uppercase tracking-widest block select-none">Quick Generators</span>
-              <div class="grid grid-cols-3 gap-1.5 text-[10px] font-mono">
-                <button (click)="generateLorem()" class="px-2.5 py-1.5 text-left bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 rounded-lg text-zinc-650 dark:text-zinc-400 font-bold transition cursor-pointer flex items-center justify-between border border-zinc-150 dark:border-zinc-850">
-                  <span>Lorem Ipsum Standard</span>
-                  <mat-icon class="text-xs scale-75 text-zinc-400">text_snippet</mat-icon>
-                </button>
-                <button (click)="generateRandomName()" class="px-2.5 py-1.5 text-left bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 rounded-lg text-zinc-650 dark:text-zinc-400 font-bold transition cursor-pointer flex items-center justify-between border border-zinc-150 dark:border-zinc-850">
-                  <span>Random Name Generator</span>
-                  <mat-icon class="text-xs scale-75 text-zinc-400">person</mat-icon>
-                </button>
-                <button (click)="generateUsername()" class="px-2.5 py-1.5 text-left bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 rounded-lg text-zinc-650 dark:text-zinc-400 font-bold transition cursor-pointer flex items-center justify-between border border-zinc-150 dark:border-zinc-850">
-                  <span>Random Username/ID</span>
-                  <mat-icon class="text-xs scale-75 text-zinc-400">badge</mat-icon>
-                </button>
-              </div>
-            </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Toolbar controls for history and active tool summaries -->
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-zinc-50 dark:bg-zinc-950 p-2 rounded-2xl border border-zinc-200 dark:border-zinc-850/80 mb-1">
-          <div class="flex items-center gap-2 flex-wrap">
-            <span class="text-xs font-mono font-bold text-zinc-500 uppercase tracking-wider">UTILITY ENVIRONMENT:</span>
-            <span class="text-xs font-mono px-2 py-0.5 bg-emerald-500/10 dark:bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold border border-emerald-150 dark:border-emerald-500/30 rounded-lg">
-              {{ toolName() | uppercase }}
-            </span>
-            <span class="text-xs font-mono px-2 py-0.5 bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg text-zinc-650 dark:text-zinc-400 font-medium">
-              100% SECURE CLIENT-SIDE
-            </span>
-          </div>
-
-          <div class="flex items-center gap-2 self-end md:self-auto select-none">
-            <!-- Undo Redo Controllers -->
-            <button (click)="undo()" [disabled]="!canUndo()"
-              class="p-2 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white rounded-xl transition disabled:opacity-35 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center scale-95" 
-              title="Undo Changes (Ctrl+Z)"
-            >
-              <mat-icon class="text-sm">undo</mat-icon>
-            </button>
-            <button (click)="redo()" [disabled]="!canRedo()"
-              class="p-2 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white rounded-xl transition disabled:opacity-35 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center scale-95" 
-              title="Redo Changes (Ctrl+Y)"
-            >
-              <mat-icon class="text-sm">redo</mat-icon>
-            </button>
-
-            <!-- Divider -->
-            <span class="w-px h-6 bg-zinc-200 dark:bg-zinc-800 mx-1"></span>
-
-            <!-- Clear Button -->
-            <button (click)="clearAll()"
-              class="px-3 py-1.5 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-rose-50 dark:hover:bg-rose-950/20 text-zinc-600 dark:text-zinc-400 hover:text-rose-600 dark:hover:text-rose-400 text-xs font-bold rounded-xl transition cursor-pointer flex items-center gap-1"
-            >
-              <mat-icon class="text-xs scale-75">delete_sweep</mat-icon> CLEAR ALL
-            </button>
-          </div>
-        </div>
+        </aside>
         <!-- Workbench Code Editors Section Right columns -->
         <div class="lg:col-span-1 space-y-1">
           <!-- Master Grid for Inputs and Outputs -->
@@ -602,19 +609,39 @@ interface DiffLine {
 
                 <div class="flex items-center gap-2">
                   <!-- File Import button -->
-                  <button (click)="fileInputA.click()" class="p-1 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded transition flex items-center justify-center cursor-pointer border-none bg-transparent" 
-                    title="Load Local Text File"
-                  >
+                  <button (click)="fileInputA.click()" class="p-2 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white rounded-xl transition disabled:opacity-35 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center scale-95"
+                    title="Load Local Text File">
                     <mat-icon class="text-sm">upload_file</mat-icon>
                   </button>
                   <input #fileInputA type="file" (change)="onFileSelectedA($event)" class="hidden" accept=".txt,.json,.md,.html,.xml,.csv,.js,.ts"/>
 
                   <!-- Paste of Clipboard shortcut -->
-                  <button (click)="pasteTextA()" class="p-1 hover:bg-zinc-800 text-zinc-405 hover:text-white rounded transition flex items-center justify-center cursor-pointer border-none bg-transparent" 
-                    title="Paste from System Clipboard"
-                  >
+                  <button (click)="pasteTextA()" class="p-2 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white rounded-xl transition disabled:opacity-35 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center scale-95"
+                    title="Paste from System Clipboard">
                     <mat-icon class="text-sm">content_paste</mat-icon>
                   </button>
+
+                  <!-- Divider -->
+                  <span class="w-px h-6 bg-zinc-200 dark:bg-zinc-800 mx-1"></span>
+
+                  <!-- Undo Redo Controllers -->
+                  <button (click)="undo()" [disabled]="!canUndo()"
+                    class="p-2 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white rounded-xl transition disabled:opacity-35 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center scale-95"
+                    title="Undo Changes (Ctrl+Z)">
+                    <mat-icon class="text-sm">undo</mat-icon>
+                  </button>
+                  <button (click)="redo()" [disabled]="!canRedo()"
+                    class="p-2 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white rounded-xl transition disabled:opacity-35 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center scale-95"
+                    title="Redo Changes (Ctrl+Y)">
+                    <mat-icon class="text-sm">redo</mat-icon>
+                  </button>
+                  <!-- Clear Button -->
+                  <button (click)="clearAll()"
+                    class="p-2 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-rose-50 dark:hover:bg-rose-950/20 text-zinc-600 dark:text-zinc-400 hover:text-rose-600 dark:hover:text-rose-400 text-xs font-bold rounded-xl transition cursor-pointer flex items-center gap-1"
+                    title="Clear All">
+                    <mat-icon class="text-xs scale-75">delete_sweep</mat-icon>
+                  </button>
+
                 </div>
               </div>
 
@@ -864,25 +891,25 @@ interface DiffLine {
   `]
 })
 export class TextToolkitComponent {
-leftWidth = 50;
-private resizing = false;
-startResize(event: MouseEvent) {
-  event.preventDefault();
-  this.resizing = true;
-}
-@HostListener('document:mousemove', ['$event'])
-onMouseMove(event: MouseEvent) {
-  if (!this.resizing) return;
-  const container = document.querySelector('.resize-container') as HTMLElement;
-  const rect = container.getBoundingClientRect();
-  this.leftWidth = ((event.clientX - rect.left) / rect.width) * 100;
-  this.leftWidth = Math.max(20, Math.min(80, this.leftWidth));
-}
+  leftWidth = 50;
+  private resizing = false;
+  startResize(event: MouseEvent) {
+    event.preventDefault();
+    this.resizing = true;
+  }
+  @HostListener('document:mousemove', ['$event'])
+  onMouseMove(event: MouseEvent) {
+    if (!this.resizing) return;
+    const container = document.querySelector('.resize-container') as HTMLElement;
+    const rect = container.getBoundingClientRect();
+    this.leftWidth = ((event.clientX - rect.left) / rect.width) * 100;
+    this.leftWidth = Math.max(20, Math.min(80, this.leftWidth));
+  }
 
-@HostListener('document:mouseup')
-onMouseUp() {
-  this.resizing = false;
-}
+  @HostListener('document:mouseup')
+  onMouseUp() {
+    this.resizing = false;
+  }
   public toolId = signal<string>('text-formatter');
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('toolId') set toolIdSetter(val: string) {
@@ -990,17 +1017,38 @@ onMouseUp() {
     return mappings[this.toolId()] || 'Standard Text Processor Suite';
   }
 
+  public sidebarExpanded = signal<boolean>(false);
+  public toggleSidebar(): void {
+    this.sidebarExpanded.update(v => !v);
+  }
+
+  public matrixExpanded = signal<boolean>(true);
+  public toggleMatrix(): void {
+    this.matrixExpanded.update(v => !v);
+  }
+
   // Active textual stats derivations
   public charCount = computed(() => this.rawInput().length);
   public wordCount = computed(() => {
-    const txt = this.rawInput().trim();
-    if (!txt) return 0;
-    return txt.split(/\\s+/).filter(w => w.length > 0).length;
+    return this.rawInput().trim().match(/\b[\w'-]+\b/g)?.length ?? 0;
   });
   public lineCount = computed(() => {
     const txt = this.rawInput();
     if (!txt) return 0;
-    return txt.split('\\n').join('\n').split('\n').length;
+    return txt.split(/\r?\n/).length;
+  });
+
+  public paragraphCount = computed(() => {
+    const txt = this.rawInput();
+    if (!txt.trim()) return 0;
+    return txt.replace(/\r\n/g, '\n').trim().split(/\n\s*\n+/).filter(Boolean).length;
+  });
+
+  public sentenceCount = computed(() => {
+    const txt = this.rawInput().trim();
+    if (!txt) return 0;
+    const sentences = txt.replace(/\r\n/g, '\n').match(/[^.!?]+[.!?]+/g);
+    return sentences?.length ?? 0;
   });
 
   // Undo-Redo Operations
